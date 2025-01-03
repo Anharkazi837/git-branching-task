@@ -1,0 +1,29 @@
+{
+	"name": "DS_Customer_SQL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sujay_SQL",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "IDL_Med_Stock"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "cid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "name",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "customer"
+		}
+	}
+}

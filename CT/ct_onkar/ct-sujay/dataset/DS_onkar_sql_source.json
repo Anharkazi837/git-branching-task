@@ -1,0 +1,31 @@
+{
+	"name": "DS_onkar_sql_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_onkar_CT",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "PersonID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Age",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dst_onkar"
+		}
+	}
+}

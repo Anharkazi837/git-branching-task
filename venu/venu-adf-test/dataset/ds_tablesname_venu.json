@@ -1,0 +1,12 @@
+{
+	"name": "ds_tablesname_venu",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_venu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

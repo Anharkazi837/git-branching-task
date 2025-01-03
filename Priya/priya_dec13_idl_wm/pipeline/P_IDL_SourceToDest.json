@@ -1,0 +1,25 @@
+{
+	"name": "P_IDL_SourceToDest",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.tablelist",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"tablelist": {
+				"type": "array"
+			}
+		},
+		"annotations": []
+	}
+}

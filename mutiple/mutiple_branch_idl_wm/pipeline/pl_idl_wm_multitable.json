@@ -1,0 +1,39 @@
+{
+	"name": "pl_idl_wm_multitable",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.tableList_arnab",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"tableList_arnab": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"TABLE_NAME": "customer_table",
+						"WaterMark_Column": "LastModifytime",
+						"TableType": "DataTypeforCustomerTable",
+						"StoredProcedureNameForMergeOperation": "usp_upsert_customer_table"
+					},
+					{
+						"TABLE_NAME": "project_table",
+						"WaterMark_Column": "Creationtime",
+						"TableType": "DataTypeforProjectTable",
+						"StoredProcedureNameForMergeOperation": "usp_upsert_project_table"
+					}
+				]
+			}
+		},
+		"annotations": []
+	}
+}

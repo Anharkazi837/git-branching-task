@@ -1,0 +1,26 @@
+{
+	"name": "DS_CT_CTTbl_mujahed",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_mujahed",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "SYS_CHANGE_VERSION",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_CT_mujahed"
+		}
+	}
+}

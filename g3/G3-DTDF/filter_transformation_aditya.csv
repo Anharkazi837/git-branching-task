@@ -1,0 +1,17 @@
+product_id,product_name,category,price,quantity,store_location
+1,Apple iPhone 14,Smartphone,999.99,100,New York
+2,Samsung Galaxy S23,Smartphone,849.99,150,Los Angeles
+9,Google Pixel 7,Smartphone,599.99,180,Chicago
+11,Apple iPhone 13,Smartphone,799.99,130,Chicago
+12,OnePlus 10 Pro,Smartphone,899.99,160,San Francisco
+50,Samsung Galaxy Z Flip 4,Smartphone,999.99,100,Los Angeles
+64,Apple iPhone 12,Smartphone,699.99,170,Chicago
+76,Samsung Galaxy A52,Smartphone,499.99,200,San Francisco
+79,Apple iPhone 11,Smartphone,699.99,160,Los Angeles
+88,Google Pixel 6 Pro,Smartphone,899.99,140,Los Angeles
+95,Apple iPhone 12 Pro Max,Smartphone,1099.99,50,Los Angeles
+106,Samsung Galaxy Z Fold 4,Smartphone,1799.99,50,San Francisco
+108,Sony Xperia 1 III,Smartphone,1299.99,30,New York
+109,Apple iPhone SE 3,Smartphone,429.99,220,San Francisco
+113,Google Pixel 7 Pro,Smartphone,1099.99,80,San Francisco
+126,Samsung Galaxy A72,Smartphone,599.99,130,San Francisco

@@ -1,0 +1,5 @@
+product_id,product_name,category,price,quantity,store_location,productname
+95,Apple iPhone 12 Pro Max,Smartphone,1099.99,50,Los Angeles,Apple iPhone 12 Pro Max
+106,Samsung Galaxy Z Fold 4,Smartphone,1799.99,50,San Francisco,Samsung Galaxy Z Fold 4
+108,Sony Xperia 1 III,Smartphone,1299.99,30,New York,Sony Xperia 1 III
+113,Google Pixel 7 Pro,Smartphone,1099.99,80,San Francisco,Google Pixel 7 Pro

@@ -1,0 +1,22 @@
+{
+	"name": "DS_onkar_gen2_query_output",
+	"properties": {
+		"folder": {
+			"name": "4.sqlquerytogen2"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "%Afile",
+				"fileSystem": "outputforsqlquery"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"name": "DataSetSink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_IDLWM_Sink_SQL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SinkTableName": {
+				"type": "string",
+				"defaultValue": "@dataset('SinkTableName')"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,33 @@
+{
+	"name": "Ds_anu_azsql_input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_anu_azsql",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Azsql"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "anupriya"
+		}
+	}
+}

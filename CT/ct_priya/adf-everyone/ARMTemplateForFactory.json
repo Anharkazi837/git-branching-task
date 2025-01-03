@@ -1,0 +1,1120 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-everyone"
+		},
+		"AzureSqlDatabase1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase1'"
+		},
+		"LS_GRP4_SOURCE_VENU_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_GRP4_SOURCE_VENU'"
+		},
+		"LS_Gen2_Bharath_GP4_Source_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_Gen2_Bharath_GP4_Source'"
+		},
+		"LS_JYOTHI_PROJECT_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_JYOTHI_PROJECT'"
+		},
+		"LS_gen2_Group2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_gen2_Group2'"
+		},
+		"LS_onkar_gen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_onkar_gen2'"
+		},
+		"Ls_group_anu_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Ls_group_anu'"
+		},
+		"ls_ag_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_ag'"
+		},
+		"ls_group3_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_group3'"
+		},
+		"new_LS_onkar_handson_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'new_LS_onkar_handson'"
+		},
+		"onkar_handson_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'onkar_handson'"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sqlserver4everyone.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"LS_GRP4_SOURCE_VENU_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"LS_Gen2_Bharath_GP4_Source_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"LS_JYOTHI_PROJECT_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"LS_gen2_Group2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"LS_onkar_gen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"Ls_group_anu_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"ls_group3_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"new_LS_onkar_handson_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"onkar_handson_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/PL_Sujay_Group3_DerivedColumn_TotalValue')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "TotalValueColumn",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "df_sujay_derivedcol_totalvalue",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"ProductsSource": {},
+									"DerivedColumnSink": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "PL_Sujay_Group3"
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-12-17T06:05:50Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/df_sujay_derivedcol_totalvalue')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PL_Sujay_Group3_SortByPrice')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "SortByPrice",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "df_sujay_7_sort_byprice",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Products": {},
+									"ProductsSortedByPrice": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "PL_Sujay_Group3"
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-12-17T06:05:50Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/df_sujay_7_sort_byprice')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PL_Sujay_Group3_SortByQuantity')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "SortByQuantity",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "df_sujay_7_sort_byquantity",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Products": {},
+									"ProductsSortedByPrice": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "PL_Sujay_Group3"
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-12-17T06:05:50Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/df_sujay_7_sort_byquantity')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PL_Sujay_Group3_Union')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "UnionTransformation",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "df_sujay_3_union",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Products1": {},
+									"Products2": {},
+									"ProductsUnionSink": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "PL_Sujay_Group3"
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-12-17T06:05:50Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/df_sujay_3_union')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_ProductsSortedByPriceDesc_Sink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_group3",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Sujay_Group3"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "ProductsSortedByPrice.csv",
+						"folderPath": "Group3/Sujay_Group3_Outputs",
+						"fileSystem": "requirements"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_group3')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_ProductsSortedByQuantityDesc_Sink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_group3",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Sujay_Group3"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "ProductsSortedByQuantity.csv",
+						"folderPath": "Group3/Sujay_Group3_Outputs",
+						"fileSystem": "requirements"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_group3')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_Sujay_DerivedColumn')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_group3",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Sujay_Group3"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "DerivedColumn.csv",
+						"folderPath": "Group3/Sujay_Group3_Outputs",
+						"fileSystem": "requirements"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_group3')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_Sujay_Products2_Source')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_group3",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Sujay_Group3"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "products2.csv",
+						"fileSystem": "requirements"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "product_id",
+						"type": "String"
+					},
+					{
+						"name": "product_name",
+						"type": "String"
+					},
+					{
+						"name": "category",
+						"type": "String"
+					},
+					{
+						"name": "price",
+						"type": "String"
+					},
+					{
+						"name": "quantity",
+						"type": "String"
+					},
+					{
+						"name": "store_location",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_group3')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_Sujay_ProductsUnion_Sink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_group3",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Sujay_Group3"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "Group3/Sujay_Group3_Outputs",
+						"fileSystem": "requirements"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_group3')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_Sujay_Products_Source')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_group3",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Sujay_Group3"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "products.csv",
+						"fileSystem": "requirements"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "product_id",
+						"type": "String"
+					},
+					{
+						"name": "product_name",
+						"type": "String"
+					},
+					{
+						"name": "category",
+						"type": "String"
+					},
+					{
+						"name": "price",
+						"type": "String"
+					},
+					{
+						"name": "quantity",
+						"type": "String"
+					},
+					{
+						"name": "store_location",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_group3')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_Sujay_Stores_Source')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_group3",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Sujay_Group3"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "sales.csv",
+						"fileSystem": "requirements"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "store_id",
+						"type": "String"
+					},
+					{
+						"name": "store_name",
+						"type": "String"
+					},
+					{
+						"name": "store_location",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_group3')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]",
+					"database": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('AzureSqlDatabase1_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_GRP4_SOURCE_VENU')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_GRP4_SOURCE_VENU_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_GRP4_SOURCE_VENU_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_Gen2_Bharath_GP4_Source')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_Gen2_Bharath_GP4_Source_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_Gen2_Bharath_GP4_Source_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_JYOTHI_PROJECT')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_JYOTHI_PROJECT_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_JYOTHI_PROJECT_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_gen2_Group2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_gen2_Group2_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_gen2_Group2_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_onkar_gen2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_onkar_gen2_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_onkar_gen2_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Ls_group_anu')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('Ls_group_anu_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('Ls_group_anu_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_ag')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('ls_ag_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_group3')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('ls_group3_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('ls_group3_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/new_LS_onkar_handson')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('new_LS_onkar_handson_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('new_LS_onkar_handson_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/onkar_handson')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('onkar_handson_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('onkar_handson_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_sujay_3_union')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"folder": {
+					"name": "Sujay_Group3_Tasks"
+				},
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "DS_Sujay_Products_Source",
+								"type": "DatasetReference"
+							},
+							"name": "Products1"
+						},
+						{
+							"dataset": {
+								"referenceName": "DS_Sujay_Products2_Source",
+								"type": "DatasetReference"
+							},
+							"name": "Products2"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "DS_Sujay_ProductsUnion_Sink",
+								"type": "DatasetReference"
+							},
+							"name": "ProductsUnionSink"
+						}
+					],
+					"transformations": [
+						{
+							"name": "UnionProd1and2"
+						},
+						{
+							"name": "removequote"
+						},
+						{
+							"name": "removequote2"
+						},
+						{
+							"name": "DropNulls1"
+						},
+						{
+							"name": "DropNulls2"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          product_id as string,",
+						"          product_name as string,",
+						"          category as string,",
+						"          price as string,",
+						"          quantity as string,",
+						"          store_location as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Products1",
+						"source(output(",
+						"          product_id as string,",
+						"          product_name as string,",
+						"          category as string,",
+						"          price as string,",
+						"          quantity as string,",
+						"          store_location as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Products2",
+						"removequote, removequote2 union(byName: true)~> UnionProd1and2",
+						"DropNulls1 derive(product_name = replace(product_name,'\"','')) ~> removequote",
+						"DropNulls2 derive(product_name = replace(product_name, '\"', '')) ~> removequote2",
+						"Products1 filter(!isNull(product_id) &&\r",
+						"!isNull(product_name) &&\r",
+						"!isNull(category) &&\r",
+						"!isNull(price) &&\r",
+						"!isNull(quantity) &&\r",
+						"!isNull(store_location)) ~> DropNulls1",
+						"Products2 filter(!isNull(product_id) &&",
+						"!isNull(product_name) &&",
+						"!isNull(category) &&",
+						"!isNull(price) &&",
+						"!isNull(quantity) &&",
+						"!isNull(store_location)) ~> DropNulls2",
+						"UnionProd1and2 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     partitionFileNames:['Group3_Sujay_Union.csv'],",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> ProductsUnionSink"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DS_Sujay_Products_Source')]",
+				"[concat(variables('factoryId'), '/datasets/DS_Sujay_Products2_Source')]",
+				"[concat(variables('factoryId'), '/datasets/DS_Sujay_ProductsUnion_Sink')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_sujay_7_sort_byprice')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"folder": {
+					"name": "Sujay_Group3_Tasks"
+				},
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "DS_Sujay_Products_Source",
+								"type": "DatasetReference"
+							},
+							"name": "Products"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "DS_ProductsSortedByPriceDesc_Sink",
+								"type": "DatasetReference"
+							},
+							"name": "ProductsSortedByPrice"
+						}
+					],
+					"transformations": [
+						{
+							"name": "SortByPrice"
+						},
+						{
+							"name": "DropNulls"
+						},
+						{
+							"name": "RemoveQuote"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          product_id as string,",
+						"          product_name as string,",
+						"          category as string,",
+						"          price as string,",
+						"          quantity as string,",
+						"          store_location as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Products",
+						"DropNulls sort(desc(toInteger(price), true),",
+						"     caseInsensitive: true,",
+						"     partitionLevel: true) ~> SortByPrice",
+						"RemoveQuote filter(!isNull(product_id) &&\r",
+						"!isNull(product_name) &&\r",
+						"!isNull(category) &&\r",
+						"!isNull(price) &&\r",
+						"!isNull(quantity) &&\r",
+						"!isNull(store_location)) ~> DropNulls",
+						"Products derive(product_name = replace(product_name,'\"','')) ~> RemoveQuote",
+						"SortByPrice sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     partitionFileNames:['Group3_Sujay_SortByPrice.csv'],",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> ProductsSortedByPrice"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DS_Sujay_Products_Source')]",
+				"[concat(variables('factoryId'), '/datasets/DS_ProductsSortedByPriceDesc_Sink')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_sujay_7_sort_byquantity')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"folder": {
+					"name": "Sujay_Group3_Tasks"
+				},
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "DS_Sujay_Products_Source",
+								"type": "DatasetReference"
+							},
+							"name": "Products"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "DS_ProductsSortedByQuantityDesc_Sink",
+								"type": "DatasetReference"
+							},
+							"name": "ProductsSortedByPrice"
+						}
+					],
+					"transformations": [
+						{
+							"name": "SortByQuantity"
+						},
+						{
+							"name": "DropNulls"
+						},
+						{
+							"name": "RemoveQuote"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          product_id as string,",
+						"          product_name as string,",
+						"          category as string,",
+						"          price as string,",
+						"          quantity as string,",
+						"          store_location as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Products",
+						"RemoveQuote sort(desc(toInteger(quantity), true),",
+						"     caseInsensitive: true,",
+						"     partitionLevel: true) ~> SortByQuantity",
+						"Products filter(!isNull(product_id) &&",
+						"!isNull(product_name) &&",
+						"!isNull(category) &&",
+						"!isNull(price) &&",
+						"!isNull(quantity) &&",
+						"!isNull(store_location)) ~> DropNulls",
+						"DropNulls derive(product_name = replace(product_name,'\"','')) ~> RemoveQuote",
+						"SortByQuantity sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     partitionFileNames:['Group3_Sujay_SortByQuantity.csv'],",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> ProductsSortedByPrice"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DS_Sujay_Products_Source')]",
+				"[concat(variables('factoryId'), '/datasets/DS_ProductsSortedByQuantityDesc_Sink')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_sujay_derivedcol_totalvalue')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"folder": {
+					"name": "Sujay_Group3_Tasks"
+				},
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "DS_Sujay_Products_Source",
+								"type": "DatasetReference"
+							},
+							"name": "ProductsSource"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "DS_Sujay_DerivedColumn",
+								"type": "DatasetReference"
+							},
+							"name": "DerivedColumnSink"
+						}
+					],
+					"transformations": [
+						{
+							"name": "totalvalue"
+						},
+						{
+							"name": "removequotes"
+						},
+						{
+							"name": "DropNulls"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          product_id as string,",
+						"          product_name as string,",
+						"          category as string,",
+						"          price as string,",
+						"          quantity as string,",
+						"          store_location as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> ProductsSource",
+						"removequotes derive(total_value = round(toDouble(price)*toInteger(quantity),2)) ~> totalvalue",
+						"DropNulls derive(product_name = replace(product_name, '\"', '')) ~> removequotes",
+						"ProductsSource filter(!isNull(product_id) &&",
+						"!isNull(product_name) &&",
+						"!isNull(category) &&",
+						"!isNull(price) &&",
+						"!isNull(quantity) &&",
+						"!isNull(store_location)) ~> DropNulls",
+						"totalvalue sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     partitionFileNames:['Group3_Sujay_TotalValue.csv'],",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> DerivedColumnSink"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DS_Sujay_Products_Source')]",
+				"[concat(variables('factoryId'), '/datasets/DS_Sujay_DerivedColumn')]"
+			]
+		}
+	]
+}

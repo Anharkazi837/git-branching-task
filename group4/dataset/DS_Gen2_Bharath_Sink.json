@@ -1,0 +1,23 @@
+{
+	"name": "DS_Gen2_Bharath_Sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Gen2_Bharath_GP4_Source",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Group4",
+				"fileSystem": "requirements"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

@@ -1,0 +1,77 @@
+#SCD Type2:
+
+
+# Creating Incoming Source table
+
+CREATE TABLE Reviews_Source (
+    ReviewID INT  ,
+    ProductID INT,
+    CustomerID INT,
+    Rating INT,
+    ReviewText VARCHAR(Max),
+    ReviewDate DATE,
+);
+
+#Creating target Dimensional table:
+
+
+CREATE TABLE Reviews_Dimension (
+    ReviewID INT ,
+    ProductID INT,
+    CustomerID INT,
+    Rating INT,
+    ReviewText VARCHAR(100),
+    ReviewDate DATE,
+	StartDate DATE,
+	EndDate DATE,
+	IsCurrent Bit
+);
+
+
+#Inaerting Data into Source Table:
+
+INSERT INTO [dbo].[Reviews_Source] (ReviewID, ProductID, CustomerID, Rating, ReviewText, ReviewDate)
+VALUES 
+(1, 1, 1, 5, 'Bad product!', '2024-01-15'),
+(2, 2, 2, 4, 'Very good phone, but a bit expensive.', '2025-02-10')
+
+
+#Inserting Data into Dimensional Table:
+
+INSERT INTO Reviews_Dimension (ReviewID, ProductID, CustomerID, Rating, ReviewText, ReviewDate)
+VALUES 
+(1, 1, 1, 5, 'Excellent product!', '2024-01-15'),
+(2, 2, 2, 4, 'Very good phone, but a bit expensive.', '2024-02-10'),
+(3, 3, 3, 3, 'Good, but not what I expected.', '2024-03-05'),
+(4, 4, 4, 5, 'Great sound quality!', '2024-04-20'),
+(5, 5, 5, 4, 'Comfortable chair.', '2024-05-10'),
+(6, 6, 6, 5, 'Love this tablet!', '2024-06-01'),
+(7, 7, 7, 4, 'Works well, easy to use.', '2024-07-13'),
+(8, 8, 8, 5, 'Perfect monitor!', '2024-08-25'),
+(9, 9, 9, 4, 'Good mouse, affordable price.', '2024-09-17'),
+(10, 10, 10, 5, 'Great keyboard for the price.', '2024-10-22');
+
+
+#Merging Source and Dimensional Table:
+
+Merge into [dbo].[Reviews_Dimension] as target
+Using [dbo].[Reviews_Source] as source 
+On target.ReviewID=source.ReviewID AND target.IsCurrent=1
+
+When Matched AND 
+( 
+target.Rating!=source.Rating OR
+target.ReviewText!=source.ReviewText OR
+target.ReviewDate!=source.ReviewDate
+)Then
+Update Set 
+target.Enddate=GETDATE(),
+target.IsCurrent=0
+
+When Not Matched Then
+Insert (ReviewID, ProductID, CustomerID, Rating, ReviewText, ReviewDate, StartDate, EndDate, IsCurrent)
+Values (source.ReviewID,source.ProductID,source.CustomerID,source.Rating,source.ReviewText,source.ReviewDate,GETDATE(),NULL,1);
+
+#Getting Output:
+
+select * from [dbo].[Reviews_Dimension]

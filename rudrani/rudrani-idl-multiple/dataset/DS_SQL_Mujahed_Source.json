@@ -1,0 +1,27 @@
+{
+	"name": "DS_SQL_Mujahed_Source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_IDL_WM",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkValue",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dst_mujahed"
+		}
+	}
+}

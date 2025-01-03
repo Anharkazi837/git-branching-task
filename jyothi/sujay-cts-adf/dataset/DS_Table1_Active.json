@@ -1,0 +1,30 @@
+{
+	"name": "DS_Table1_Active",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_jyothi_blob_input",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Status",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Table1"
+		}
+	}
+}

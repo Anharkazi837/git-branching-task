@@ -1,0 +1,55 @@
+{
+	"name": "df_sort_aditya",
+	"properties": {
+		"folder": {
+			"name": "Aditya_Kumar_Tasks"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_products_source_aditya",
+						"type": "DatasetReference"
+					},
+					"name": "ProductsInput"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_filter_sink_aditya",
+						"type": "DatasetReference"
+					},
+					"name": "output"
+				}
+			],
+			"transformations": [
+				{
+					"name": "SortByPrice"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          product_id as string,",
+				"          product_name as string,",
+				"          category as string,",
+				"          price as string,",
+				"          quantity as string,",
+				"          store_location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ProductsInput",
+				"ProductsInput sort(desc(toInteger(price), false)) ~> SortByPrice",
+				"SortByPrice sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> output"
+			]
+		}
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"name": "DS_Mujahed_SQL_FirstName_A",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Mujahed_SQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "general"
+		}
+	}
+}

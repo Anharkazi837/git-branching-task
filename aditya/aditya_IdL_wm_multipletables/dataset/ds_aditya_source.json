@@ -1,0 +1,12 @@
+{
+	"name": "ds_aditya_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_aditya_IDL_SRC",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

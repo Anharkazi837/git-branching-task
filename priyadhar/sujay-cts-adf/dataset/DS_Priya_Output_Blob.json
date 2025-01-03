@@ -1,0 +1,25 @@
+{
+	"name": "DS_Priya_Output_Blob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_priyad_blob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "BlobToBlob"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "outputdata"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

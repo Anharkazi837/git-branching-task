@@ -1,0 +1,25 @@
+{
+	"name": "DS_Sujay_Blob2Gen2_Output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sujay_Gen2",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "2.0-Blob-Gen2"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "outputemp"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

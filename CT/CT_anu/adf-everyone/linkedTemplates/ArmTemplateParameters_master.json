@@ -1,0 +1,84 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-everyone"
+		},
+		"AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"LS_GRP4_SOURCE_VENU_accountKey": {
+			"value": ""
+		},
+		"LS_Gen2_Bharath_GP4_Source_accountKey": {
+			"value": ""
+		},
+		"LS_JYOTHI_PROJECT_accountKey": {
+			"value": ""
+		},
+		"LS_gen2_Group2_accountKey": {
+			"value": ""
+		},
+		"LS_onkar_gen2_accountKey": {
+			"value": ""
+		},
+		"Ls_group_anu_accountKey": {
+			"value": ""
+		},
+		"ls_ag_connectionString": {
+			"value": ""
+		},
+		"ls_group3_accountKey": {
+			"value": ""
+		},
+		"new_LS_onkar_handson_accountKey": {
+			"value": ""
+		},
+		"onkar_handson_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "sqlserver4everyone.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "db4everyone"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "adminuser"
+		},
+		"LS_GRP4_SOURCE_VENU_properties_typeProperties_url": {
+			"value": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"LS_Gen2_Bharath_GP4_Source_properties_typeProperties_url": {
+			"value": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"LS_JYOTHI_PROJECT_properties_typeProperties_url": {
+			"value": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"LS_gen2_Group2_properties_typeProperties_url": {
+			"value": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"LS_onkar_gen2_properties_typeProperties_url": {
+			"value": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"Ls_group_anu_properties_typeProperties_url": {
+			"value": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"ls_group3_properties_typeProperties_url": {
+			"value": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"new_LS_onkar_handson_properties_typeProperties_url": {
+			"value": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"onkar_handson_properties_typeProperties_url": {
+			"value": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

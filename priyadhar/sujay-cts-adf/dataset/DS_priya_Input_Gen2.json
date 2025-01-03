@@ -1,0 +1,31 @@
+{
+	"name": "DS_priya_Input_Gen2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_Priya_Gen2Datalake",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Gen2ToSql"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "input_emp.txt",
+				"fileSystem": "inputdata"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "FirstName|LastName",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"name": "DS_Priya_output_sqlToGen2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_Priya_Gen2Datalake",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SqlToGen2"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "empdatafromsql",
+				"fileSystem": "output"
+			}
+		},
+		"schema": {}
+	}
+}

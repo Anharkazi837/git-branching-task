@@ -1,0 +1,26 @@
+{
+	"name": "DS_Sink_Gen2_Arnab",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_GEN2_Arnab",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@CONCAT('IDL-CT-ARNAB-CT-', pipeline().RunId, '.csv')\n ",
+					"type": "Expression"
+				},
+				"fileSystem": "output-arnab"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

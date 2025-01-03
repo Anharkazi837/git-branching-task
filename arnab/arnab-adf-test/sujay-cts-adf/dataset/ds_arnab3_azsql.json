@@ -1,0 +1,35 @@
+{
+	"name": "ds_arnab3_azsql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_arnab_azsql",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "05_azsql_gen2"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "PersonID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "LastModifytime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "data_source_table"
+		}
+	}
+}

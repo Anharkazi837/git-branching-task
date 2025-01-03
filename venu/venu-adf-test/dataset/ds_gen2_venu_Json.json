@@ -1,0 +1,19 @@
+{
+	"name": "ds_gen2_venu_Json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_venu_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "emp.json",
+				"fileSystem": "output"
+			}
+		},
+		"schema": {}
+	}
+}

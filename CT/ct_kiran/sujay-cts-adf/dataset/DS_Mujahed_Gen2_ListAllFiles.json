@@ -1,0 +1,22 @@
+{
+	"name": "DS_Mujahed_Gen2_ListAllFiles",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Mujahed_Gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "inputemp"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

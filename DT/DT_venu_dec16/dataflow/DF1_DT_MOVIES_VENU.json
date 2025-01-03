@@ -1,0 +1,57 @@
+{
+	"name": "DF1_DT_MOVIES_VENU",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_gen2_LTsource_venu",
+						"type": "DatasetReference"
+					},
+					"name": "sourcemovie"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_GEN2_SINK_VENU",
+						"type": "DatasetReference"
+					},
+					"name": "sinkmovieavg"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filterbyyearcomedy"
+				},
+				{
+					"name": "AverageComedyRating"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          movie as string,",
+				"          title as string,",
+				"          genres as string,",
+				"          year as string,",
+				"          Rating as string,",
+				"          {Rotton Tomato} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourcemovie",
+				"sourcemovie filter(toInteger(year)>=1910 && toInteger(year) <= 2000 && rlike(genres,'Comedy')) ~> filterbyyearcomedy",
+				"filterbyyearcomedy aggregate(groupBy(year),",
+				"     AverageComedyRating = avg(toInteger(Rating))) ~> AverageComedyRating",
+				"AverageComedyRating sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkmovieavg"
+			]
+		}
+	}
+}

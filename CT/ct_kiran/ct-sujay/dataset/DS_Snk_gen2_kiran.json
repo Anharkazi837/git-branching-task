@@ -1,0 +1,26 @@
+{
+	"name": "DS_Snk_gen2_kiran",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_gen2_kiran",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@CONCAT('IDL-CT-KIRAN-CT-', pipeline().RunId, '.csv')\n \n\n",
+					"type": "Expression"
+				},
+				"fileSystem": "output-kiran"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

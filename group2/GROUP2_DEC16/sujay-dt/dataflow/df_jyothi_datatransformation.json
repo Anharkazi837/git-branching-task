@@ -1,0 +1,157 @@
+{
+	"name": "df_jyothi_datatransformation",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_jyothi",
+						"type": "DatasetReference"
+					},
+					"name": "productsource"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_JYOTHI_STOREGE2",
+						"type": "DatasetReference"
+					},
+					"name": "Sourcestore"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_jyothi_unio",
+						"type": "DatasetReference"
+					},
+					"name": "ProductUnion"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_jyot_uni",
+						"type": "DatasetReference"
+					},
+					"name": "ProductUnion2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_jyothi_outcome",
+						"type": "DatasetReference"
+					},
+					"name": "Sinkoutcome"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_jyo_union_result",
+						"type": "DatasetReference"
+					},
+					"name": "SinkproductOfUnion"
+				}
+			],
+			"transformations": [
+				{
+					"name": "FilterByCatgoryPrice"
+				},
+				{
+					"name": "Joinproductstore"
+				},
+				{
+					"name": "SortByPrice"
+				},
+				{
+					"name": "CalculateProductValue"
+				},
+				{
+					"name": "SelectTheParticularFromTable"
+				},
+				{
+					"name": "AggregateTotalStockAvailable"
+				},
+				{
+					"name": "unionResult"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          product_id as string,",
+				"          product_name as string,",
+				"          category as string,",
+				"          price as string,",
+				"          quantity as string,",
+				"          store_location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> productsource",
+				"source(output(",
+				"          store_id as string,",
+				"          store_name as string,",
+				"          store_location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Sourcestore",
+				"source(output(",
+				"          product_id as string,",
+				"          product_name as string,",
+				"          category as string,",
+				"          price as string,",
+				"          quantity as string,",
+				"          store_location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ProductUnion",
+				"source(output(",
+				"          product_id as string,",
+				"          product_name as string,",
+				"          category as string,",
+				"          price as string,",
+				"          quantity as string,",
+				"          store_location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ProductUnion2",
+				"productsource filter((toInteger(price) >1000)  &&  rlike(category, 'Laptop')) ~> FilterByCatgoryPrice",
+				"FilterByCatgoryPrice, Sourcestore join(productsource@store_location == Sourcestore@store_location,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> Joinproductstore",
+				"Joinproductstore sort(desc(price, true)) ~> SortByPrice",
+				"SortByPrice derive(ProductValue = toInteger(price) * toInteger(quantity)) ~> CalculateProductValue",
+				"CalculateProductValue select(mapColumn(",
+				"          product_name,",
+				"          category,",
+				"          quantity,",
+				"          ProductValue",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelectTheParticularFromTable",
+				"SelectTheParticularFromTable aggregate(groupBy(category),",
+				"     TotalSTock = sum(toInteger(quantity))) ~> AggregateTotalStockAvailable",
+				"ProductUnion, ProductUnion2 union(byName: true)~> unionResult",
+				"AggregateTotalStockAvailable sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> Sinkoutcome",
+				"unionResult sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          category as string,",
+				"          TotalSTock as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SinkproductOfUnion"
+			]
+		}
+	}
+}

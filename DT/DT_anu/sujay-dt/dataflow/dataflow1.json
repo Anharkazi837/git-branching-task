@@ -1,0 +1,61 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Ds_gen2_movies_source",
+						"type": "DatasetReference"
+					},
+					"name": "Dtdfanumovie"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Ds_gen2_sink",
+						"type": "DatasetReference"
+					},
+					"name": "DFdtsink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "FilterByYearComedy",
+					"description": "Filtering rows by using expression on column year and genres "
+				},
+				{
+					"name": "AverageComedyRating",
+					"description": "Aggregating data by 'year' producing columns 'AverageComedyRating'"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          movie as string,",
+				"          title as string,",
+				"          genres as string,",
+				"          year as string,",
+				"          Rating as string,",
+				"          {Rotton Tomato} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Dtdfanumovie",
+				"Dtdfanumovie filter(toInteger(year)>=1910 &&",
+				"toInteger(year)<=2000&&",
+				"rlike(genres,'Comedy')) ~> FilterByYearComedy",
+				"FilterByYearComedy aggregate(groupBy(movie),",
+				"     Rating = avg(toInteger(Rating))) ~> AverageComedyRating",
+				"AverageComedyRating sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> DFdtsink"
+			]
+		}
+	}
+}

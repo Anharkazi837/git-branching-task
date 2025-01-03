@@ -1,0 +1,33 @@
+{
+	"name": "ds_sujay_blob2sql_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sujay_SQL",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "3.0-Blob-SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "esujay"
+		}
+	}
+}

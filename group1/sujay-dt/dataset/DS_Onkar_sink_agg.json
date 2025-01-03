@@ -1,0 +1,26 @@
+{
+	"name": "DS_Onkar_sink_agg",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_group1_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DS_onkar"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Onkar_output_agg",
+				"fileSystem": "moviesdetails"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

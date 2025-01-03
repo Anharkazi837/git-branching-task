@@ -1,0 +1,76 @@
+{
+	"name": "df_aggregate_kiran",
+	"properties": {
+		"folder": {
+			"name": "Kiran_group3_tasks"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_kiran_4",
+						"type": "DatasetReference"
+					},
+					"name": "source"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_kiran_sink_5",
+						"type": "DatasetReference"
+					},
+					"name": "sink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "aggregate"
+				},
+				{
+					"name": "derivedColumn"
+				},
+				{
+					"name": "filter"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          product_id as string,",
+				"          product_name as string,",
+				"          category as string,",
+				"          price as string,",
+				"          quantity as string,",
+				"          store_location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source",
+				"filter aggregate(groupBy(category),",
+				"     total_quantity = sum(toInteger(quantity))) ~> aggregate",
+				"source derive(productname = replace(product_name,'\"','')) ~> derivedColumn",
+				"derivedColumn filter(!isNull(product_id) &&\r",
+				"!isNull(product_name) &&\r",
+				"!isNull(category) &&\r",
+				"!isNull(price) &&\r",
+				"!isNull(quantity) &&\r",
+				"!isNull(store_location)) ~> filter",
+				"aggregate sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          product_name as string,",
+				"          category as string,",
+				"          price as string",
+				"     ),",
+				"     partitionFileNames:['aggregate_output.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink"
+			]
+		}
+	}
+}

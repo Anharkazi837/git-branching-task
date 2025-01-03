@@ -1,0 +1,27 @@
+{
+	"name": "WatermarkTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "anu_sql_destination_idl",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkValue",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Watermarktable_anu"
+		}
+	}
+}

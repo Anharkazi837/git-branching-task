@@ -1,0 +1,43 @@
+{
+	"name": "DS_POC1_Buy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_POC_SQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "bid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "vid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "qty",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "brt",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Buy"
+		}
+	}
+}

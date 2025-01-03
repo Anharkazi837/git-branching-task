@@ -1,0 +1,23 @@
+{
+	"name": "ds_gen2_movies_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_gen2_row_movies",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "bharath_output",
+				"fileSystem": "moviesdetails"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

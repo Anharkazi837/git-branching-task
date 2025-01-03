@@ -1,0 +1,23 @@
+{
+	"name": "DS_derived_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "onkar_handson",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Group 1/Onkar_output_derived_column",
+				"fileSystem": "requirements"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

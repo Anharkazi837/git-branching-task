@@ -1,0 +1,31 @@
+{
+	"name": "DS_kiran_Blob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_kiran_blob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "02.Blob-Gen2"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "inputEMP.txt",
+				"container": "inputemp"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "FirstName|LastName",
+				"type": "String"
+			}
+		]
+	}
+}

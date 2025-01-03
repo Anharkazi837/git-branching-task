@@ -1,0 +1,30 @@
+{
+	"name": "ds_arnab_sql_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_arnab_sql_idl_wm",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "01_source_ds_arnab"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkValue",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dst_arnab"
+		}
+	}
+}

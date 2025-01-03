@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-everyone"
+		},
+		"LS_Mujahed_Blob_connectionString": {
+			"value": ""
+		},
+		"LS_Mujahed_Gen2_accountKey": {
+			"value": ""
+		},
+		"LS_Mujahed_SQL_password": {
+			"value": ""
+		},
+		"LS_Mujahed_Gen2_properties_typeProperties_url": {
+			"value": "https://sa10decmujahedgen2.dfs.core.windows.net/"
+		},
+		"LS_Mujahed_SQL_properties_typeProperties_server": {
+			"value": "everyone.database.windows.net"
+		},
+		"LS_Mujahed_SQL_properties_typeProperties_database": {
+			"value": "dbeveryone"
+		},
+		"LS_Mujahed_SQL_properties_typeProperties_userName": {
+			"value": "adminuser"
+		}
+	}
+}

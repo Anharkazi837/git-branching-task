@@ -1,0 +1,54 @@
+CREATE TABLE Categories_Priya (
+    CategoryID INT PRIMARY KEY,
+    CategoryName VARCHAR(50),
+	Prev_CategoryName VARCHAR(50)
+);
+--DROP TABLE Categories_Priya
+
+-- Insert data
+INSERT INTO Categories_Priya (CategoryID, CategoryName)
+VALUES 
+(1, 'Electronics'),
+(2, 'Appliances'),
+(3, 'Furniture'),
+(4, 'Accessories'),
+(5, 'Clothing'),
+(6, 'Books'),
+(7, 'Food'),
+(8, 'Toys'),
+(9, 'Sports'),
+(10, 'Beauty');
+
+-- CREATE INCOMINGTABLE ----------
+CREATE TABLE Incoming_Categories_Priya (
+    CategoryID INT PRIMARY KEY,
+    CategoryName VARCHAR(50)
+);
+
+INSERT INTO Incoming_Categories_Priya (CategoryID, CategoryName)
+VALUES 
+(1, 'Electronics-Home'),
+(2, 'Appliances-Kitchen'),
+(3, 'OfficeFurniture'),
+(4, 'AccessoriesHome')
+
+------ Merge statement for type3 ------------
+MERGE INTO Categories_Priya C USING Incoming_Categories_Priya I
+    ON c.CategoryID = I.CategoryID
+WHEN MATCHED 
+    AND c.CategoryName <> I.CategoryName
+    THEN UPDATE SET
+    c.Prev_CategoryName = c.CategoryName,
+    c.CategoryName = I.CategoryName
+WHEN NOT MATCHED
+    THEN INSERT (CategoryID, CategoryName) 
+	VALUES (I.CategoryID,I.CategoryName);
+
+	select * from Categories_Priya
+	select * from Incoming_Categories_Priya
+
+    
+
+
+
+

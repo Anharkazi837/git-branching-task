@@ -1,0 +1,22 @@
+{
+	"name": "DS_onkar_blob_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_onkar_blob1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "outputblob"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

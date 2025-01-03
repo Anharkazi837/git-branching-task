@@ -1,0 +1,40 @@
+{
+	"name": "DS_onkar_orders_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_onkar_CT",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Hanson_task_orders_table\\"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "OrderID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustomerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OrderDate",
+				"type": "date"
+			},
+			{
+				"name": "TotalAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "orders_onkar"
+		}
+	}
+}

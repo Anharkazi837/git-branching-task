@@ -1,0 +1,32 @@
+{
+	"name": "DS_Mujahed_Input_Blob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Mujahed_Blob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "01.Blob2Blob"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "inputEmp.txt",
+				"container": "inputblob"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "FirstName|LastName",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

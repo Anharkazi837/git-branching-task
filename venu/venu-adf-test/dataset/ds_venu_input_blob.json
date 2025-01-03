@@ -1,0 +1,31 @@
+{
+	"name": "ds_venu_input_blob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_venu_blob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "01.blobtoblob"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "inputEmp.txt",
+				"container": "inputblob"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "FirstName|LastName",
+				"type": "String"
+			}
+		]
+	}
+}

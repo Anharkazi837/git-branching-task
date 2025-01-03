@@ -1,0 +1,26 @@
+{
+	"name": "DS_Snk_Gen2_mujahed",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Gen2_mujahed",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@CONCAT('IDL-CT-MUJAHED-CT-', pipeline().RunId, '.csv')",
+					"type": "Expression"
+				},
+				"fileSystem": "output-mujahed"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

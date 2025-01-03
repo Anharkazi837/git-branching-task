@@ -1,0 +1,22 @@
+{
+	"name": "DS_parquet_onkar",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_onkar_gen3_CT",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DS_parquet_customers"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "output-parquet"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

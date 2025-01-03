@@ -1,0 +1,65 @@
+{
+	"name": "DF_Bharath_Sort",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Gen2_Bharath_products_source",
+						"type": "DatasetReference"
+					},
+					"name": "LoadingProductsData"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_Gen2_Bharath_Sink",
+						"type": "DatasetReference"
+					},
+					"name": "SortedData"
+				}
+			],
+			"transformations": [
+				{
+					"name": "SortingDescending"
+				},
+				{
+					"name": "RemovingQuotes"
+				},
+				{
+					"name": "filteringNullValues"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          product_id as string,",
+				"          product_name as string,",
+				"          category as string,",
+				"          price as string,",
+				"          quantity as string,",
+				"          store_location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> LoadingProductsData",
+				"filteringNullValues sort(desc(price, true)) ~> SortingDescending",
+				"LoadingProductsData derive(product_name = replace(product_name,'\"','')) ~> RemovingQuotes",
+				"RemovingQuotes filter(!isNull(product_id) &&\r",
+				"!isNull(product_name) &&\r",
+				"!isNull(category) &&\r",
+				"!isNull(price) &&\r",
+				"!isNull(quantity) &&\r",
+				"!isNull(store_location)) ~> filteringNullValues",
+				"SortingDescending sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SortedData"
+			]
+		}
+	}
+}

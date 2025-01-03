@@ -1,0 +1,31 @@
+{
+	"name": "DS_anu_blob_input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_anu_blob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "blob_2_blob"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "InputEmp.txt",
+				"container": "inputemp"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "FirstName|LastName",
+				"type": "String"
+			}
+		]
+	}
+}

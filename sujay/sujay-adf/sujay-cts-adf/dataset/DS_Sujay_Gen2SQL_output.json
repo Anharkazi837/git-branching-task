@@ -1,0 +1,33 @@
+{
+	"name": "DS_Sujay_Gen2SQL_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sujay_SQL",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "4.0-Gen2toSQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "esujay"
+		}
+	}
+}

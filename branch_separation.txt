@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Get a list of all folders in the current directory
+folders=$(ls -d */)
+
+# Iterate through each folder
+for folder in $folders; do
+    # Remove the trailing slash from the folder name
+    folder_name=$(basename "$folder" /)
+
+    # Check if the folder name contains '-' or '_'
+    if [[ "$folder_name" == *-* ]] || [[ "$folder_name" == *_* ]]; then
+        # Extract the prefix (e.g., 'Bharat' from 'Bharat-Capstone' or 'Bharat_IR')
+        prefix=$(echo "$folder_name" | cut -d'-' -f1 | cut -d'_' -f1)
+
+        # Create a parent folder if it doesn't exist
+        if [ ! -d "$prefix" ]; then
+            mkdir "$prefix"
+        fi
+
+        # Move the folder into its corresponding parent folder
+        mv "$folder" "$prefix/"
+    fi
+done
+
+echo "Folders organized by prefix."

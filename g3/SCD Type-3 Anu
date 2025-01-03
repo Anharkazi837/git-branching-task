@@ -1,0 +1,107 @@
+Title: Implement SCD Type 3:
+SCD Type3 allows for tracking limited historical changes. In this approach, only a predefined number of previous values for a dimension attribute (usually one) are stored in new columns.
+
+Step 1: Create Tables
+Create the Customersanu  Table:
+This table will store the main customers data.
+CREATE TABLE Customersanu (
+    CustomerID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    CurrentEmail VARCHAR(100),
+    PreviousEmail VARCHAR(100),  
+    CurrentPhoneNumber VARCHAR(20),
+    PreviousPhoneNumber VARCHAR(20),  
+    CurrentAddress VARCHAR(200),
+    PreviousAddress VARCHAR(200),  
+    StartDate DATE,  
+    EndDate DATE,
+    CurrentFlag CHAR(1)  
+);
+
+
+
+CREATE TABLE NewCustomersanu (
+    CustomerID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    CurrentEmail VARCHAR(100),
+    PreviousEmail VARCHAR(100),  -- Previous value of email
+    CurrentPhoneNumber VARCHAR(20),
+    PreviousPhoneNumber VARCHAR(20),  -- Previous value of phone number
+    CurrentAddress VARCHAR(200),
+    PreviousAddress VARCHAR(200),  -- Previous value of address
+    StartDate DATE,  -- When the current record became effective
+    EndDate DATE,    -- When the current record became invalid
+    CurrentFlag CHAR(1)  -- 'Y' if it's the current record, 'N' if historical
+);
+
+Step 2: Insert Initial Data into Customers_anu 
+INSERT INTO Customersanu (
+    CustomerID, FirstName, LastName,
+    CurrentEmail, PreviousEmail,
+    CurrentPhoneNumber, PreviousPhoneNumber,
+    CurrentAddress, PreviousAddress,
+    StartDate, EndDate, CurrentFlag
+)
+VALUES (
+    1, 'John', 'Doe',
+    'john.doe@example.com', NULL,
+    '123-456-7890', NULL,
+    '123 Elm St', NULL,
+    '2024-01-01', NULL, 'Y'
+);
+ Updating Data in Customers_anu (SCD Type-3 Logic)
+When an attribute (like the Email) changes for an existing customer, the PreviousEmail is updated with the current email,
+and the CurrentEmail gets updated with the new email.
+
+UPDATE Customersanu
+SET
+    PreviousEmail = CurrentEmail,
+    CurrentEmail = 'john.doe_updated@example.com',
+    StartDate = '2024-12-01',
+    EndDate = NULL,
+    CurrentFlag = 'Y'
+WHERE CustomerID = 1;
+
+PreviousEmail gets the old value of the email.
+CurrentEmail gets the new value of the email.
+The StartDate is updated to the current date.
+EndDate is set to NULL (because it is still the current version).
+CurrentFlag is set to 'Y' to mark this as the active record.
+Handling Other Attributes:
+For phone number or address changes, the same approach is followed. Here's an example for updating the address:
+
+
+UPDATE Customersanu
+SET
+    PreviousAddress = CurrentAddress,
+    CurrentAddress = '456 Oak St, Springfield',
+    StartDate = '2024-12-01',
+    EndDate = NULL,
+    CurrentFlag = 'Y'
+WHERE CustomerID = 1;
+
+
+ Validate the Results
+Query to View the Data
+To check the updated data:
+SELECT * FROM Customersanu
+WHERE CustomerID = 1 AND CurrentFlag = 'Y';
+The historical data (the previous value of the attributes):
+sql
+Copy code
+SELECT * FROM Customersanu
+WHERE CustomerID = 1;
+This will return both the current and previous values for each attribute.
+
+
+Summary of Changes:
+SCD Type-3 tracks limited historical data by keeping the current value and one previous value (or a predefined number of previous values).
+It avoids the complexity of Type-2, which tracks full historical changes by adding multiple rows.
+We can store current and previous values for key attributes (e.g., Email, PhoneNumber, Address), 
+and use StartDate, EndDate, and CurrentFlag to manage the records over time.
+This method is suitable when you need to track only the recent changes and not the full history,
+such as tracking the current and previous state of a customer's contact information.
+
+

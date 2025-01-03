@@ -1,0 +1,27 @@
+{
+	"name": "ds_watermark",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_aditya_IDL_SINK",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkValue",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "watermarktable_aditya"
+		}
+	}
+}

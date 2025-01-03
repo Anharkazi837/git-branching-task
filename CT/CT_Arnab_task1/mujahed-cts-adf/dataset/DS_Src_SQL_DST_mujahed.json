@@ -1,0 +1,31 @@
+{
+	"name": "DS_Src_SQL_DST_mujahed",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_mujahed",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "PersonID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Age",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dst_mujahed"
+		}
+	}
+}

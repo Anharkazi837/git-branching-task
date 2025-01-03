@@ -1,0 +1,24 @@
+{
+	"name": "ds_kiran_sink_4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_group3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Group3/Kiran_group3_outputs",
+				"fileSystem": "requirements"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

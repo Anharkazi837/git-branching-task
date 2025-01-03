@@ -1,0 +1,23 @@
+{
+	"name": "ds_sql_rudrani_source",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkValue",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dst_rudrani"
+		}
+	}
+}

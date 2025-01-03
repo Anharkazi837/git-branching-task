@@ -1,0 +1,26 @@
+{
+	"name": "DS_Mujahed_Output_Blob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Mujahed_Blob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "01.Blob2Blob"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "outputblob"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

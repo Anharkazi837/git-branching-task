@@ -1,0 +1,21 @@
+{
+	"name": "ds_jyothi_blog",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_jyothi_blob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

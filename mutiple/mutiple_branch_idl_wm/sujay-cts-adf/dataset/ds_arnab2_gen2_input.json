@@ -1,0 +1,26 @@
+{
+	"name": "ds_arnab2_gen2_input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_arnab_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "04azsql2gen2"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "input.txt",
+				"fileSystem": "inputemp"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

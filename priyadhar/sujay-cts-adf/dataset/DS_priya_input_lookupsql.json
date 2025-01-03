@@ -1,0 +1,33 @@
+{
+	"name": "DS_priya_input_lookupsql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Priya_AzureSql",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "lookup_sqlToGen2"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Status",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Table1"
+		}
+	}
+}

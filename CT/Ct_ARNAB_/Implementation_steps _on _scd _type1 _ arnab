@@ -1,0 +1,225 @@
+Title: Implement SCD Type 1 
+
+ 
+
+Step 1: Create Tables 
+
+Create the Employee_Dimension_arnab Table: 
+
+This table will store the main customer dimension data. 
+
+CREATE TABLE Employee_Dimension_arnab ( 
+
+    EmployeeID INT PRIMARY KEY, 
+
+    EmployeeName VARCHAR(100), 
+
+    Position VARCHAR(100), 
+
+    Department VARCHAR(100) 
+
+); 
+
+ 
+
+Create the Incoming_data_aranb Table: 
+
+This table simulates the incoming updates (new or changed data). 
+
+CREATE TABLE Incoming_data_aranb ( 
+
+    EmployeeID INT PRIMARY KEY, 
+
+    EmployeeName NVARCHAR(50), 
+
+    EmployeeEmail NVARCHAR(100), 
+
+    EmployeeCity NVARCHAR(50) 
+
+); 
+
+ 
+
+ 
+
+Step 2: Insert Initial Data into Employee_Dimension_arnab  
+
+Let’s insert some sample customer records into the Employee_Dimension_arnab table. 
+
+INSERT INTO Employee_Dimension_arnab ( EmployeeID,EmployeeName,EmployeeEmail, EmployeeCity) 
+
+VALUES  
+
+(1, 'Alice Smith', 'alice.smith@email.com', 'New York'), 
+
+(2, 'Bob Johnson', 'bob.johnson@email.com', 'Los Angeles'), 
+
+(3, 'Charlie Brown', 'charlie.brown@email.com', 'Chicago'), 
+
+(4, 'David Wilson', 'david.wilson@email.com', 'Houston'); 
+
+ 
+
+ 
+ 
+
+ 
+
+Step 3: Insert Updated Data into Incoming_data_aranb 
+
+Simulate incoming updated customer data. Some records will have changes, and others will remain the same. 
+
+INSERT INTO Incoming_data_aranb (EmployeeID, EmployeeName, EmployeeEmail, EmployeeCity) 
+
+VALUES 
+
+(2, 'Bob Johnson', 'bob.j@email.com', 'San Francisco'),  -- Updated Email and City 
+
+(3, 'Charlie Brown', 'charlie.b@email.com', 'Chicago'),  -- Updated Email 
+
+(4, 'David Wilson', 'david.wilson@email.com', 'Dallas'); -- Updated City 
+
+ 
+
+(3, 'Charlie Brown', 'charlie.b@email.com', 'Chicago'),  -- Updated Email 
+
+(4, 'David Wilson', 'david.wilson@email.com', 'Dallas'); -- Updated City 
+
+ 
+
+Step 4: Implement SCD Type 1 Logic 
+
+We will use the MERGE statement to compare the Incoming_data_aranb table with the Employee_Dimension_arnab table. 
+
+If a match is found based on CustomerID, the existing data will be overwritten. 
+
+If there’s a new record (not matched), it will be inserted. 
+
+SCD Type 1 MERGE Statement: 
+
+MERGE INTO [dbo].[Employee_Dimension_arnab] AS target 
+
+        USING [dbo].[Incoming_data_aranb] As source 
+
+        ON target.EmployeeID = source.EmployeeID 
+
+    WHEN MATCHED THEN 
+
+    UPDATE SET 
+
+        target.EmployeeName = source.EmployeeName, 
+
+        target.EmployeeEmail = source.EmployeeEmail, 
+
+        target.EmployeeCity = source.EmployeeCity 
+
+    WHEN NOT MATCHED THEN 
+
+        INSERT (EmployeeID,EmployeeName,EmployeeEmail,EmployeeCity) 
+
+        VALUES(source.EmployeeID,source.EmployeeName, source.EmployeeEmail, source.EmployeeCity); 
+
+ 
+
+Explanation: 
+
+MERGE INTO: Targets the Employee_Dimension_arnab table. 
+
+USING: Specifies the Incoming_data_aranb table as the source. 
+
+ON: Matches records based on the EmployeeID. 
+
+WHEN MATCHED: If a match is found, updates the record in the Employee_Dimension_arnab table. 
+
+WHEN NOT MATCHED: If no match is found, inserts the record as new. 
+
+Step 5: Validate the Results 
+
+Run the following query to check the updated data in the Employee_Dimension_arnab table: 
+
+SELECT * FROM  Employee_Dimension_arnab; 
+
+Expected Output (Final Updated Table): 
+
+EmployeeID 
+
+EmployeeName 
+
+EmployeeEmail 
+
+EmployeeCity 
+
+1 
+
+Alice Smith 
+
+alice.smith@email.com 
+
+New York 
+
+2 
+
+Bob Johnson 
+
+bob.j@email.com 
+
+San Francisco 
+
+3 
+
+Charlie Brown 
+
+charlie.b@email.com 
+
+Chicago 
+
+4 
+
+David Wilson 
+
+david.wilson@email.com 
+
+Dallas 
+
+ 
+
+Summary of Changes: 
+
+EmployeeID 2: 
+
+EmployeeEmail  
+
+updated to bob.j@email.com 
+
+EmployeeCity  
+
+updated to San Francisco 
+
+EmployeeID 3: 
+
+EmployeeEmail  
+
+updated to charlie.b@email.com 
+
+EmployeeID 4: 
+
+EmployeeCity  
+
+updated to Dallas 
+
+EmployeeID 1: 
+
+Remained unchanged as there was no incoming update. 
+
+ 
+
+Clean-up (Optional): 
+
+If you want to reset your tables for further testing: 
+
+TRUNCATE TABLE Employee_Dimension_arnab; 
+
+TRUNCATE TABLE Incoming_data_aranb; 
+
+ 
+

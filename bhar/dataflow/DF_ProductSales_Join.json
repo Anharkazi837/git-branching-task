@@ -1,0 +1,94 @@
+{
+	"name": "DF_ProductSales_Join",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Gen2_Bharath_products_source",
+						"type": "DatasetReference"
+					},
+					"name": "LoadingProductsData"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_Gen2_Bharath_sales_source",
+						"type": "DatasetReference"
+					},
+					"name": "LoadingSalesData"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_Gen2_Bharath_Sink",
+						"type": "DatasetReference"
+					},
+					"name": "JoinerData"
+				}
+			],
+			"transformations": [
+				{
+					"name": "JoiningProductSalesData"
+				},
+				{
+					"name": "RemovingQuotes1"
+				},
+				{
+					"name": "RemovingQuotes2"
+				},
+				{
+					"name": "filteringNullValues2"
+				},
+				{
+					"name": "filteringNullValues1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          product_id as string,",
+				"          product_name as string,",
+				"          category as string,",
+				"          price as string,",
+				"          quantity as string,",
+				"          store_location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> LoadingProductsData",
+				"source(output(",
+				"          store_id as string,",
+				"          store_name as string,",
+				"          store_location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> LoadingSalesData",
+				"filteringNullValues1, filteringNullValues2 join(LoadingProductsData@store_location == LoadingSalesData@store_location,",
+				"     joinType:'outer',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> JoiningProductSalesData",
+				"LoadingProductsData derive(product_name = replace(product_name,'\"','')) ~> RemovingQuotes1",
+				"LoadingSalesData derive(store_name = replace(store_name,'\"','')) ~> RemovingQuotes2",
+				"RemovingQuotes2 filter(!isNull(store_id) &&\r",
+				"!isNull(store_name) &&\r",
+				"!isNull(store_location) ) ~> filteringNullValues2",
+				"RemovingQuotes1 filter(!isNull(product_id) &&\r",
+				"!isNull(product_name) &&\r",
+				"!isNull(category) &&\r",
+				"!isNull(price) &&\r",
+				"!isNull(quantity) &&\r",
+				"!isNull(store_location)) ~> filteringNullValues1",
+				"JoiningProductSalesData sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> JoinerData"
+			]
+		}
+	}
+}

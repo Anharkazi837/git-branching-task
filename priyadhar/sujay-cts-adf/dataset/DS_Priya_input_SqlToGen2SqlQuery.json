@@ -1,0 +1,33 @@
+{
+	"name": "DS_Priya_input_SqlToGen2SqlQuery",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Priya_AzureSql",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SqlToGen2SqlQuery"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "general"
+		}
+	}
+}

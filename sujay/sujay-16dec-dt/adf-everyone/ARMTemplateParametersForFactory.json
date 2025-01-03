@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-everyone"
+		},
+		"ls_sujay_gen2_movies_accountKey": {
+			"value": ""
+		},
+		"ls_sujay_gen2_movies_properties_typeProperties_url": {
+			"value": "https://sa12decidl.dfs.core.windows.net/"
+		}
+	}
+}

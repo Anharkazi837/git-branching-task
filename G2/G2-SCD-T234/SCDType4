@@ -1,0 +1,65 @@
+CREATE TABLE Suppliers_priya (
+    SupplierID INT PRIMARY KEY,
+    SupplierName VARCHAR(100),
+    ContactName VARCHAR(100),
+    Phone VARCHAR(20),
+    Address VARCHAR(200)
+);
+
+-- Insert data
+INSERT INTO Suppliers_priya (SupplierID, SupplierName, ContactName, Phone, Address)
+VALUES 
+(1, 'Tech Supplies Inc.', 'Alice Cooper', '123-555-0101', '100 Tech Ave'),
+(2, 'Home Appliances Co.', 'Bob Barker', '234-555-0202', '200 Appliance Rd'),
+(3, 'Furniture World', 'Charlie Brown', '345-555-0303', '300 Furniture Blvd'),
+(4, 'Gadget Central', 'David Lee', '456-555-0404', '400 Gadget St'),
+(5, 'Office Essentials', 'Eva Green', '567-555-0505', '500 Office Park'),
+(6, 'Smart Electronics', 'Frank White', '678-555-0606', '600 Electronics Pl'),
+(7, 'Tech Gadgets Ltd.', 'Grace Hall', '789-555-0707', '700 Gadget Ln'),
+(8, 'Blender Inc.', 'Hannah Scott', '890-555-0808', '800 Blend St'),
+(9, 'Audio Tech', 'Ian Taylor', '901-555-0909', '900 Audio Dr'),
+(10, 'Laptop Warehouse', 'Jack Carter', '012-555-1000', '1000 Laptop Rd');
+
+CREATE TABLE Incoming_Suppliers_priya (
+    SupplierID INT PRIMARY KEY,
+    SupplierName VARCHAR(100),
+    ContactName VARCHAR(100),
+    Phone VARCHAR(20),
+    Address VARCHAR(200)
+);
+
+INSERT INTO Incoming_Suppliers_priya (SupplierID, SupplierName, ContactName, Phone, Address)
+VALUES 
+(1, 'Tech Supplies Inc.', 'Alice rown', '123-555-0101', '100 Tech Ave'),
+(2, 'Home Appliances Co.', 'Bob Barker', '234-555-0202', '900 Appliance Rd'),
+(3, 'Furniture World', 'Charlie Brown', '345-555-0303', '500 Furniture')
+
+CREATE TABLE HistorySuppliers_priya (
+    SupplierID INT PRIMARY KEY,
+    SupplierName VARCHAR(100),
+    ContactName VARCHAR(100),
+    Phone VARCHAR(20),
+    Address VARCHAR(200),
+	UpdatedDate date
+);
+
+-- Move current record to historical table
+INSERT INTO HistorySuppliers_priya (SupplierID, SupplierName, ContactName, Phone, Address,UpdatedDate)
+SELECT SupplierID, SupplierName, ContactName, Phone, Address,Getdate() as currentdate
+FROM Suppliers_priya
+WHERE SupplierID in (select SupplierID from Incoming_Suppliers_priya);
+
+-- Update current table
+MERGE INTO [dbo].[Suppliers_priya] AS target
+USING [dbo].[Incoming_Suppliers_priya] As source
+ON target.supplierID = source.supplierID
+WHEN MATCHED THEN
+	UPDATE SET
+		target.supplierName = source.supplierName,
+		target.ContactName = source.ContactName,
+		target.Phone = source.Phone,
+		target.Address = source.Address		
+WHEN NOT MATCHED THEN
+	INSERT (supplierID,supplierName,contactname,Phone,address)
+	VALUES(source.supplierID,source.supplierName, source.contactname,source.phone,source.address);
+

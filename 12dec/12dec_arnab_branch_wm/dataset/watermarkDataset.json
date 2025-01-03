@@ -1,0 +1,30 @@
+{
+	"name": "watermarkDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_arnab_sql_idl_wm",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ds_watermark_arnab"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkValue",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "wmt_arnab"
+		}
+	}
+}

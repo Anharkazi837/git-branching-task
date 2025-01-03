@@ -1,0 +1,25 @@
+{
+	"name": "Ds_gen2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_anu_cts_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "groupactivity"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "output-anu"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

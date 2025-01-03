@@ -1,0 +1,30 @@
+{
+	"name": "DS_onkar_sqlinput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_onkar_azsqlnew",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "onkar"
+		}
+	}
+}

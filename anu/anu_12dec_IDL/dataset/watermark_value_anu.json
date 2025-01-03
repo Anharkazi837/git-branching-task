@@ -1,0 +1,27 @@
+{
+	"name": "watermark_value_anu",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_anu_sql_IDL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkValue",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "wmt_anu"
+		}
+	}
+}

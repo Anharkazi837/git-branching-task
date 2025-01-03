@@ -1,0 +1,26 @@
+{
+	"name": "DS_Gen2_Mujahed_Sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Gen2_IDL_WM",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('IDL-WM-',pipeline().RunId,'.txt')",
+					"type": "Expression"
+				},
+				"fileSystem": "ouptut-wm-idl-mujahed"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

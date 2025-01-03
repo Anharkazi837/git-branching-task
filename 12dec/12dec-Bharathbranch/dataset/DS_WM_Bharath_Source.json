@@ -1,0 +1,27 @@
+{
+	"name": "DS_WM_Bharath_Source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Bharath_IDLWM_SQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkValue",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dst_bharath"
+		}
+	}
+}

@@ -1,0 +1,23 @@
+{
+	"name": "DS_union_onkar",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "new_LS_onkar_handson",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Group 1/Onkar_output_union",
+				"fileSystem": "requirements"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

@@ -1,0 +1,34 @@
+{
+	"name": "ds_customer_venu",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_VENU",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CustomerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustomerName",
+				"type": "varchar"
+			},
+			{
+				"name": "ContactNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "Address",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "customer_venu"
+		}
+	}
+}

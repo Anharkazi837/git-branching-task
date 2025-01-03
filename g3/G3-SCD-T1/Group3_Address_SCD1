@@ -1,0 +1,66 @@
+## Creating Address_Dimension Table
+
+CREATE TABLE Address_Dimension (
+    AddressID INT PRIMARY KEY,
+    CustomerID INT,
+    Street VARCHAR(255),
+    City VARCHAR(100),
+    State VARCHAR(100),
+    PostalCode VARCHAR(20)
+);
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+## Creating Incoming_Address_Dimension Table
+
+CREATE TABLE Incoming_Address_Dimension (
+    AddressID INT PRIMARY KEY,
+    CustomerID INT,
+    Street VARCHAR(255),
+    City VARCHAR(100),
+    State VARCHAR(100),
+    PostalCode VARCHAR(20)
+);
+
+-----------------------------------------------------------------------------------------------------------------------------------
+## Inserting data into Address_Dimension Table
+
+INSERT INTO Address_Dimension (AddressID, CustomerID, Street, City, State, PostalCode)
+VALUES 
+(1, 101, '123 Main St', 'Mumbai', 'Maharashtra', '400001'),
+(2, 102, '456 Park Ave', 'Pune', 'Maharashtra', '411001'),
+(3, 103, '789 Elm St', 'Nagpur', 'Maharashtra', '440001');
+
+-----------------------------------------------------------------------------------------------------------------------------------
+## Inserting data into Incoming_Address_Dimension Table
+
+INSERT INTO Incoming_Address_Dimension (AddressID, CustomerID, Street, City, State, PostalCode)
+VALUES
+    (1, 101, '123 Main St', 'Mumbai', 'Maharashtra', '400001'),
+    (2, 102, '456 Park Ave', 'Pune', 'Karnataka', '411001'), -- Changed State
+    (3, 103, '789 Elm St', 'Nagpur City', 'Maharashtra', '440001'), -- Changed City
+    (4, 104, '101 Maple St', 'Delhi', 'Delhi', '110001'), -- New Record
+    (5, 105, '202 Oak St', 'Chennai', 'Tamil Nadu', '600001'), -- New Record
+    (6, 106, '303 Pine St', 'Kolkata', 'West Bengal', '700001'); -- New Record
+
+-----------------------------------------------------------------------------------------------------------------------------------
+## Merging Address_Dimension and Incoming_Address_Dimension
+
+MERGE INTO [dbo].[Address_Dimension] AS target
+USING [dbo].[Incoming_Address_Dimension] AS source
+ON target.AddressID = source.AddressID
+WHEN MATCHED THEN
+    UPDATE SET
+        target.CustomerID = source.CustomerID,
+        target.Street = source.Street,
+        target.City = source.City,
+        target.State = source.State,
+        target.PostalCode = source.PostalCode
+WHEN NOT MATCHED THEN
+    INSERT (AddressID, CustomerID, Street, City, State, PostalCode)
+    VALUES (source.AddressID, source.CustomerID, source.Street, source.City, source.State, source.PostalCode);
+
+-----------------------------------------------------------------------------------------------------------------------------------
+## Validating results
+
+select * from [dbo].[Address_Dimension]

@@ -1,0 +1,19 @@
+{
+	"name": "DS_Priya_Input_SqlToGen2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Priya_AzureSql",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SqlToGen2"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "empPriya"
+		}
+	}
+}

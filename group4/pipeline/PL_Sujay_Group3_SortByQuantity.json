@@ -1,0 +1,37 @@
+{
+	"name": "PL_Sujay_Group3_SortByQuantity",
+	"properties": {
+		"activities": [
+			{
+				"name": "SortByQuantity",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "df_sujay_7_sort_byquantity",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "PL_Sujay_Group3"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-12-16T11:37:02Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

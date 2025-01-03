@@ -1,0 +1,31 @@
+{
+	"name": "ds_rudrani_blob_input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_rudrani_blob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "01.blob2blob"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "inputemp.txt",
+				"container": "inputemp"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "FirstName|LastName",
+				"type": "String"
+			}
+		]
+	}
+}

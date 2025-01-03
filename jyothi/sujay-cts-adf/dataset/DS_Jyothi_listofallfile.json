@@ -1,0 +1,22 @@
+{
+	"name": "DS_Jyothi_listofallfile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Jyothi_Gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "inputemp1"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

@@ -1,0 +1,63 @@
+/*Title: Implement SCD Type 2
+
+To implement SCD type-2 in the orders_scd2_onkar table we need to track the historical changes for each customer.
+Step 1: Create Tables
+Create the orders_scd2_onkar  Table:
+This table will store the main orders data.*/
+--------------------------------------------------------------------------------------------------------------------------------------------------
+-- Create orders_scd2_onkar table
+CREATE TABLE orders_scd2_onkar (
+    Order_ID INT,
+    CustomerID INT,
+    OrderDate DATE,
+    TotalAmount DECIMAL(10, 2),
+    EffectiveDate DATE,
+    EndDate DATE,
+    CurrentFlag CHAR(1),
+    PRIMARY KEY (Order_ID, EffectiveDate)
+);
+
+-- Create orders_sdc2_incoming_onkar table
+CREATE TABLE orders_sdc2_incoming_onkar (
+    OrderID INT,
+    CustomerID INT,
+    OrderDate DATE,
+    TotalAmount DECIMAL(10, 2)
+);
+------------------------------------------------------------------------------------------------------------------------------
+/*Step 2: Insert Initial Data into Orders_scd2_onkar and orders_sdc2_incoming_onkar 
+Let’s insert some sample ordera records into the 
+-- Insert data into orders_scd2_onkar and orders_sdc2_incoming_onkar*/
+
+
+INSERT INTO orders_scd2_onkar (Order_ID, CustomerID, OrderDate, TotalAmount, EffectiveDate, EndDate, CurrentFlag)
+VALUES
+(1, 101, '2024-01-15', 100.00, '2024-01-15', NULL, 'Y'),
+(2, 102, '2024-02-10', 250.75, '2024-02-10', NULL, 'Y'),
+(3, 103, '2024-03-05', 150.30, '2024-03-05', NULL, 'Y');
+
+-- Insert data into orders_sdc2_incoming
+INSERT INTO orders_sdc2_incoming_onkar (OrderID, CustomerID, OrderDate, TotalAmount)
+VALUES
+(1, 101, '2024-01-15', 120.00),  -- Updated order for OrderID 1
+(4, 104, '2024-04-20', 300.00);  -- New order
+------------------------------------------------------------------------------------------------------------------------------
+
+-- Update existing records in orders_scd2_onkar
+UPDATE orders_scd2_onkar
+SET EndDate = GETDATE(), CurrentFlag = 'N'
+WHERE Order_ID IN (SELECT OrderID FROM orders_sdc2_incoming_onkar)
+  AND CurrentFlag = 'Y';
+
+------------------------------------------------------------------------------------------------------------------------------
+-- Insert new records into orders_scd2_onkar
+INSERT INTO orders_scd2_onkar (Order_ID, CustomerID, OrderDate, TotalAmount, EffectiveDate, EndDate, CurrentFlag)
+SELECT 
+    OrderID, 
+    CustomerID, 
+    OrderDate, 
+    TotalAmount, 
+    DATEADD(day, 1, (SELECT MAX(EndDate) FROM orders_scd2_onkar WHERE Order_ID = oi.OrderID)), -- Next day as EffectiveDate
+    NULL, 
+    'Y'
+FROM orders_sdc2_incoming_onkar oi;

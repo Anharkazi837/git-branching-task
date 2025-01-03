@@ -1,0 +1,25 @@
+{
+	"name": "DS_kiran_output_blob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_kiran_blob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "01.Blob2Blob"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "outputblob"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

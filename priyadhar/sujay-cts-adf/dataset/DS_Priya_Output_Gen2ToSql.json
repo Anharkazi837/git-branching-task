@@ -1,0 +1,33 @@
+{
+	"name": "DS_Priya_Output_Gen2ToSql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Priya_AzureSql",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Gen2ToSql"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "empPriya"
+		}
+	}
+}

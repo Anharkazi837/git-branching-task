@@ -1,0 +1,38 @@
+{
+	"name": "DS_Sujay_Gen2_ListFiles",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sujay_Gen2",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "7.0-Get Metadata"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "outputemp"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ID",
+				"type": "String"
+			},
+			{
+				"name": "FirstName",
+				"type": "String"
+			},
+			{
+				"name": "LastName",
+				"type": "String"
+			}
+		]
+	}
+}

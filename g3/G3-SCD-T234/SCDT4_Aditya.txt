@@ -1,0 +1,55 @@
+CREATE TABLE Shippers_T4 (
+    ShipperID INT PRIMARY KEY,
+    ShipperName VARCHAR(100),
+    Phone VARCHAR(20)
+);
+
+INSERT INTO Shippers_T4 (ShipperID, ShipperName, Phone)
+VALUES 
+(1, 'FastShip', '123-555-1111'),
+(2, 'Speedy Delivery', '234-555-2222'),
+(3, 'Global Couriers', '345-555-3333'),
+(4, 'QuickShip', '456-555-4444'),
+(5, 'Cargo Express', '567-555-5555'),
+(6, 'ShipFast', '678-555-6666'),
+(7, 'Direct Freight', '789-555-7777'),
+(8, 'Overnight Express', '890-555-8888'),
+(9, 'ShipRight', '901-555-9999'),
+(10, 'DeliverNow', '012-555-0000');
+
+CREATE TABLE Incoming_Shippers_T4 (
+    ShipperID INT PRIMARY KEY,
+    ShipperName VARCHAR(100),
+    Phone VARCHAR(20)
+);
+
+INSERT INTO Incoming_Shippers_T4 (ShipperID, ShipperName, Phone)
+VALUES 
+(1, 'FastShipupdate', '123-555-2345'),
+(2, 'Speedy Delivery update', '234-555-1111');
+
+CREATE TABLE Historical_Shippers (
+    ShipperID INT,
+    ShipperName VARCHAR(100),
+    Phone VARCHAR(20),
+    updatedDate DATE,
+    PRIMARY KEY (ShipperID, updatedDate)
+);
+
+-- Move current record to historical table
+INSERT INTO Historical_Shippers (ShipperID, ShipperName, Phone, updatedDate)
+SELECT ShipperID, ShipperName, Phone, current_date
+FROM Shippers_T4
+WHERE ShipperID in (select ShipperID from Incoming_Shippers_T4);
+
+-- Update current table
+MERGE INTO [dbo].[Shippers_T4] AS target
+USING [dbo].[Incoming_Shippers_T4] As source
+ON target.ShipperID = source.ShipperID
+WHEN MATCHED THEN
+	UPDATE SET
+		target.ShipperName = source.ShipperName,
+		target.Phone = source.Phone
+WHEN NOT MATCHED THEN
+	INSERT (ShipperID,ShipperName,Phone)
+	VALUES(source.ShipperID,source.ShipperName, source.Phone);

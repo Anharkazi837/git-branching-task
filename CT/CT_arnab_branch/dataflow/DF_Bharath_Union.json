@@ -1,0 +1,96 @@
+{
+	"name": "DF_Bharath_Union",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Gen2_Bharath_products_source",
+						"type": "DatasetReference"
+					},
+					"name": "LoadingProduct1Data"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_Gen2_Bharath_Product1",
+						"type": "DatasetReference"
+					},
+					"name": "LoadingProduct2Data"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_Gen2_Bharath_Sink",
+						"type": "DatasetReference"
+					},
+					"name": "UnionData"
+				}
+			],
+			"transformations": [
+				{
+					"name": "union1"
+				},
+				{
+					"name": "RemovingQuotes1"
+				},
+				{
+					"name": "filteringNullvalues1"
+				},
+				{
+					"name": "RemovingQuotes2"
+				},
+				{
+					"name": "filteringNullvalues2"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          product_id as string,",
+				"          product_name as string,",
+				"          category as string,",
+				"          price as string,",
+				"          quantity as string,",
+				"          store_location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> LoadingProduct1Data",
+				"source(output(",
+				"          product_id as string,",
+				"          product_name as string,",
+				"          category as string,",
+				"          price as string,",
+				"          quantity as string,",
+				"          store_location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> LoadingProduct2Data",
+				"filteringNullvalues1, filteringNullvalues2 union(byName: true)~> union1",
+				"LoadingProduct1Data derive(product_name = replace(product_name,'\"','')) ~> RemovingQuotes1",
+				"RemovingQuotes1 filter(!isNull(product_id) &&\r",
+				"!isNull(product_name) &&\r",
+				"!isNull(category) &&\r",
+				"!isNull(price) &&\r",
+				"!isNull(quantity) &&\r",
+				"!isNull(store_location)) ~> filteringNullvalues1",
+				"LoadingProduct2Data derive(product_name = replace(product_name,'\"','')) ~> RemovingQuotes2",
+				"RemovingQuotes2 filter(!isNull(product_id) &&\r",
+				"!isNull(product_name) &&\r",
+				"!isNull(category) &&\r",
+				"!isNull(price) &&\r",
+				"!isNull(quantity) &&\r",
+				"!isNull(store_location)) ~> filteringNullvalues2",
+				"union1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> UnionData"
+			]
+		}
+	}
+}

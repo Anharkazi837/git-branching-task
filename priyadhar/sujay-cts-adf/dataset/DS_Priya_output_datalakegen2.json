@@ -1,0 +1,25 @@
+{
+	"name": "DS_Priya_output_datalakegen2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_Priya_Gen2Datalake",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "BlobToGen2"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "output"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

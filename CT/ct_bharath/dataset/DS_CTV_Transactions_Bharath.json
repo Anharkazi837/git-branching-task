@@ -1,0 +1,26 @@
+{
+	"name": "DS_CTV_Transactions_Bharath",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_CT",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "SYS_CHANGE_VERSION",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_CTV_bharath"
+		}
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"name": "watermarkdataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_SINK_IDL_WM_JYOTHI",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkValue",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "watermarktable_jyothi"
+		}
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"name": "ds_bharath_gen2_ListAllFiles",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Bharath_Gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "inputemp"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"name": "ds_rudrani_blob_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_rudrani_blob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "01.blob2blob"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

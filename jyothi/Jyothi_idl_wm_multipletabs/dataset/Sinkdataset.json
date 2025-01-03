@@ -1,0 +1,18 @@
+{
+	"name": "Sinkdataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_SINK_IDL_WM_JYOTHI",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SinkTableName": {
+				"type": "string",
+				"defaultValue": "@dataset().SinkTableName"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

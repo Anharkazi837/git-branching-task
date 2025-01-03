@@ -1,0 +1,12 @@
+{
+	"name": "DS_Sujay_SQL_Source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sujay_SQL_IDLWM_Source",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

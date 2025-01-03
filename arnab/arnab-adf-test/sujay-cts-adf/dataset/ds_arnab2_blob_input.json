@@ -1,0 +1,31 @@
+{
+	"name": "ds_arnab2_blob_input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_arnab_blob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "03blob2sql"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "inputemp.txt",
+				"container": "inputemp"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "FirstName|LastName",
+				"type": "String"
+			}
+		]
+	}
+}

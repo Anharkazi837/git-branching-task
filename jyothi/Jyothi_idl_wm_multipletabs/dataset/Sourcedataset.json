@@ -1,0 +1,12 @@
+{
+	"name": "Sourcedataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_SRC_IDL_WM_JYOTHI",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

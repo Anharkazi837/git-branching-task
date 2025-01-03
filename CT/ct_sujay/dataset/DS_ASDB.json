@@ -1,0 +1,48 @@
+{
+	"name": "DS_ASDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AZURESQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "temperature",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "humidity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pressure",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "light_intensity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "device_status",
+				"type": "varchar"
+			},
+			{
+				"name": "lastupdatedate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "rudrani_flask"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

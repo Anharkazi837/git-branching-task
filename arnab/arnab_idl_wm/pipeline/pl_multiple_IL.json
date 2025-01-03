@@ -1,0 +1,25 @@
+{
+	"name": "pl_multiple_IL",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.tableList",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"tablelist": {
+				"type": "array"
+			}
+		},
+		"annotations": []
+	}
+}

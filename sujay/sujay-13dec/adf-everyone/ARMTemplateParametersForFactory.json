@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-everyone"
+		},
+		"LS_Sujay_SQL_IDLWM_Destination_password": {
+			"value": ""
+		},
+		"LS_Sujay_SQL_IDLWM_Source_password": {
+			"value": ""
+		},
+		"LS_Sujay_SQL_IDLWM_Destination_properties_typeProperties_server": {
+			"value": "sqlserver4everyone.database.windows.net"
+		},
+		"LS_Sujay_SQL_IDLWM_Destination_properties_typeProperties_database": {
+			"value": "idl-wm-destinationdb"
+		},
+		"LS_Sujay_SQL_IDLWM_Destination_properties_typeProperties_userName": {
+			"value": "adminuser"
+		},
+		"LS_Sujay_SQL_IDLWM_Source_properties_typeProperties_server": {
+			"value": "sqlserver4everyone.database.windows.net"
+		},
+		"LS_Sujay_SQL_IDLWM_Source_properties_typeProperties_database": {
+			"value": "idl-wm-sourcedb"
+		},
+		"LS_Sujay_SQL_IDLWM_Source_properties_typeProperties_userName": {
+			"value": "adminuser"
+		}
+	}
+}

@@ -1,0 +1,76 @@
+#CREATING SHIPPERS TABLE :
+
+CREATE TABLE Shippers_T2_k (
+    ShipperID INT PRIMARY KEY,
+    ShipperName VARCHAR(100),
+    Phone VARCHAR(20)
+);
+
+INSERT INTO Shippers_T2_k (ShipperID, ShipperName, Phone)
+VALUES 
+(1, 'FastShip', '123-555-1111'),
+(2, 'Speedy Delivery', '234-555-2222'),
+(3, 'Global Couriers', '345-555-3333'),
+(4, 'QuickShip', '456-555-4444'),
+(5, 'Cargo Express', '567-555-5555'),
+(6, 'ShipFast', '678-555-6666'),
+(7, 'Direct Freight', '789-555-7777'),
+(8, 'Overnight Express', '890-555-8888'),
+(9, 'ShipRight', '901-555-9999'),
+(10, 'DeliverNow', '012-555-0000');
+
+select * from Shippers_T2_k
+
+#CREATING INCOMING SHIPPERS TABLE :
+
+CREATE TABLE Incoming_Shippers_T2_k (
+    ShipperID INT PRIMARY KEY,
+    ShipperName VARCHAR(100),
+    Phone VARCHAR(20)
+);
+
+INSERT INTO Incoming_Shippers_T2_k (ShipperID, ShipperName, Phone)
+VALUES 
+(1, 'FastShip', '999-999-9999'),
+(2, 'Speedy Delivery', '888-888-8888'),
+(3, 'Global Couriers', '777-777-7777')
+
+select * from Incoming_Shippers_T2_k
+
+#ADDING startdate, enddate,currentflag to shippers table:
+ALTER TABLE Shippers_T2_k
+ADD startdate DATE,
+    enddate DATE,
+    currentflag BIT;
+
+UPDATE Shippers_T2_k
+SET startdate = GETDATE(),
+    enddate = '9999-12-31',
+    currentflag = 1;
+
+select * from Shippers_T2_k
+
+SELECT name
+FROM sys.key_constraints
+WHERE type = 'PK' AND parent_object_id = OBJECT_ID('Shippers_T2_k');
+
+ALTER TABLE Shippers_T2_k
+DROP CONSTRAINT PK__Shippers__1F8AFFB94B44CE89
+;
+
+
+UPDATE Shippers_T2_k
+SET enddate = GETDATE(),
+    currentflag = 0
+FROM Shippers_T2_k s
+INNER JOIN Incoming_Shippers_T2_k i ON s.ShipperID = i.ShipperID
+WHERE s.currentflag = 1
+  AND (s.ShipperName <> i.ShipperName OR s.Phone <> i.Phone);
+
+INSERT INTO Shippers_T2_k (ShipperID, ShipperName, Phone, startdate, enddate, currentflag)
+SELECT i.ShipperID, i.ShipperName, i.Phone, GETDATE(), '9999-12-31', 1
+FROM Incoming_shippers_T2_k i
+LEFT JOIN Shippers_T2_k s ON i.ShipperID = s.ShipperID
+WHERE s.currentflag = 0 OR s.currentflag IS NULL;
+
+select * from [dbo].[Shippers_T2_k]

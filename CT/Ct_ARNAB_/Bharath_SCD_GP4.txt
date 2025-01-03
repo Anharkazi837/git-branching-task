@@ -1,0 +1,59 @@
+#Creating Employee_Dimension_Bharath_GP4 table:
+
+create table Employee_Dimension_Bharath_GP4(
+	EmployeeID INT PRIMARY KEY,
+	EmployeeName VARCHAR(100),
+	Position VARCHAR(100),
+	Department VARCHAR(100)
+);
+
+#Creating Incoming_Employee_Data_Bharath_GP4:
+
+
+create table Incoming_Employee_Data_Bharath_GP4(
+	EmployeeID INT PRIMARY KEY,
+	EmployeeName VARCHAR(100),
+	Position VARCHAR(100),
+	Department VARCHAR(100)
+);
+
+#Inserting data into Employee_Dimension_Bharath_GP4:
+
+insert into [dbo].[Employee_Dimension_Bharath_GP4]
+(EmployeeID,EmployeeName,Position,Department)
+values
+(1,'Arun','Associate','Sales'),
+(2,'Bala','Lead','Production'),
+(3,'Chris','Associate','Stock'),
+(4,'Deva','Technician','Maintenance')
+
+
+
+#Inserting data into Incoming_Employee_Data_Bharath_GP4:
+
+
+Insert INTO [dbo].[Incoming_Employee_Data_Bharath_GP4]
+(EmployeeID,Employeename,Position,Department)
+Values
+(1,'Arun','Senior Associate','Sales'),
+(3,'Chris','Associate','Production'),
+(4,'Dinesh','Technician','Maintenance')
+
+
+#Merging Employee_Dimension_Bharath_GP4 and Incoming_Employee_Data_Bharath_GP4:
+
+merge into [dbo].[Employee_Dimension_Bharath_GP4] as target
+using [dbo].[Incoming_Employee_Data_Bharath_GP4] as source
+on target.EmployeeID=source.EmployeeID
+when matched then
+	update set 	target.EmployeeName=source.EmployeeName,
+				target.Position=source.Position,
+				target.Department=source.Department
+when NOT MATCHED then
+	insert (EmployeeID,EmployeeName,Position,Department)
+	values (source.EmployeeID,source.EmployeeName,source.Position,source.Department);
+
+
+
+## Validating results:
+select * from [dbo].[Employee_Dimension_Bharath_GP4]

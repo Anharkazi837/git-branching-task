@@ -1,0 +1,76 @@
+## SCDT3 with 2 Tables:
+
+CREATE TABLE Shippers_T3 (
+    ShipperID INT PRIMARY KEY,
+    ShipperName VARCHAR(100),
+    Phone VARCHAR(20)
+);
+
+INSERT INTO Shippers_T3 (ShipperID, ShipperName, Phone)
+VALUES 
+(1, 'FastShip', '123-555-1111'),
+(2, 'Speedy Delivery', '234-555-2222'),
+(3, 'Global Couriers', '345-555-3333'),
+(4, 'QuickShip', '456-555-4444'),
+(5, 'Cargo Express', '567-555-5555'),
+(6, 'ShipFast', '678-555-6666'),
+(7, 'Direct Freight', '789-555-7777'),
+(8, 'Overnight Express', '890-555-8888'),
+(9, 'ShipRight', '901-555-9999'),
+(10, 'DeliverNow', '012-555-0000');
+
+ALTER TABLE Shippers_T3
+ADD Current_Address VARCHAR(255),
+    Previous_Address VARCHAR(255);
+
+
+UPDATE Shippers_T3
+SET Current_Address = CASE ShipperID
+    WHEN 1 THEN '123 Fast Lane'
+    WHEN 2 THEN '234 Speedy Road'
+    WHEN 3 THEN '345 Global Ave'
+    WHEN 4 THEN '456 Quick Blvd'
+    WHEN 5 THEN '567 Cargo St'
+    WHEN 6 THEN '678 ShipFast Way'
+    WHEN 7 THEN '789 Direct Dr'
+    WHEN 8 THEN '890 Overnight Ct'
+    WHEN 9 THEN '901 ShipRight Pl'
+    WHEN 10 THEN '012 DeliverNow Rd'
+END;
+
+EXEC sp_rename 'Shippers_T3.Phone', 'Current_Phone', 'COLUMN';
+
+ALTER TABLE Shippers_T3
+ADD Previous_Phone VARCHAR(50);
+
+select * from Shippers_T3
+
+
+CREATE TABLE Incoming_Shippers_T3 (
+    ShipperID INT PRIMARY KEY,
+    ShipperName VARCHAR(255),
+    New_Phone VARCHAR(50),
+    New_Address VARCHAR(255)
+);
+
+
+INSERT INTO Incoming_Shippers_T3 (ShipperID, ShipperName, New_Phone, New_Address)
+VALUES 
+(1, 'FastShip', '123-555-9999', '987 Fast Lane'),
+(2, 'Speedy Delivery', '234-555-8888', '876 Speedy Road'),
+(3, 'Global Couriers', '345-555-7777', '765 Global Ave');
+
+select * from Incoming_Shippers_T3
+
+
+UPDATE Shippers_T3
+SET 
+    Previous_Phone = Current_Phone,
+    Current_Phone = i.New_Phone,
+    Previous_Address = Current_Address,
+    Current_Address = i.New_Address
+FROM Shippers_T3 s
+INNER JOIN Incoming_Shippers_T3 i ON s.ShipperID = i.ShipperID
+WHERE s.ShipperID = i.ShipperID;
+
+select * from Shippers_T3

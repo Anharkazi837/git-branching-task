@@ -1,0 +1,92 @@
+{
+	"name": "pl_multipletables_wm_idl",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.tablelist_rudrani",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "lookupforoldwatermarkactivity",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": "select * from watermarktable where TableName  =  '@{item().TABLE_NAME}'",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "Watermarkdataset",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "lookupfornewactivity",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": "select MAX(@{item().WaterMark_Column}) as NewWatermarkvalue from @{item().TABLE_NAME}",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "sourcedataset",
+									"type": "DatasetReference"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"tablelist_rudrani": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"TABLE_NAME": "customer_table",
+						"WaterMark_Column": "LastModifytime",
+						"TableType": "DataTypeforCustomerTable",
+						"StoredProcedureNameForMergeOperation": "usp_upsert_customer_table"
+					},
+					{
+						"TABLE_NAME": "project_table",
+						"WaterMark_Column": "Creationtime",
+						"TableType": "DataTypeforProjectTable",
+						"StoredProcedureNameForMergeOperation": "usp_upsert_project_table"
+					}
+				]
+			}
+		},
+		"annotations": []
+	}
+}

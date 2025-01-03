@@ -1,0 +1,21 @@
+{
+	"name": "trial_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sujay_Blob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "2.0-Blob-Gen2"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "outputemp"
+			}
+		},
+		"schema": {}
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"name": "ds_sql_table_venu_firstname_general",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_venu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "general"
+		}
+	}
+}

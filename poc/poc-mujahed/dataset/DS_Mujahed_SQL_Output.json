@@ -1,0 +1,34 @@
+{
+	"name": "DS_Mujahed_SQL_Output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Mujahed_SQL",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "03.Blob2SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "emujahed"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

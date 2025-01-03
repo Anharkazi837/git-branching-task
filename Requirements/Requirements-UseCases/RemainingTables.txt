@@ -1,0 +1,389 @@
+Orders
+Products
+Sales
+Inventory
+Suppliers
+Shippers
+Transactions
+Payments
+Invoices
+Departments
+Employees_Departments
+
+
+
+1. Orders Table - Use Case for Incremental Data Load
+Create Orders Table
+sql
+
+CREATE TABLE orders
+(
+    OrderID INT NOT NULL,
+    CustomerID INT,
+    OrderDate DATE,
+    TotalAmount DECIMAL(18, 2),
+    PRIMARY KEY (OrderID)
+);
+Enable Change Tracking on Orders Table
+sql
+
+-- Enable Change Tracking for the `orders` table
+ALTER TABLE orders
+ENABLE CHANGE_TRACKING  
+WITH (TRACK_COLUMNS_UPDATED = ON);
+Insert Initial Data into Orders Table
+sql
+
+INSERT INTO orders (OrderID, CustomerID, OrderDate, TotalAmount)
+VALUES
+    (1, 1, '2023-01-15', 150.50),
+    (2, 2, '2023-02-10', 200.75),
+    (3, 3, '2023-03-05', 120.00);
+
+
+
+2. Products Table - Use Case for Incremental Data Load
+Create Products Table
+sql
+
+CREATE TABLE products
+(
+    ProductID INT NOT NULL,
+    ProductName VARCHAR(255),
+    Price DECIMAL(18, 2),
+    StockQuantity INT,
+    PRIMARY KEY (ProductID)
+);
+Enable Change Tracking on Products Table
+sql
+
+-- Enable Change Tracking for the `products` table
+ALTER TABLE products
+ENABLE CHANGE_TRACKING  
+WITH (TRACK_COLUMNS_UPDATED = ON);
+Insert Initial Data into Products Table
+sql
+
+INSERT INTO products (ProductID, ProductName, Price, StockQuantity)
+VALUES
+    (1, 'Laptop', 1000.00, 50),
+    (2, 'Smartphone', 800.00, 100),
+    (3, 'Tablet', 500.00, 70);
+3. Sales Table - Use Case for Incremental Data Load
+Create Sales Table
+sql
+
+CREATE TABLE sales
+(
+    SaleID INT NOT NULL,
+    ProductID INT,
+    Quantity INT,
+    SaleDate DATE,
+    TotalAmount DECIMAL(18, 2),
+    PRIMARY KEY (SaleID)
+);
+Enable Change Tracking on Sales Table
+sql
+
+-- Enable Change Tracking for the `sales` table
+ALTER TABLE sales
+ENABLE CHANGE_TRACKING  
+WITH (TRACK_COLUMNS_UPDATED = ON);
+Insert Initial Data into Sales Table
+sql
+
+INSERT INTO sales (SaleID, ProductID, Quantity, SaleDate, TotalAmount)
+VALUES
+    (1, 1, 5, '2023-01-20', 5000.00),
+    (2, 2, 3, '2023-02-15', 2400.00),
+    (3, 3, 10, '2023-03-10', 5000.00);
+4. Inventory Table - Use Case for Incremental Data Load
+Create Inventory Table
+sql
+
+CREATE TABLE inventory
+(
+    InventoryID INT NOT NULL,
+    ProductID INT,
+    StockQuantity INT,
+    ReorderLevel INT,
+    PRIMARY KEY (InventoryID)
+);
+Enable Change Tracking on Inventory Table
+sql
+
+-- Enable Change Tracking for the `inventory` table
+ALTER TABLE inventory
+ENABLE CHANGE_TRACKING  
+WITH (TRACK_COLUMNS_UPDATED = ON);
+Insert Initial Data into Inventory Table
+sql
+
+INSERT INTO inventory (InventoryID, ProductID, StockQuantity, ReorderLevel)
+VALUES
+    (1, 1, 50, 10),
+    (2, 2, 100, 20),
+    (3, 3, 70, 15);
+5. Suppliers Table - Use Case for Incremental Data Load
+Create Suppliers Table
+sql
+
+CREATE TABLE suppliers
+(
+    SupplierID INT NOT NULL,
+    SupplierName VARCHAR(255),
+    ContactNumber VARCHAR(50),
+    Address VARCHAR(500),
+    PRIMARY KEY (SupplierID)
+);
+Enable Change Tracking on Suppliers Table
+sql
+
+-- Enable Change Tracking for the `suppliers` table
+ALTER TABLE suppliers
+ENABLE CHANGE_TRACKING  
+WITH (TRACK_COLUMNS_UPDATED = ON);
+Insert Initial Data into Suppliers Table
+sql
+
+INSERT INTO suppliers (SupplierID, SupplierName, ContactNumber, Address)
+VALUES
+    (1, 'ABC Electronics', '555-2345', '1234 Tech St, City A'),
+    (2, 'XYZ Ltd.', '555-6789', '5678 Market Rd, City B'),
+    (3, 'GHI Industries', '555-1011', '9102 Industrial Ave, City C');
+6. Shippers Table - Use Case for Incremental Data Load
+Create Shippers Table
+sql
+
+CREATE TABLE shippers
+(
+    ShipperID INT NOT NULL,
+    ShipperName VARCHAR(255),
+    PhoneNumber VARCHAR(50),
+    PRIMARY KEY (ShipperID)
+);
+Enable Change Tracking on Shippers Table
+sql
+
+-- Enable Change Tracking for the `shippers` table
+ALTER TABLE shippers
+ENABLE CHANGE_TRACKING  
+WITH (TRACK_COLUMNS_UPDATED = ON);
+Insert Initial Data into Shippers Table
+sql
+
+INSERT INTO shippers (ShipperID, ShipperName, PhoneNumber)
+VALUES
+    (1, 'FastDelivery', '555-1223'),
+    (2, 'QuickShip', '555-4556'),
+    (3, 'SpeedyCourier', '555-7890');
+7. Transactions Table - Use Case for Incremental Data Load
+Create Transactions Table
+sql
+
+CREATE TABLE transactions
+(
+    TransactionID INT NOT NULL,
+    CustomerID INT,
+    TransactionDate DATE,
+    Amount DECIMAL(18, 2),
+    PRIMARY KEY (TransactionID)
+);
+Enable Change Tracking on Transactions Table
+sql
+
+-- Enable Change Tracking for the `transactions` table
+ALTER TABLE transactions
+ENABLE CHANGE_TRACKING  
+WITH (TRACK_COLUMNS_UPDATED = ON);
+Insert Initial Data into Transactions Table
+sql
+
+INSERT INTO transactions (TransactionID, CustomerID, TransactionDate, Amount)
+VALUES
+    (1, 1, '2023-01-18', 300.00),
+    (2, 2, '2023-02-08', 450.00),
+    (3, 3, '2023-03-15', 700.00);
+8. Payments Table - Use Case for Incremental Data Load
+Create Payments Table
+sql
+
+CREATE TABLE payments
+(
+    PaymentID INT NOT NULL,
+    TransactionID INT,
+    PaymentDate DATE,
+    Amount DECIMAL(18, 2),
+    PRIMARY KEY (PaymentID)
+);
+Enable Change Tracking on Payments Table
+sql
+
+-- Enable Change Tracking for the `payments` table
+ALTER TABLE payments
+ENABLE CHANGE_TRACKING  
+WITH (TRACK_COLUMNS_UPDATED = ON);
+Insert Initial Data into Payments Table
+sql
+
+INSERT INTO payments (PaymentID, TransactionID, PaymentDate, Amount)
+VALUES
+    (1, 1, '2023-01-20', 300.00),
+    (2, 2, '2023-02-10', 450.00),
+    (3, 3, '2023-03-18', 700.00);
+9. Invoices Table - Use Case for Incremental Data Load
+Create Invoices Table
+sql
+
+CREATE TABLE invoices
+(
+    InvoiceID INT NOT NULL,
+    CustomerID INT,
+    InvoiceDate DATE,
+    TotalAmount DECIMAL(18, 2),
+    PRIMARY KEY (InvoiceID)
+);
+Enable Change Tracking on Invoices Table
+sql
+
+-- Enable Change Tracking for the `invoices` table
+ALTER TABLE invoices
+ENABLE CHANGE_TRACKING  
+WITH (TRACK_COLUMNS_UPDATED = ON);
+Insert Initial Data into Invoices Table
+sql
+
+INSERT INTO invoices (InvoiceID, CustomerID, InvoiceDate, TotalAmount)
+VALUES
+    (1, 1, '2023-01-15', 150.50),
+    (2, 2, '2023-02-10', 200.75),
+    (3, 3, '2023-03-05', 120.00);
+10. Departments Table - Use Case for Incremental Data Load
+Create Departments Table
+sql
+
+CREATE TABLE departments
+(
+    DepartmentID INT NOT NULL,
+    DepartmentName VARCHAR(255),
+    ManagerID INT,
+    PRIMARY KEY (DepartmentID)
+);
+Enable Change Tracking on Departments Table
+sql
+
+-- Enable Change Tracking for the `departments` table
+ALTER TABLE departments
+ENABLE CHANGE_TRACKING  
+WITH (TRACK_COLUMNS_UPDATED = ON);
+Insert Initial Data into Departments Table
+sql
+
+INSERT INTO departments (DepartmentID, DepartmentName, ManagerID)
+VALUES
+    (1, 'Engineering', 1001),
+    (2, 'Marketing', 1002),
+    (3, 'Sales', 1003);
+
+
+
+
+
+1. Create Employees_Departments Table
+This table will store the relationship between employees and departments. It's useful for tracking which employees belong to which departments.
+
+sql
+
+CREATE TABLE Employees_Departments
+(
+    EmployeeID INT NOT NULL,
+    DepartmentID INT NOT NULL,
+    AssignmentDate DATE,
+    PRIMARY KEY (EmployeeID, DepartmentID)
+);
+2. Enable Change Tracking on Employees_Departments Table
+Enable Change Tracking on the Employees_Departments table to track changes to this relationship data.
+
+sql
+
+-- Enable Change Tracking for the `Employees_Departments` table
+ALTER TABLE Employees_Departments
+ENABLE CHANGE_TRACKING  
+WITH (TRACK_COLUMNS_UPDATED = ON);
+3. Insert Initial Data into Employees_Departments Table
+Insert some initial data that links employees to their respective departments.
+
+sql
+
+INSERT INTO Employees_Departments (EmployeeID, DepartmentID, AssignmentDate)
+VALUES
+    (1, 1, '2023-01-01'),  -- Employee 1 assigned to Department 1 on Jan 1st
+    (2, 2, '2023-02-01'),  -- Employee 2 assigned to Department 2 on Feb 1st
+    (3, 3, '2023-03-01');  -- Employee 3 assigned to Department 3 on Mar 1st
+4. Perform Data Changes (Update / Insert / Delete)
+To simulate data changes (inserts, updates, and deletes), we can:
+
+Insert a new employee-department assignment.
+Update an existing assignment date.
+Delete an employee-department assignment.
+sql
+
+-- Insert a new record
+INSERT INTO Employees_Departments (EmployeeID, DepartmentID, AssignmentDate)
+VALUES (4, 2, '2023-04-01');  -- Employee 4 assigned to Department 2 on Apr 1st
+
+-- Update an existing record
+UPDATE Employees_Departments
+SET AssignmentDate = '2023-05-01'
+WHERE EmployeeID = 1 AND DepartmentID = 1;  -- Update AssignmentDate for Employee 1 in Department 1
+
+-- Delete a record
+DELETE FROM Employees_Departments
+WHERE EmployeeID = 3 AND DepartmentID = 3;  -- Remove Employee 3 from Department 3
+5. Track Changes Using Change Tracking
+After performing the changes, we can query the Change Tracking version for the Employees_Departments table to capture the changes made.
+
+sql
+
+DECLARE @ChangeTrackingVersion BIGINT;
+SET @ChangeTrackingVersion = CHANGE_TRACKING_CURRENT_VERSION();  
+
+-- Store the current change tracking version for `Employees_Departments`
+INSERT INTO change_tracking_version
+VALUES ('Employees_Departments', @ChangeTrackingVersion);
+6. Azure Data Factory (ADF) Pipeline Design
+Lookup Activity: Query the current change version from the change_tracking_version table.
+
+SQL Query:
+sql
+
+SELECT SYS_CHANGE_VERSION FROM change_tracking_version WHERE TableName = 'Employees_Departments';
+Copy Data Activity: Extract the changed data from the Employees_Departments table using the CHANGES function.
+
+SQL Query:
+sql
+
+SELECT EmployeeID, DepartmentID, AssignmentDate
+FROM Employees_Departments
+WHERE SYS_CHANGE_VERSION > @CurrentTrackingVersion;
+Stored Procedure Activity: After processing the incremental data load, use the stored procedure to update the Change Tracking version.
+
+sql
+
+DECLARE @CurrentTrackingVersion BIGINT;
+SET @CurrentTrackingVersion = CHANGE_TRACKING_CURRENT_VERSION();
+
+EXEC Update_ChangeTracking_Version @CurrentTrackingVersion, 'Employees_Departments';
+7. Clean-up (Optional)
+To clean up the test tables and stored procedures after testing, you can drop them as follows:
+
+sql
+
+-- Drop the `Employees_Departments` table
+DROP TABLE Employees_Departments;
+
+-- Drop the change tracking version table
+DROP TABLE change_tracking_version;
+
+-- Drop the stored procedure
+DROP PROCEDURE Update_ChangeTracking_Version;

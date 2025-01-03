@@ -1,0 +1,54 @@
+{
+	"name": "DS_source_Invoice",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_anu_cts",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "groupactivity"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "InvoiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustomerName",
+				"type": "varchar"
+			},
+			{
+				"name": "InvoiceDate",
+				"type": "date"
+			},
+			{
+				"name": "ItemDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UnitPrice",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "Totalamount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Invoiceanu"
+		}
+	}
+}

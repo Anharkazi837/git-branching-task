@@ -1,0 +1,31 @@
+{
+	"name": "DS_Mujahed_Gen2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Mujahed_Gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('Inc-12Dec-',pipeline().RunId,'.txt')",
+					"type": "Expression"
+				},
+				"fileSystem": "outputemp"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "FirstName|LastName",
+				"type": "String"
+			}
+		]
+	}
+}

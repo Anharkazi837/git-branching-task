@@ -1,0 +1,23 @@
+{
+	"name": "ds_sujay_comedyrating_avg",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sujay_gen2_movies",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "sujay_output",
+				"fileSystem": "moviesdetails"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

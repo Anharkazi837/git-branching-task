@@ -1,0 +1,23 @@
+{
+	"name": "Ds_gen2_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_anu_gen2_movies",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Anu_output",
+				"fileSystem": "moviesdetails"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

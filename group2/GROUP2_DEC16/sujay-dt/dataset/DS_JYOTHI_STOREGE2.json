@@ -1,0 +1,36 @@
+{
+	"name": "DS_JYOTHI_STOREGE2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_JYOTHI_PROJECT",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "sales.csv",
+				"fileSystem": "requirements"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "store_id",
+				"type": "String"
+			},
+			{
+				"name": "store_name",
+				"type": "String"
+			},
+			{
+				"name": "store_location",
+				"type": "String"
+			}
+		]
+	}
+}

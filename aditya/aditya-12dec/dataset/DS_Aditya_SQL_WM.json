@@ -1,0 +1,27 @@
+{
+	"name": "DS_Aditya_SQL_WM",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Aditya_SQL_IDL_DW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkValue",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "wmt_aditya"
+		}
+	}
+}

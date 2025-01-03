@@ -1,0 +1,26 @@
+{
+	"name": "DS_Sink_DST_Bharath",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Gen2_CT",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@CONCAT('IDL-CT-BHARATH-FULL', pipeline().RunId, '.txt')",
+					"type": "Expression"
+				},
+				"fileSystem": "output-bharath"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

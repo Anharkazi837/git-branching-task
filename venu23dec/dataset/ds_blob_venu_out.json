@@ -1,0 +1,22 @@
+{
+	"name": "ds_blob_venu_out",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blob_venudec23",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "venu"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

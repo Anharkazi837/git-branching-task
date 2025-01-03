@@ -1,0 +1,32 @@
+{
+	"name": "DS_POC1_Stock",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_POC_SQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "sid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "sqty",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stock"
+		}
+	}
+}

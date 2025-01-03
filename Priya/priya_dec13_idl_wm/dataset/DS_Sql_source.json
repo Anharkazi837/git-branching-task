@@ -1,0 +1,12 @@
+{
+	"name": "DS_Sql_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_IDL_WM",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"name": "Ds_sql_anu_ct_src",
+	"properties": {
+		"folder": {
+			"name": "ct"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_CT_anu"
+		}
+	}
+}

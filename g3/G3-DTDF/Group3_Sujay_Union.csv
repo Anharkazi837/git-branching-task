@@ -1,0 +1,235 @@
+product_id,product_name,category,price,quantity,store_location
+1,Apple iPhone 14,Smartphone,999.99,100,New York
+2,Samsung Galaxy S23,Smartphone,849.99,150,Los Angeles
+3,HP Pavilion Laptop,Laptop,699.99,75,San Francisco
+4,LG OLED TV,Electronics,1299.99,50,New York
+5,Dell XPS 13 Laptop,Laptop,1099.99,120,Chicago
+6,Apple MacBook Pro,Laptop,1999.99,30,Los Angeles
+7,Microsoft Surface Pro,Tablet,899.99,90,San Francisco
+8,Sony WH-1000XM4,Headphones,349.99,200,New York
+9,Google Pixel 7,Smartphone,599.99,180,Chicago
+10,Amazon Echo,Smart Speaker,99.99,300,San Francisco
+11,Apple iPhone 13,Smartphone,799.99,130,Chicago
+12,OnePlus 10 Pro,Smartphone,899.99,160,San Francisco
+13,HP Spectre x360 Laptop,Laptop,1399.99,60,Los Angeles
+14,Sonos One,Smart Speaker,199.99,250,New York
+15,Samsung Galaxy Watch 5,Smartwatch,299.99,180,Los Angeles
+16,Apple Watch Series 7,Smartwatch,399.99,140,San Francisco
+17,Dell Inspiron 15,Laptop,549.99,200,Chicago
+18,Bose QuietComfort 45,Headphones,329.99,220,New York
+19,Google Nest Hub,Smart Speaker,89.99,270,San Francisco
+20,Apple iPad Pro,Tablet,799.99,110,Los Angeles
+21,Microsoft Xbox Series X,Console,499.99,50,New York
+22,PlayStation 5,Console,499.99,90,San Francisco
+23,Canon EOS R Camera,Camera,1799.99,70,Chicago
+24,Nikon Z6 Camera,Camera,1599.99,40,Los Angeles
+25,Samsung QLED 4K TV,Electronics,999.99,100,San Francisco
+26,Apple AirPods Pro,Headphones,249.99,180,Chicago
+27,Garmin Fenix 6X,Smartwatch,699.99,80,San Francisco
+28,GoPro HERO 10 Camera,Camera,399.99,160,New York
+29,LG NanoCell 55 TV,Electronics,899.99,120,Los Angeles
+30,Bose SoundLink Revolve+,Headphones,299.99,140,Chicago
+31,Apple HomePod,Smart Speaker,299.99,110,San Francisco
+32,Samsung Galaxy Buds Pro,Headphones,199.99,250,New York
+33,Dell G5 Gaming Desktop,PC,1199.99,60,Chicago
+34,Microsoft Surface Laptop 4,Laptop,1599.99,50,San Francisco
+35,Lenovo ThinkPad X1,Laptop,1399.99,70,Los Angeles
+36,Sony PlayStation VR,Console,399.99,120,San Francisco
+37,HP Omen Gaming Laptop,Laptop,1499.99,30,Chicago
+38,Beats Studio3 Wireless,Headphones,349.99,190,Los Angeles
+39,Amazon Kindle Paperwhite,Tablet,129.99,250,New York
+40,Apple TV 4K,Electronics,179.99,200,San Francisco
+41,Asus ROG Strix Laptop,Laptop,1999.99,20,Chicago
+42,Philips Sonicare Toothbrush,Electronics,149.99,180,Los Angeles
+43,Shure SM7B Microphone,Electronics,399.99,100,San Francisco
+44,MacBook Air M2,Laptop,1099.99,70,Chicago
+45,Amazon Fire TV Stick,Electronics,39.99,250,New York
+46,Sonos Arc Soundbar,Electronics,799.99,150,San Francisco
+47,Apple MacBook Air,Laptop,999.99,80,Los Angeles
+48,LG 27 UltraWide Monitor,Electronics,349.99,140,Chicago
+49,HP Envy x360 Laptop,Laptop,999.99,90,San Francisco
+50,Samsung Galaxy Z Flip 4,Smartphone,999.99,100,Los Angeles
+51,Lenovo Yoga Laptop,Laptop,849.99,60,Chicago
+52,Apple iPad Mini,Tablet,499.99,150,San Francisco
+53,Bose Noise Cancelling Headphones 700,Headphones,379.99,220,New York
+54,Sony 65 4K TV,Electronics,1299.99,70,Los Angeles
+55,Apple Watch SE,Smartwatch,279.99,150,San Francisco
+56,Nintendo Switch OLED,Console,349.99,120,Chicago
+57,Apple AirPods Max,Headphones,549.99,80,New York
+58,Samsung Galaxy Tab S7,Tablet,649.99,130,San Francisco
+59,Logitech G502 Lightspeed Mouse,Electronics,129.99,180,Los Angeles
+60,Bose SoundSport Wireless,Headphones,149.99,200,Chicago
+61,Asus TUF Gaming Laptop,Laptop,1099.99,50,San Francisco
+62,Samsung 32 Curved Monitor,Electronics,179.99,200,Los Angeles
+63,Logitech MX Master 3 Mouse,Electronics,99.99,150,San Francisco
+64,Apple iPhone 12,Smartphone,699.99,170,Chicago
+65,Lenovo Legion 5 Gaming Laptop,Laptop,1399.99,30,Los Angeles
+66,GoPro HERO 9 Black,Camera,349.99,150,San Francisco
+67,Sony Alpha 7C Camera,Camera,1799.99,50,Chicago
+68,Apple Mac Mini,Electronics,699.99,120,Los Angeles
+69,Microsoft Surface Pro 8,Tablet,1099.99,80,San Francisco
+70,Nintendo Switch Lite,Console,199.99,250,New York
+71,Polaroid Originals OneStep+,Camera,129.99,180,Los Angeles
+72,HP Elite Dragonfly Laptop,Laptop,1799.99,40,San Francisco
+73,Bose QuietComfort Earbuds,Headphones,249.99,210,Chicago
+74,Google Chromecast,Electronics,29.99,300,San Francisco
+75,Beats Flex Wireless Earbuds,Headphones,49.99,400,New York
+76,Samsung Galaxy A52,Smartphone,499.99,200,San Francisco
+77,Lenovo ThinkPad T14,Laptop,1199.99,70,Chicago
+78,Asus ZenBook 14,Laptop,899.99,80,San Francisco
+79,Apple iPhone 11,Smartphone,699.99,160,Los Angeles
+80,Nintendo Switch Pro Controller,Console,69.99,250,New York
+81,Logitech G Pro X Wireless,Headphones,199.99,180,San Francisco
+82,Canon EOS Rebel T8i,Camera,899.99,90,Los Angeles
+83,Anker Soundcore Liberty Air 2 Pro,Headphones,129.99,220,Chicago
+84,Sony WH-1000XM5,Headphones,399.99,130,San Francisco
+85,Amazon Echo Show 10,Smart Speaker,249.99,200,Los Angeles
+86,Fitbit Charge 5,Smartwatch,149.99,300,New York
+87,Samsung 43 4K TV,Electronics,299.99,250,San Francisco
+88,Google Pixel 6 Pro,Smartphone,899.99,140,Los Angeles
+89,Bose SoundLink Micro,Headphones,99.99,500,Chicago
+90,HP Elitebook 840 G7,Laptop,1199.99,50,San Francisco
+91,Dell Alienware Aurora R12,PC,1599.99,30,Los Angeles
+92,Nikon D850 Camera,Camera,2999.99,10,San Francisco
+93,HP Spectre x360 14,Laptop,1499.99,60,Chicago
+94,Logitech C920 HD Webcam,Electronics,69.99,200,San Francisco
+95,Apple iPhone 12 Pro Max,Smartphone,1099.99,50,Los Angeles
+96,Samsung Galaxy Watch 4,Smartwatch,249.99,180,San Francisco
+97,Asus ROG Strix 15 Laptop,Laptop,1699.99,40,Chicago
+98,Amazon Fire HD 10 Tablet,Tablet,149.99,250,New York
+99,Sony PlayStation 4 Pro,Console,399.99,100,Los Angeles
+100,Nintendo Switch,Console,299.99,120,San Francisco
+101,Dell XPS 17 Laptop,Laptop,1899.99,70,Chicago
+102,Beats Powerbeats Pro,Headphones,249.99,150,San Francisco
+103,Logitech G923 Racing Wheel,Electronics,399.99,80,New York
+104,Apple Watch Ultra,Smartwatch,799.99,30,San Francisco
+105,Asus TUF 15 Gaming Laptop,Laptop,1499.99,60,Chicago
+106,Samsung Galaxy Z Fold 4,Smartphone,1799.99,50,San Francisco
+107,Bose 700 Noise Cancelling Headphones,Headphones,399.99,120,Los Angeles
+108,Sony Xperia 1 III,Smartphone,1299.99,30,New York
+109,Apple iPhone SE 3,Smartphone,429.99,220,San Francisco
+110,Sony 55 4K TV,Electronics,699.99,200,Los Angeles
+111,Microsoft Surface Book 3,Laptop,1599.99,50,San Francisco
+112,Canon EOS 90D Camera,Camera,1299.99,60,New York
+113,Google Pixel 7 Pro,Smartphone,1099.99,80,San Francisco
+114,Logitech G633 Artemis Spectrum,Headphones,149.99,220,Chicago
+115,Microsoft Surface Headphones 2,Headphones,249.99,100,San Francisco
+116,Philips Hue Starter Kit,Electronics,199.99,150,Los Angeles
+117,Apple AirPods 3,Headphones,179.99,150,San Francisco
+118,Garmin Venu 2,Smartwatch,399.99,70,Los Angeles
+119,Samsung Odyssey G7 27 Monitor,Electronics,499.99,60,San Francisco
+120,Sony Alpha 7 III Camera,Camera,2299.99,30,Chicago
+121,Nintendo Switch OLED,Console,349.99,120,New York
+122,Dell XPS 13 2-in-1,Laptop,1399.99,80,San Francisco
+123,Lenovo ThinkPad L15,Laptop,799.99,100,Los Angeles
+124,Beats Fit Pro,Headphones,199.99,150,San Francisco
+125,Sony 75 4K TV,Electronics,1799.99,40,Chicago
+126,Samsung Galaxy A72,Smartphone,599.99,130,San Francisco
+127,Apple iPad Air,Tablet,599.99,140,Los Angeles
+128,HP Pavilion Gaming Laptop,Laptop,899.99,90,Chicago
+129,Logitech G502 Hero,Electronics,49.99,250,San Francisco
+130,PlayStation 4,Console,299.99,100,New York
+131,Beats Solo Pro,Headphones,299.99,80,San Francisco
+132,Apple MacBook Pro 16,Laptop,2399.99,40,Los Angeles
+133,Nintendo Switch Joy-Con,Console,79.99,200,San Francisco
+134,Samsung QN90A Neo QLED TV,Electronics,2499.99,10,Chicago
+201,Apple iPhone 15,Smartphone,1099.99,50,Chicago
+202,Samsung Galaxy S24,Smartphone,999.99,75,San Francisco
+203,Lenovo IdeaPad 3,Laptop,479.99,150,New York
+204,LG QNED 65 TV,Electronics,1599.99,30,Chicago
+205,Dell Alienware X15,Laptop,2299.99,20,San Francisco
+206,Google Pixel Watch,Smartwatch,399.99,100,Los Angeles
+207,Microsoft Surface Laptop Go,Laptop,699.99,120,New York
+208,Sony WF-1000XM4,Headphones,279.99,90,Chicago
+209,Apple MacBook Air M2,Laptop,1299.99,200,San Francisco
+210,Bose SoundLink Mini 2,Headphones,169.99,180,Los Angeles
+211,PlayStation 5 Digital Edition,Console,399.99,75,Chicago
+212,Apple Watch Series 8,Smartwatch,429.99,130,San Francisco
+213,Garmin Venu 2S,Smartwatch,349.99,140,Los Angeles
+214,HP Envy 17,Laptop,1299.99,90,San Francisco
+215,Samsung Odyssey G9 Monitor,Electronics,1499.99,40,Chicago
+216,Nintendo Switch OLED Model,Console,349.99,60,San Francisco
+217,Apple AirPods Pro 2,Headphones,249.99,250,New York
+218,Apple iPad Air 5th Gen,Tablet,599.99,180,San Francisco
+219,Logitech G502 Hero Gaming Mouse,Electronics,49.99,220,Los Angeles
+220,Canon EOS 5D Mark IV Camera,Camera,2499.99,50,Chicago
+221,Asus TUF Gaming Monitor,Electronics,299.99,150,San Francisco
+222,HP Spectre x360 13,Laptop,1499.99,70,New York
+223,Fitbit Charge 5 Fitness Tracker,Smartwatch,179.99,130,San Francisco
+224,Apple iPhone 13 Pro Max,Smartphone,1099.99,60,Los Angeles
+225,Asus ZenBook Pro 14,Laptop,1599.99,90,Chicago
+226,Nintendo Switch Lite,Console,199.99,250,New York
+227,Bose QuietComfort 45,Headphones,329.99,200,San Francisco
+228,Microsoft Xbox Series S,Console,299.99,180,Chicago
+229,Google Nest Audio,Smart Speaker,99.99,250,Los Angeles
+230,Apple iPad 10.2,Tablet,329.99,180,San Francisco
+231,Logitech C920S HD Webcam,Electronics,69.99,300,Chicago
+232,HP Spectre x360 15,Laptop,1799.99,50,San Francisco
+233,Samsung 55 4K TV,Electronics,799.99,100,New York
+234,Logitech MX Master 3S Mouse,Electronics,99.99,180,San Francisco
+235,Apple AirPods 3rd Gen,Headphones,179.99,220,Los Angeles
+236,Amazon Fire TV Stick 4K,Electronics,49.99,500,Chicago
+237,PlayStation VR2,Console,549.99,30,San Francisco
+238,Sony A7R IV Camera,Camera,3499.99,40,Chicago
+239,Beats Fit Pro Earbuds,Headphones,199.99,180,New York
+240,Asus ROG Strix Laptop,PC,1899.99,30,San Francisco
+241,Apple iPhone 14 Pro,Smartphone,1099.99,60,Los Angeles
+242,HP Pavilion 24 All-in-One,Electronics,599.99,200,San Francisco
+243,Sony Xperia 5 II,Smartphone,799.99,100,Chicago
+244,Garmin Forerunner 945,Smartwatch,599.99,80,San Francisco
+245,Microsoft Surface Pro 7,Tablet,749.99,90,Los Angeles
+246,Lenovo Yoga 9i,Tablet,1399.99,50,San Francisco
+247,Apple MacBook Pro 14 M2,Laptop,1799.99,30,Chicago
+248,Samsung Galaxy S21 FE,Smartphone,699.99,120,San Francisco
+249,Bose Noise Cancelling Headphones 700,Headphones,379.99,100,New York
+250,Apple Watch SE 2,Smartwatch,299.99,150,San Francisco
+251,Logitech G915 TKL Wireless Keyboard,Electronics,229.99,180,Los Angeles
+252,Nintendo Switch Pro Controller,Console,69.99,250,San Francisco
+253,Google Pixel 6,Smartphone,599.99,140,Chicago
+254,Apple iPhone SE 2,Smartphone,399.99,180,San Francisco
+255,Microsoft Xbox Series X,Console,499.99,90,Los Angeles
+256,Beats Studio Buds,Headphones,149.99,300,San Francisco
+257,Asus VivoBook 15,Laptop,479.99,150,New York
+258,Samsung 27 Curved Monitor,Electronics,169.99,250,Chicago
+259,Sony 65 LED TV,Electronics,799.99,120,San Francisco
+260,Canon EOS Rebel T7i Camera,Camera,749.99,200,Los Angeles
+261,HP Omen 30L Gaming Desktop,PC,2499.99,40,San Francisco
+262,Apple iPad Mini 6,Tablet,499.99,100,Chicago
+263,LG UltraWide 34 Monitor,Electronics,499.99,180,San Francisco
+264,Apple iPhone 11 Pro,Smartphone,849.99,160,Los Angeles
+265,Logitech G Pro Wireless Mouse,Electronics,129.99,120,San Francisco
+266,Nintendo Switch Joy-Con Pair,Console,79.99,200,Chicago
+267,Samsung Galaxy Buds Live,Headphones,169.99,100,San Francisco
+268,Apple Mac Mini M2,Electronics,699.99,90,Los Angeles
+269,Logitech G Pro X Headset,Headphones,129.99,150,San Francisco
+270,Sony 50 4K TV,Electronics,599.99,200,Chicago
+271,Beats Solo 3 Wireless,Headphones,199.99,220,San Francisco
+272,Garmin Instinct Solar,Smartwatch,349.99,150,Los Angeles
+273,Google Pixel 5,Smartphone,699.99,110,San Francisco
+274,Apple iPad Pro 12.9,Tablet,1099.99,80,Chicago
+275,HP Elite Dragonfly,Tablet,2199.99,50,San Francisco
+276,Sony Alpha 7S III Camera,Camera,3999.99,20,Los Angeles
+277,Logitech C922 Pro Webcam,Electronics,99.99,180,San Francisco
+278,Apple AirPods Max,Headphones,549.99,60,Chicago
+279,Lenovo Legion 7i,PC,1899.99,30,San Francisco
+280,Beats Studio3 Wireless,Headphones,349.99,100,New York
+281,Apple Watch Series 6,Smartwatch,349.99,200,San Francisco
+282,Sony A6000 Camera,Camera,549.99,250,Chicago
+283,Samsung Galaxy Note 20,Smartphone,949.99,90,San Francisco
+284,Google Nest Mini,Smart Speaker,49.99,250,Los Angeles
+285,Logitech G915 Wireless Keyboard,Electronics,229.99,180,San Francisco
+286,Apple iPhone 13,Smartphone,799.99,150,Los Angeles
+287,HP Omen 15 Gaming Laptop,Laptop,1699.99,50,San Francisco
+288,Asus ZenBook 14,Tablet,899.99,40,Chicago
+289,Apple MacBook Pro 16,Electronics,2499.99,20,Los Angeles
+290,Sony WH-1000XM3,Headphones,349.99,120,San Francisco
+291,Nintendo Switch OLED,Console,349.99,60,New York
+292,Microsoft Surface Laptop Studio,Laptop,1599.99,30,San Francisco
+293,Bose QuietComfort 35 II,Headphones,299.99,150,Chicago
+294,Samsung Galaxy Z Fold 5,Smartphone,1799.99,40,Los Angeles
+295,Apple MacBook Air M1,Tablet,999.99,70,San Francisco
+296,HP Pavilion Gaming Desktop,PC,899.99,180,Chicago
+297,Google Pixel 7a,Smartphone,449.99,120,San Francisco
+298,Canon EOS M50 Mark II,Camera,699.99,100,Los Angeles
+299,Lenovo ThinkPad X1 Carbon,Laptop,1599.99,40,San Francisco
+300,Apple iPhone 14 Pro Max,Smartphone,1099.99,80,Chicago

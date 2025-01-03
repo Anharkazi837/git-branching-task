@@ -1,0 +1,26 @@
+{
+	"name": "DS_Sink_Gen2_Transactions",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Gen2_CT",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@CONCAT('IDL-CT-BHARATH-TRANSACTIONS-CT-', pipeline().RunId, '.csv')",
+					"type": "Expression"
+				},
+				"fileSystem": "output-bharath"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

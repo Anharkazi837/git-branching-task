@@ -1,0 +1,37 @@
+{
+	"name": "DS_POC1_Sales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_POC_SQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "slid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "sqty",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "cid",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "sale"
+		}
+	}
+}

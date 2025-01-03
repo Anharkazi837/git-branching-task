@@ -1,0 +1,39 @@
+{
+	"name": "DelimitedText2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_GRP4_SOURCE_VENU",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "VENU_GRP4/source"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "sales.csv",
+				"fileSystem": "requirements"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "store_id",
+				"type": "String"
+			},
+			{
+				"name": "store_name",
+				"type": "String"
+			},
+			{
+				"name": "store_location",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"name": "ds_arnab_blob_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_arnab_blob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "01.blob2blob"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "outputemp"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

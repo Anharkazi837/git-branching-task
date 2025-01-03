@@ -1,0 +1,29 @@
+{
+	"name": "Ds_Source_TBL_CV_INC_ANU",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_anu_cts",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "groupactivity"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "SYS_CHANGE_VERSION",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "TBL_CV_INC_ANU"
+		}
+	}
+}

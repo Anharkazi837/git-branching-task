@@ -1,0 +1,94 @@
+	• Handson Practice Example-
+	 
+	CREATE TABLE orders_onkar
+	(
+	    OrderID INT NOT NULL,
+	    CustomerID INT,
+	    OrderDate DATE,
+	    TotalAmount DECIMAL(18, 2),
+	    PRIMARY KEY (OrderID)
+	);
+	
+	--Enable Change Tracking on Orders Table
+	
+	
+	-- Enable Change Tracking for the `orders` table
+	ALTER TABLE orders_onkar
+	ENABLE CHANGE_TRACKING  
+	WITH (TRACK_COLUMNS_UPDATED = ON);
+	
+	Insert Initial Data into Orders Table
+
+	INSERT INTO orders_onkar (OrderID, CustomerID, OrderDate, TotalAmount)
+	VALUES
+	    (1, 1, '2023-01-15', 150.50),
+	    (2, 2, '2023-02-10', 200.75),
+	    (3, 3, '2023-03-05', 120.00);
+	
+	
+	• For tracking the changes we need to create table like below-
+	create table tbl_CT_orders_onkar
+	(
+	    TableName varchar(255),
+	    SYS_CHANGE_VERSION BIGINT,
+	);
+	 
+	DECLARE @ChangeTracking_version BIGINT
+	SET @ChangeTracking_version = CHANGE_TRACKING_CURRENT_VERSION();  
+	
+	INSERT INTO tbl_CT_orders_onkar
+	VALUES ('orders_onkar', @ChangeTracking_version)
+
+	• Create stored procedure for updatingtbl_CT_orders_onkar for there two column that is SYS_CHANGE_VERSION and TableName
+	
+	CREATE PROCEDURE Update_ChangeTracking_orders_onkar @CurrentTrackingVersion BIGINT, @TableName varchar(50)
+	    AS
+	    BEGIN
+	        UPDATE tbl_CT_orders_onkar
+	        SET [SYS_CHANGE_VERSION] = @CurrentTrackingVersion
+	        WHERE [TableName] = @TableName
+	END
+
+	
+	• Create Lookup activity for change tracking Dataset is DS_Onkar_orders_CT table is dbo.tbl_CT_orders_onkar.
+
+
+
+	• 
+
+	• Create Lookup activity for change tracking Dataset is DS_Onkar_orders_source table is dbo.orders_onkar.
+
+
+
+
+
+	• While creating the data copy activity I used this code in query section-
+	
+	SELECT 
+	    orders_onkar.OrderID,
+	    orders_onkar.CustomerID,
+	    orders_onkar.OrderDate, 
+	    orders_onkar.TotalAmount,
+	    CT.SYS_CHANGE_VERSION, 
+	    SYS_CHANGE_OPERATION 
+	from orders_onkar 
+	    RIGHT OUTER JOIN 
+	    CHANGETABLE(
+	        CHANGES orders_onkar, 
+	        @{activity('LookupLastChangeTrackingVersionActivity').output.firstRow.SYS_CHANGE_VERSION}
+	        ) AS CT 
+	    ON 
+	    orders_onkar.OrderID = CT.OrderID 
+	    where 
+	        CT.SYS_CHANGE_VERSION <= @{activity('LookupCurrentChangeTrackingVersionActivity').output.firstRow.CurrentChangeTrackingVersion}
+	
+	• Stored Procedure activities-
+	Parameters are required to run stored procedure-
+CurrentTrackingVersion ---
+@{activity('LookupCurrentChangeTrackingVersionActivity').output.firstRow.CurrentChangeTrackingVersion}
+
+TableName ---
+@{activity('LookupLastChangeTrackingVersionActivity').output.firstRow.TableName}
+
+
+

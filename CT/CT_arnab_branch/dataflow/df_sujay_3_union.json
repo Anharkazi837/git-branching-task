@@ -1,0 +1,101 @@
+{
+	"name": "df_sujay_3_union",
+	"properties": {
+		"folder": {
+			"name": "Sujay_Group3_Tasks"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Sujay_Products_Source",
+						"type": "DatasetReference"
+					},
+					"name": "Products1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_Sujay_Products2_Source",
+						"type": "DatasetReference"
+					},
+					"name": "Products2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_Sujay_ProductsUnion_Sink",
+						"type": "DatasetReference"
+					},
+					"name": "ProductsUnionSink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "UnionProd1and2"
+				},
+				{
+					"name": "removequote"
+				},
+				{
+					"name": "removequote2"
+				},
+				{
+					"name": "DropNulls1"
+				},
+				{
+					"name": "DropNulls2"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          product_id as string,",
+				"          product_name as string,",
+				"          category as string,",
+				"          price as string,",
+				"          quantity as string,",
+				"          store_location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Products1",
+				"source(output(",
+				"          product_id as string,",
+				"          product_name as string,",
+				"          category as string,",
+				"          price as string,",
+				"          quantity as string,",
+				"          store_location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Products2",
+				"removequote, removequote2 union(byName: true)~> UnionProd1and2",
+				"DropNulls1 derive(product_name = replace(product_name,'\"','')) ~> removequote",
+				"DropNulls2 derive(product_name = replace(product_name, '\"', '')) ~> removequote2",
+				"Products1 filter(!isNull(product_id) &&\r",
+				"!isNull(product_name) &&\r",
+				"!isNull(category) &&\r",
+				"!isNull(price) &&\r",
+				"!isNull(quantity) &&\r",
+				"!isNull(store_location)) ~> DropNulls1",
+				"Products2 filter(!isNull(product_id) &&",
+				"!isNull(product_name) &&",
+				"!isNull(category) &&",
+				"!isNull(price) &&",
+				"!isNull(quantity) &&",
+				"!isNull(store_location)) ~> DropNulls2",
+				"UnionProd1and2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['Group3_Sujay_Union.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> ProductsUnionSink"
+			]
+		}
+	}
+}

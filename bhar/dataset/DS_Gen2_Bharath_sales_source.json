@@ -1,0 +1,36 @@
+{
+	"name": "DS_Gen2_Bharath_sales_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Gen2_Bharath_GP4_Source",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "sales.csv",
+				"fileSystem": "requirements"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "store_id",
+				"type": "String"
+			},
+			{
+				"name": "store_name",
+				"type": "String"
+			},
+			{
+				"name": "store_location",
+				"type": "String"
+			}
+		]
+	}
+}

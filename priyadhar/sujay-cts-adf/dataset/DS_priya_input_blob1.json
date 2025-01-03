@@ -1,0 +1,31 @@
+{
+	"name": "DS_priya_input_blob1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_priyad_blob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "BlobToGen2"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "input_emp.txt",
+				"container": "inputdata"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "FirstName|LastName",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -1,0 +1,53 @@
+## creating and inserting Employee_Dimensiongrp4vvvv
+
+CREATE TABLE Employee_Dimensiongrp4vvvv (
+    EmployeeID INT PRIMARY KEY,
+    EmployeeName VARCHAR(100),
+    Position VARCHAR(100),
+    Department VARCHAR(100)
+);
+INSERT INTO Employee_Dimensiongrp4vvvv (EmployeeID, EmployeeName, Position, Department)
+VALUES
+    (1, 'John Doe', 'Software Engineer', 'IT'),
+    (2, 'Jane Smith', 'Project Manager', 'Operations'),
+    (3, 'Michael Johnson', 'Data Analyst', 'Finance'),
+    (4, 'Emily Brown', 'Marketing Manager', 'Marketing'),
+    (5, 'David Lee', 'Sales Representative', 'Sales');
+
+## creating and inserting Incoming_Dimensiongrp4vvvv
+
+
+CREATE TABLE Incoming_Dimensiongrp4vvvv (
+    EmployeeID INT PRIMARY KEY,
+    EmployeeName VARCHAR(100),
+    Position VARCHAR(100),
+    Department VARCHAR(100)
+);
+
+INSERT INTO Incoming_Dimensiongrp4vvvv (EmployeeID, EmployeeName, Position, Department)
+VALUES
+    (6, 'Alice Johnson', 'HR Manager', 'HR'),
+    (7, 'Bob Smith', 'Accountant', 'Finance'),
+    (8, 'Charlie Brown', 'Developer', 'IT'),
+    (9, 'David Lee', 'Designer', 'Marketing'),
+    (10, 'Emily Wilson', 'Customer Support', 'Operations');
+
+	select * from [dbo].[Incoming_Dimensiongrp4vvvv]
+
+
+## Merging Employee_Dimensiongrp4vvvv and Incoming_Dimensiongrp4vvvv
+
+merge into [dbo].[Employee_Dimensiongrp4vvvv] as target
+using [dbo].[Incoming_Dimensiongrp4vvvv] as source
+on target.EmployeeID = source.EmployeeID
+when matched then
+update set 
+    target.EmployeeName = source.EmployeeName,
+	target.Position = source.Position,
+	target.Department = source.Department
+when not matched then
+insert(EmployeeID,EmployeeName,Position,Department) values (source.EmployeeID,source.EmployeeName,source.Position,source.Department);
+
+select * from Employee_Dimensiongrp4vvvv
+
+select * from Incoming_Dimensiongrp4vvvv

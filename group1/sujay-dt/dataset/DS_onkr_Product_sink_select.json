@@ -1,0 +1,35 @@
+{
+	"name": "DS_onkr_Product_sink_select",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_group1_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DS_onkar"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "onkar_output",
+				"fileSystem": "moviesdetails"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "year",
+				"type": "String"
+			},
+			{
+				"name": "Rating",
+				"type": "String"
+			}
+		]
+	}
+}

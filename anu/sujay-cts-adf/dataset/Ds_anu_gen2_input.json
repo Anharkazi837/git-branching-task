@@ -1,0 +1,26 @@
+{
+	"name": "Ds_anu_gen2_input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_anu_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "gen2_2_gen2"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "InputEmp.txt",
+				"fileSystem": "inputemp"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

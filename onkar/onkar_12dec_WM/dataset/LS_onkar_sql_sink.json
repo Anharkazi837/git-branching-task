@@ -1,0 +1,15 @@
+{
+	"name": "LS_onkar_sql_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_onkar_sink",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "IDL"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

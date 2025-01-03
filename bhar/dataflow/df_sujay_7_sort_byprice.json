@@ -1,0 +1,72 @@
+{
+	"name": "df_sujay_7_sort_byprice",
+	"properties": {
+		"folder": {
+			"name": "Sujay_Group3_Tasks"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Sujay_Products_Source",
+						"type": "DatasetReference"
+					},
+					"name": "Products"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_ProductsSortedByPriceDesc_Sink",
+						"type": "DatasetReference"
+					},
+					"name": "ProductsSortedByPrice"
+				}
+			],
+			"transformations": [
+				{
+					"name": "SortByPrice"
+				},
+				{
+					"name": "DropNulls"
+				},
+				{
+					"name": "RemoveQuote"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          product_id as string,",
+				"          product_name as string,",
+				"          category as string,",
+				"          price as string,",
+				"          quantity as string,",
+				"          store_location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Products",
+				"DropNulls sort(desc(toInteger(price), true),",
+				"     caseInsensitive: true,",
+				"     partitionLevel: true) ~> SortByPrice",
+				"RemoveQuote filter(!isNull(product_id) &&\r",
+				"!isNull(product_name) &&\r",
+				"!isNull(category) &&\r",
+				"!isNull(price) &&\r",
+				"!isNull(quantity) &&\r",
+				"!isNull(store_location)) ~> DropNulls",
+				"Products derive(product_name = replace(product_name,'\"','')) ~> RemoveQuote",
+				"SortByPrice sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['Group3_Sujay_SortByPrice.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> ProductsSortedByPrice"
+			]
+		}
+	}
+}

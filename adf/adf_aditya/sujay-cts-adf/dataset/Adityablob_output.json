@@ -1,0 +1,25 @@
+{
+	"name": "Adityablob_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AdityaBlob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "01. Blob_to_Blob"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "outputblob"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

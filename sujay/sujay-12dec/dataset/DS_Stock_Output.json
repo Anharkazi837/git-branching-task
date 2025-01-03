@@ -1,0 +1,29 @@
+{
+	"name": "DS_Stock_Output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sujay_Gen2",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "IDL_Med_Stock"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('Inc-PL-',pipeline().RunId,'.txt')",
+					"type": "Expression"
+				},
+				"fileSystem": "ouptut-wm-idl-sujay"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

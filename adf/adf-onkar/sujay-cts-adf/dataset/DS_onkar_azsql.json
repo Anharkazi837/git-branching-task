@@ -1,0 +1,19 @@
+{
+	"name": "DS_onkar_azsql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_onkar_azsqlnew",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "3.gen2toazsql"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "onkar"
+		}
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"name": "DS_onkar_sql_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_onkar_source",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "IDL"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

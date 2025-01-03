@@ -1,0 +1,27 @@
+{
+	"name": "DS_Priya_source_WMSql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Priya_sql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkValue",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "wmt_Priya"
+		}
+	}
+}

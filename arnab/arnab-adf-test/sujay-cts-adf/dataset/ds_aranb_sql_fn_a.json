@@ -1,0 +1,33 @@
+{
+	"name": "ds_aranb_sql_fn_a",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_arnab_azsql",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "06_sql2gen2_fn_a"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "general"
+		}
+	}
+}

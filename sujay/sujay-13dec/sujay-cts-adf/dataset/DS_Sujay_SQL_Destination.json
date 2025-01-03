@@ -1,0 +1,23 @@
+{
+	"name": "DS_Sujay_SQL_Destination",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sujay_SQL_IDLWM_Destination",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SinkTableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": {
+				"value": "@dataset().SinkTableName",
+				"type": "Expression"
+			}
+		}
+	}
+}

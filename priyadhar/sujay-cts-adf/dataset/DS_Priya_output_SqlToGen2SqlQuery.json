@@ -1,0 +1,26 @@
+{
+	"name": "DS_Priya_output_SqlToGen2SqlQuery",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_Priya_Gen2Datalake",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SqlToGen2SqlQuery"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "A_Names",
+				"fileSystem": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

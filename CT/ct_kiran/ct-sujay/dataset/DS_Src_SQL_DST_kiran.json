@@ -1,0 +1,31 @@
+{
+	"name": "DS_Src_SQL_DST_kiran",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_kiran",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "PersonID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Age",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dst_kiran"
+		}
+	}
+}

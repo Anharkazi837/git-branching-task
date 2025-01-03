@@ -1,0 +1,33 @@
+{
+	"name": "DS_Aditya_SQL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Aditya_SQL",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "06. SQL_to_ADLS_Table"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "aditya"
+		}
+	}
+}

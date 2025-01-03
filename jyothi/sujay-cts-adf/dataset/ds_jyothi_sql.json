@@ -1,0 +1,30 @@
+{
+	"name": "ds_jyothi_sql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_jyothi_blob_input",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "jyothi"
+		}
+	}
+}

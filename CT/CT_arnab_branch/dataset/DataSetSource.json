@@ -1,0 +1,13 @@
+{
+	"name": "DataSetSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_IDLWM_Source_SQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,25 @@
+{
+	"name": "ds_aditya_adls",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Aditya_ADLS_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "02. Blob_to_ADLS"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "outputblobtoadls"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

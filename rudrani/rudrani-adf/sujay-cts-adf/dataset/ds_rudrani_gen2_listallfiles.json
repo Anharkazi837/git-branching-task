@@ -1,0 +1,22 @@
+{
+	"name": "ds_rudrani_gen2_listallfiles",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_rudrani_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "inputemp"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

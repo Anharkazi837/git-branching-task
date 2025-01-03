@@ -1,0 +1,26 @@
+{
+	"name": "DS_Snk_Gen2_sujay",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sujay_Gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@CONCAT('IDL-CT-Sujay-Full', pipeline().RunID, '.csv')",
+					"type": "Expression"
+				},
+				"fileSystem": "output-sujay"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"name": "DS_onkar_metadata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_onkar_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "metadata"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "inputmetadata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

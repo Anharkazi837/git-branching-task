@@ -1,0 +1,28 @@
+{
+	"name": "DS_ProductsSortedByQuantityDesc_Sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_group3",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Sujay_Group3"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "ProductsSortedByQuantity.csv",
+				"folderPath": "Group3/Sujay_Group3_Outputs",
+				"fileSystem": "requirements"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

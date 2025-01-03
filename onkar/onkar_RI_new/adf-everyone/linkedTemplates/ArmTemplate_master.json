@@ -1,0 +1,223 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-everyone"
+		},
+		"AzureSqlDatabase1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase1'"
+		},
+		"LS_GRP4_SOURCE_VENU_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_GRP4_SOURCE_VENU'"
+		},
+		"LS_Gen2_Bharath_GP4_Source_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_Gen2_Bharath_GP4_Source'"
+		},
+		"LS_JYOTHI_PROJECT_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_JYOTHI_PROJECT'"
+		},
+		"LS_gen2_Group2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_gen2_Group2'"
+		},
+		"LS_onkar_gen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_onkar_gen2'"
+		},
+		"Ls_group_anu_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Ls_group_anu'"
+		},
+		"ls_ag_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_ag'"
+		},
+		"ls_group3_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_group3'"
+		},
+		"new_LS_onkar_handson_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'new_LS_onkar_handson'"
+		},
+		"onkar_handson_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'onkar_handson'"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sqlserver4everyone.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"LS_GRP4_SOURCE_VENU_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"LS_Gen2_Bharath_GP4_Source_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"LS_JYOTHI_PROJECT_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"LS_gen2_Group2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"LS_onkar_gen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"Ls_group_anu_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"ls_group3_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"new_LS_onkar_handson_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"onkar_handson_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12decidl.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-everyone_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureSqlDatabase1_password": {
+						"value": "[parameters('AzureSqlDatabase1_password')]"
+					},
+					"LS_GRP4_SOURCE_VENU_accountKey": {
+						"value": "[parameters('LS_GRP4_SOURCE_VENU_accountKey')]"
+					},
+					"LS_Gen2_Bharath_GP4_Source_accountKey": {
+						"value": "[parameters('LS_Gen2_Bharath_GP4_Source_accountKey')]"
+					},
+					"LS_JYOTHI_PROJECT_accountKey": {
+						"value": "[parameters('LS_JYOTHI_PROJECT_accountKey')]"
+					},
+					"LS_gen2_Group2_accountKey": {
+						"value": "[parameters('LS_gen2_Group2_accountKey')]"
+					},
+					"LS_onkar_gen2_accountKey": {
+						"value": "[parameters('LS_onkar_gen2_accountKey')]"
+					},
+					"Ls_group_anu_accountKey": {
+						"value": "[parameters('Ls_group_anu_accountKey')]"
+					},
+					"ls_ag_connectionString": {
+						"value": "[parameters('ls_ag_connectionString')]"
+					},
+					"ls_group3_accountKey": {
+						"value": "[parameters('ls_group3_accountKey')]"
+					},
+					"new_LS_onkar_handson_accountKey": {
+						"value": "[parameters('new_LS_onkar_handson_accountKey')]"
+					},
+					"onkar_handson_accountKey": {
+						"value": "[parameters('onkar_handson_accountKey')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]"
+					},
+					"LS_GRP4_SOURCE_VENU_properties_typeProperties_url": {
+						"value": "[parameters('LS_GRP4_SOURCE_VENU_properties_typeProperties_url')]"
+					},
+					"LS_Gen2_Bharath_GP4_Source_properties_typeProperties_url": {
+						"value": "[parameters('LS_Gen2_Bharath_GP4_Source_properties_typeProperties_url')]"
+					},
+					"LS_JYOTHI_PROJECT_properties_typeProperties_url": {
+						"value": "[parameters('LS_JYOTHI_PROJECT_properties_typeProperties_url')]"
+					},
+					"LS_gen2_Group2_properties_typeProperties_url": {
+						"value": "[parameters('LS_gen2_Group2_properties_typeProperties_url')]"
+					},
+					"LS_onkar_gen2_properties_typeProperties_url": {
+						"value": "[parameters('LS_onkar_gen2_properties_typeProperties_url')]"
+					},
+					"Ls_group_anu_properties_typeProperties_url": {
+						"value": "[parameters('Ls_group_anu_properties_typeProperties_url')]"
+					},
+					"ls_group3_properties_typeProperties_url": {
+						"value": "[parameters('ls_group3_properties_typeProperties_url')]"
+					},
+					"new_LS_onkar_handson_properties_typeProperties_url": {
+						"value": "[parameters('new_LS_onkar_handson_properties_typeProperties_url')]"
+					},
+					"onkar_handson_properties_typeProperties_url": {
+						"value": "[parameters('onkar_handson_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adf-everyone_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-everyone_ArmTemplate_0')]"
+			]
+		}
+	]
+}

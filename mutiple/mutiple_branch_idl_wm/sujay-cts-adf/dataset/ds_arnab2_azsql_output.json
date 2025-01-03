@@ -1,0 +1,33 @@
+{
+	"name": "ds_arnab2_azsql_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_arnab_azsql",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "03blob2sql"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "arnab"
+		}
+	}
+}

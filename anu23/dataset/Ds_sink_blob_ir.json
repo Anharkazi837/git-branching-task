@@ -1,0 +1,22 @@
+{
+	"name": "Ds_sink_blob_ir",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_blob_ir",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "anu"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

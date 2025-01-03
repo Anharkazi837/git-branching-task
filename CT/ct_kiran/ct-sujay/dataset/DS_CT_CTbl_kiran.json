@@ -1,0 +1,26 @@
+{
+	"name": "DS_CT_CTbl_kiran",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_kiran",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "SYS_CHANGE_VERSION",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_CT_kiran"
+		}
+	}
+}

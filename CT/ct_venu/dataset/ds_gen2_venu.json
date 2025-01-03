@@ -1,0 +1,26 @@
+{
+	"name": "ds_gen2_venu",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_GEN2_VENU",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('IDL-CT-VENU-CT-',pipeline().RunId, '.csv')\n\n",
+					"type": "Expression"
+				},
+				"fileSystem": "output-venu"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

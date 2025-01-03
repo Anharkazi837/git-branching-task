@@ -1,0 +1,19 @@
+{
+	"name": "WatermarkTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_onkar_sink",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "IDL"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "watermarktable_onkar"
+		}
+	}
+}
