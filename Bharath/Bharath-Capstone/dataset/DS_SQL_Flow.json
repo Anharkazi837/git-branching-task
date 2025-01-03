@@ -1,0 +1,47 @@
+{
+	"name": "DS_SQL_Flow",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_Bharath",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "temperature",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "humidity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pressure",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "light_intensity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "device_status",
+				"type": "varchar"
+			},
+			{
+				"name": "timestamp",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Bharath_FlaskData"
+		}
+	}
+}

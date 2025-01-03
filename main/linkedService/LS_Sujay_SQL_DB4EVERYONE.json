@@ -1,0 +1,21 @@
+{
+	"name": "LS_Sujay_SQL_DB4EVERYONE",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "server4everyone.database.windows.net",
+			"database": "db4everyone",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "adminuser",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIxNzM0OGM1Yy0zZWEyLTRlYzktOWNlMC04MGFkYmYwZDEwNTQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "IR-Sujay-Personal",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

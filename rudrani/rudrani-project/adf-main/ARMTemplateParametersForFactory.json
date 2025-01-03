@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-main"
+		},
+		"LS_AZURESQL_password": {
+			"value": ""
+		},
+		"LS_gen2_accountKey": {
+			"value": ""
+		},
+		"LS_AZURESQL_properties_typeProperties_server": {
+			"value": "server4everyone.database.windows.net"
+		},
+		"LS_AZURESQL_properties_typeProperties_database": {
+			"value": "db4everyone"
+		},
+		"LS_AZURESQL_properties_typeProperties_userName": {
+			"value": "adminuser"
+		},
+		"LS_gen2_properties_typeProperties_url": {
+			"value": "https://storageaccount2gen.dfs.core.windows.net/"
+		}
+	}
+}

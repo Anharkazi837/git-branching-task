@@ -1,0 +1,12 @@
+{
+	"name": "DS_SOURCE_JYOTHI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_DD_jyothi_sql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

@@ -1,0 +1,43 @@
+{
+	"name": "ds_blob_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "sepal.length",
+				"type": "String"
+			},
+			{
+				"name": "sepal.width",
+				"type": "String"
+			},
+			{
+				"name": "petal.length",
+				"type": "String"
+			},
+			{
+				"name": "petal.width",
+				"type": "String"
+			},
+			{
+				"name": "variety",
+				"type": "String"
+			}
+		]
+	}
+}

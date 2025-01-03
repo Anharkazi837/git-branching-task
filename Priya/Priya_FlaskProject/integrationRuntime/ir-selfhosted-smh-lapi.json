@@ -1,0 +1,6 @@
+{
+	"name": "ir-selfhosted-smh-lapi",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

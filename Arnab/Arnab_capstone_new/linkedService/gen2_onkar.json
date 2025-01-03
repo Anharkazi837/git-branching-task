@@ -1,0 +1,16 @@
+{
+	"name": "gen2_onkar",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://storageaccount2gen.dfs.core.windows.net/",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyZjZhNzhjYy01Nzk3LTQ5ZTQtYjk0Zi0yMTEyYjBhNjQ3ZTgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "sujay-self-hosted-ir",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

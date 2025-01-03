@@ -1,0 +1,30 @@
+{
+	"name": "DS_out_IDL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_gen2_capstone",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Capstone_IDL"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('IDL-WM-onkar',pipeline().RunId,'.txt')  ",
+					"type": "Expression"
+				},
+				"folderPath": "IDL",
+				"fileSystem": "capstone-onkar-output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

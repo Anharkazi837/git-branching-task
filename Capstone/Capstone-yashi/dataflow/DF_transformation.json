@@ -1,0 +1,87 @@
+{
+	"name": "DF_transformation",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_unfiltered_yashi",
+						"type": "DatasetReference"
+					},
+					"name": "DSTCO2tableyashi"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_DST_yashi",
+						"type": "DatasetReference"
+					},
+					"name": "DSTupdatedtable"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filteronEngineSize"
+				},
+				{
+					"name": "DerviedColumnEmmissionRange"
+				},
+				{
+					"name": "sortbyCO2Emissions"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Make as string,",
+				"          Model as string,",
+				"          Vehicle_Class as string,",
+				"          Engine_Size_L as double,",
+				"          Cylinders as integer,",
+				"          Transmission as string,",
+				"          Fuel_Type as string,",
+				"          Fuel_Consumption_City_L_100km as double,",
+				"          Fuel_Consumption_Hwy_L_100km as double,",
+				"          Fuel_Consumption_Comb_L_100km as double,",
+				"          Fuel_Consumption_Comb_mpg as double,",
+				"          CO2_Emissions_g_km as double,",
+				"          Last_Updated as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> DSTCO2tableyashi",
+				"DSTCO2tableyashi filter(Engine_Size_L >=2",
+				" ) ~> filteronEngineSize",
+				"filteronEngineSize derive(Emission_Range = iif(CO2_Emissions_g_km < 100, 'Low',     iif(CO2_Emissions_g_km >= 100 && CO2_Emissions_g_km <= 200, 'Medium', 'High'))) ~> DerviedColumnEmmissionRange",
+				"DerviedColumnEmmissionRange sort(desc(CO2_Emissions_g_km, true)) ~> sortbyCO2Emissions",
+				"sortbyCO2Emissions sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Make as string,",
+				"          Model as string,",
+				"          Vehicle_Class as string,",
+				"          Engine_Size_L as double,",
+				"          Cylinders as integer,",
+				"          Transmission as string,",
+				"          Fuel_Type as string,",
+				"          Fuel_Consumption_City_L_100km as double,",
+				"          Fuel_Consumption_Hwy_L_100km as double,",
+				"          Fuel_Consumption_Comb_L_100km as double,",
+				"          Fuel_Consumption_Comb_mpg as double,",
+				"          CO2_Emissions_g_km as double,",
+				"          Last_Updated as timestamp",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> DSTupdatedtable"
+			]
+		}
+	}
+}

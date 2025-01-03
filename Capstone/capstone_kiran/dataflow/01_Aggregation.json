@@ -1,0 +1,73 @@
+{
+	"name": "01_Aggregation",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable",
+						"type": "DatasetReference"
+					},
+					"name": "source"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "gen2",
+						"type": "DatasetReference"
+					},
+					"name": "sink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Aggregate"
+				},
+				{
+					"name": "filterNullValues"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Make as string,",
+				"          Model as string,",
+				"          Vehicle_Class as string,",
+				"          Engine_Size_L as double,",
+				"          Cylinders as integer,",
+				"          Transmission as string,",
+				"          Fuel_Type as string,",
+				"          Fuel_Consumption_City_L_100km as double,",
+				"          Fuel_Consumption_Hwy_L_100km as double,",
+				"          Fuel_Consumption_Comb_L_100km as double,",
+				"          Fuel_Consumption_Comb_mpg as double,",
+				"          CO2_Emissions_g_km as double,",
+				"          Last_Updated as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source",
+				"filterNullValues aggregate(groupBy(Vehicle_Class),",
+				"     Avg_CO2_Emissions = avg(CO2_Emissions_g_km)) ~> Aggregate",
+				"source filter(!isNull(Make) &&",
+				"!isNull(Model) &&",
+				"!isNull(Vehicle_Class) &&",
+				"!isNull(Engine_Size_L) &&",
+				"!isNull(Cylinders) &&",
+				"!isNull(Transmission)",
+				") ~> filterNullValues",
+				"Aggregate sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['Aggregation_output'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink"
+			]
+		}
+	}
+}

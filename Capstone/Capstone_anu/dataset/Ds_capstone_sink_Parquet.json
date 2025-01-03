@@ -1,0 +1,18 @@
+{
+	"name": "Ds_capstone_sink_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_capstone_anu_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

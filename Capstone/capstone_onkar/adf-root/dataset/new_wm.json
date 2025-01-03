@@ -1,0 +1,30 @@
+{
+	"name": "new_wm",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AZ_sql_capstone",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Capstone_IDL"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkValue",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Watermark_onkar"
+		}
+	}
+}

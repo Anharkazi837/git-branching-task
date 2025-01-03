@@ -1,0 +1,22 @@
+{
+	"name": "ds_aditya_blob_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blob_aditya",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "aditya"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

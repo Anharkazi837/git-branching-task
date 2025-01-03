@@ -1,0 +1,27 @@
+{
+	"name": "DS_WM_yashi",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_yashi",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastUpdated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Watermark_yashi"
+		}
+	}
+}

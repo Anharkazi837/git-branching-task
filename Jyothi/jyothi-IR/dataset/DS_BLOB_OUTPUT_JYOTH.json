@@ -1,0 +1,23 @@
+{
+	"name": "DS_BLOB_OUTPUT_JYOTH",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_BLOB_JYOTHI",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "jyothi-output",
+				"container": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

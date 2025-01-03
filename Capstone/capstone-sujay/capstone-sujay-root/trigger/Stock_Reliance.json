@@ -1,0 +1,28 @@
+{
+	"name": "Stock_Reliance",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "PL_Sujay_StreamToBlob_Using_ADB",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"StockName": "RELIANCE.NS"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 5,
+				"startTime": "2024-12-24T10:41:00",
+				"endTime": "2024-12-25T11:41:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

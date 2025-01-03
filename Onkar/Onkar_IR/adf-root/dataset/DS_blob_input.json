@@ -1,0 +1,44 @@
+{
+	"name": "DS_blob_input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_blob_onkar",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "iris.csv",
+				"container": "input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "sepal.length",
+				"type": "String"
+			},
+			{
+				"name": "sepal.width",
+				"type": "String"
+			},
+			{
+				"name": "petal.length",
+				"type": "String"
+			},
+			{
+				"name": "petal.width",
+				"type": "String"
+			},
+			{
+				"name": "variety",
+				"type": "String"
+			}
+		]
+	}
+}

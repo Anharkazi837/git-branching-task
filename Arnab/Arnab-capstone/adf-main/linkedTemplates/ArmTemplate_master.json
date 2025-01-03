@@ -1,0 +1,719 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-main"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
+		"Gen2_Source_Dataset_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Gen2_Source_Dataset'"
+		},
+		"LS_AZURESQL_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_AZURESQL'"
+		},
+		"LS_AZ_sql_capstone_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_AZ_sql_capstone'"
+		},
+		"LS_DD_jyothi_gen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_DD_jyothi_gen2'"
+		},
+		"LS_DD_jyothi_sql_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_DD_jyothi_sql'"
+		},
+		"LS_GEN2_Aditya_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_GEN2_Aditya'"
+		},
+		"LS_Gen2_Bharath_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_Gen2_Bharath'"
+		},
+		"LS_SQL_Aditya_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SQL_Aditya'"
+		},
+		"LS_SQL_Bharath_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SQL_Bharath'"
+		},
+		"LS_SQL_DB4EVERYONE_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SQL_DB4EVERYONE'"
+		},
+		"LS_SQL_yashi_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SQL_yashi'"
+		},
+		"LS_Sujay_ADB_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'LS_Sujay_ADB'"
+		},
+		"LS_Sujay_Blob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_Sujay_Blob'"
+		},
+		"LS_Sujay_Gen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_Sujay_Gen2'"
+		},
+		"LS_Sujay_SQL_DB4EVERYONE_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_Sujay_SQL_DB4EVERYONE'"
+		},
+		"LS_gen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_gen2'"
+		},
+		"LS_gen2_capstone_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_gen2_capstone'"
+		},
+		"LS_ip_arnab_sql_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_ip_arnab_sql'"
+		},
+		"LS_op_arnab_sql_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_op_arnab_sql'"
+		},
+		"LS_sensor_sql_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_sensor_sql'"
+		},
+		"Ls_Gen2_Priya_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Ls_Gen2_Priya'"
+		},
+		"Ls_Gen2_yashi_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Ls_Gen2_yashi'"
+		},
+		"Ls_arnab_blob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Ls_arnab_blob'"
+		},
+		"Ls_capstone_anu_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Ls_capstone_anu'"
+		},
+		"Ls_capstone_anu_gen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Ls_capstone_anu_gen2'"
+		},
+		"Ls_gen2_arnab_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Ls_gen2_arnab'"
+		},
+		"co2_sql_source_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'co2_sql_source'"
+		},
+		"gen2_onkar_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'gen2_onkar'"
+		},
+		"ls_gen2_venu_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_gen2_venu'"
+		},
+		"ls_sql_venu_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sql_venu'"
+		},
+		"sujay_blob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sujay_blob'"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"Gen2_Source_Dataset_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"LS_AZURESQL_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"LS_AZURESQL_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"LS_AZURESQL_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"LS_AZ_sql_capstone_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"LS_AZ_sql_capstone_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"LS_AZ_sql_capstone_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"LS_DD_jyothi_gen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"LS_DD_jyothi_sql_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"LS_DD_jyothi_sql_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"LS_DD_jyothi_sql_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"LS_GEN2_Aditya_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"LS_Gen2_Bharath_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"LS_SQL_Aditya_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"LS_SQL_Aditya_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"LS_SQL_Aditya_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"LS_SQL_Bharath_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"LS_SQL_Bharath_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"LS_SQL_Bharath_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"LS_SQL_DB4EVERYONE_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"LS_SQL_DB4EVERYONE_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"LS_SQL_DB4EVERYONE_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"LS_SQL_yashi_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"LS_SQL_yashi_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"LS_SQL_yashi_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"LS_Sujay_ADB_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1224-055711-uomp4njs"
+		},
+		"LS_Sujay_Gen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"LS_gen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"LS_gen2_capstone_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"LS_ip_arnab_sql_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"LS_ip_arnab_sql_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"LS_ip_arnab_sql_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"LS_op_arnab_sql_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"LS_op_arnab_sql_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"LS_op_arnab_sql_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"LS_sensor_sql_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"LS_sensor_sql_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"LS_sensor_sql_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"Ls_Gen2_Priya_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"Ls_Gen2_yashi_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"Ls_capstone_anu_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"Ls_capstone_anu_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"Ls_capstone_anu_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"Ls_capstone_anu_gen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"Ls_gen2_arnab_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.thecatapi.com/"
+		},
+		"co2_sql_source_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"co2_sql_source_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"co2_sql_source_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"gen2_onkar_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"ls_gen2_venu_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"ls_sql_venu_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"ls_sql_venu_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"ls_sql_venu_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-main_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeStorage1_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					},
+					"LS_AZURESQL_password": {
+						"value": "[parameters('LS_AZURESQL_password')]"
+					},
+					"LS_AZ_sql_capstone_password": {
+						"value": "[parameters('LS_AZ_sql_capstone_password')]"
+					},
+					"LS_DD_jyothi_gen2_accountKey": {
+						"value": "[parameters('LS_DD_jyothi_gen2_accountKey')]"
+					},
+					"LS_DD_jyothi_sql_password": {
+						"value": "[parameters('LS_DD_jyothi_sql_password')]"
+					},
+					"LS_GEN2_Aditya_accountKey": {
+						"value": "[parameters('LS_GEN2_Aditya_accountKey')]"
+					},
+					"LS_Gen2_Bharath_accountKey": {
+						"value": "[parameters('LS_Gen2_Bharath_accountKey')]"
+					},
+					"LS_SQL_Aditya_password": {
+						"value": "[parameters('LS_SQL_Aditya_password')]"
+					},
+					"LS_SQL_Bharath_password": {
+						"value": "[parameters('LS_SQL_Bharath_password')]"
+					},
+					"LS_SQL_DB4EVERYONE_password": {
+						"value": "[parameters('LS_SQL_DB4EVERYONE_password')]"
+					},
+					"LS_SQL_yashi_password": {
+						"value": "[parameters('LS_SQL_yashi_password')]"
+					},
+					"LS_gen2_accountKey": {
+						"value": "[parameters('LS_gen2_accountKey')]"
+					},
+					"LS_gen2_capstone_accountKey": {
+						"value": "[parameters('LS_gen2_capstone_accountKey')]"
+					},
+					"LS_ip_arnab_sql_password": {
+						"value": "[parameters('LS_ip_arnab_sql_password')]"
+					},
+					"LS_op_arnab_sql_password": {
+						"value": "[parameters('LS_op_arnab_sql_password')]"
+					},
+					"LS_sensor_sql_password": {
+						"value": "[parameters('LS_sensor_sql_password')]"
+					},
+					"Ls_Gen2_Priya_accountKey": {
+						"value": "[parameters('Ls_Gen2_Priya_accountKey')]"
+					},
+					"Ls_Gen2_yashi_accountKey": {
+						"value": "[parameters('Ls_Gen2_yashi_accountKey')]"
+					},
+					"Ls_arnab_blob_connectionString": {
+						"value": "[parameters('Ls_arnab_blob_connectionString')]"
+					},
+					"Ls_capstone_anu_password": {
+						"value": "[parameters('Ls_capstone_anu_password')]"
+					},
+					"AzureDataLakeStorage1_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"LS_AZURESQL_properties_typeProperties_server": {
+						"value": "[parameters('LS_AZURESQL_properties_typeProperties_server')]"
+					},
+					"LS_AZURESQL_properties_typeProperties_database": {
+						"value": "[parameters('LS_AZURESQL_properties_typeProperties_database')]"
+					},
+					"LS_AZURESQL_properties_typeProperties_userName": {
+						"value": "[parameters('LS_AZURESQL_properties_typeProperties_userName')]"
+					},
+					"LS_AZ_sql_capstone_properties_typeProperties_server": {
+						"value": "[parameters('LS_AZ_sql_capstone_properties_typeProperties_server')]"
+					},
+					"LS_AZ_sql_capstone_properties_typeProperties_database": {
+						"value": "[parameters('LS_AZ_sql_capstone_properties_typeProperties_database')]"
+					},
+					"LS_AZ_sql_capstone_properties_typeProperties_userName": {
+						"value": "[parameters('LS_AZ_sql_capstone_properties_typeProperties_userName')]"
+					},
+					"LS_DD_jyothi_gen2_properties_typeProperties_url": {
+						"value": "[parameters('LS_DD_jyothi_gen2_properties_typeProperties_url')]"
+					},
+					"LS_DD_jyothi_sql_properties_typeProperties_server": {
+						"value": "[parameters('LS_DD_jyothi_sql_properties_typeProperties_server')]"
+					},
+					"LS_DD_jyothi_sql_properties_typeProperties_database": {
+						"value": "[parameters('LS_DD_jyothi_sql_properties_typeProperties_database')]"
+					},
+					"LS_DD_jyothi_sql_properties_typeProperties_userName": {
+						"value": "[parameters('LS_DD_jyothi_sql_properties_typeProperties_userName')]"
+					},
+					"LS_GEN2_Aditya_properties_typeProperties_url": {
+						"value": "[parameters('LS_GEN2_Aditya_properties_typeProperties_url')]"
+					},
+					"LS_Gen2_Bharath_properties_typeProperties_url": {
+						"value": "[parameters('LS_Gen2_Bharath_properties_typeProperties_url')]"
+					},
+					"LS_SQL_Aditya_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQL_Aditya_properties_typeProperties_server')]"
+					},
+					"LS_SQL_Aditya_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQL_Aditya_properties_typeProperties_database')]"
+					},
+					"LS_SQL_Aditya_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQL_Aditya_properties_typeProperties_userName')]"
+					},
+					"LS_SQL_Bharath_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQL_Bharath_properties_typeProperties_server')]"
+					},
+					"LS_SQL_Bharath_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQL_Bharath_properties_typeProperties_database')]"
+					},
+					"LS_SQL_Bharath_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQL_Bharath_properties_typeProperties_userName')]"
+					},
+					"LS_SQL_DB4EVERYONE_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQL_DB4EVERYONE_properties_typeProperties_server')]"
+					},
+					"LS_SQL_DB4EVERYONE_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQL_DB4EVERYONE_properties_typeProperties_database')]"
+					},
+					"LS_SQL_DB4EVERYONE_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQL_DB4EVERYONE_properties_typeProperties_userName')]"
+					},
+					"LS_SQL_yashi_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQL_yashi_properties_typeProperties_server')]"
+					},
+					"LS_SQL_yashi_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQL_yashi_properties_typeProperties_database')]"
+					},
+					"LS_SQL_yashi_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQL_yashi_properties_typeProperties_userName')]"
+					},
+					"LS_gen2_properties_typeProperties_url": {
+						"value": "[parameters('LS_gen2_properties_typeProperties_url')]"
+					},
+					"LS_gen2_capstone_properties_typeProperties_url": {
+						"value": "[parameters('LS_gen2_capstone_properties_typeProperties_url')]"
+					},
+					"LS_ip_arnab_sql_properties_typeProperties_server": {
+						"value": "[parameters('LS_ip_arnab_sql_properties_typeProperties_server')]"
+					},
+					"LS_ip_arnab_sql_properties_typeProperties_database": {
+						"value": "[parameters('LS_ip_arnab_sql_properties_typeProperties_database')]"
+					},
+					"LS_ip_arnab_sql_properties_typeProperties_userName": {
+						"value": "[parameters('LS_ip_arnab_sql_properties_typeProperties_userName')]"
+					},
+					"LS_op_arnab_sql_properties_typeProperties_server": {
+						"value": "[parameters('LS_op_arnab_sql_properties_typeProperties_server')]"
+					},
+					"LS_op_arnab_sql_properties_typeProperties_database": {
+						"value": "[parameters('LS_op_arnab_sql_properties_typeProperties_database')]"
+					},
+					"LS_op_arnab_sql_properties_typeProperties_userName": {
+						"value": "[parameters('LS_op_arnab_sql_properties_typeProperties_userName')]"
+					},
+					"LS_sensor_sql_properties_typeProperties_server": {
+						"value": "[parameters('LS_sensor_sql_properties_typeProperties_server')]"
+					},
+					"LS_sensor_sql_properties_typeProperties_database": {
+						"value": "[parameters('LS_sensor_sql_properties_typeProperties_database')]"
+					},
+					"LS_sensor_sql_properties_typeProperties_userName": {
+						"value": "[parameters('LS_sensor_sql_properties_typeProperties_userName')]"
+					},
+					"Ls_Gen2_Priya_properties_typeProperties_url": {
+						"value": "[parameters('Ls_Gen2_Priya_properties_typeProperties_url')]"
+					},
+					"Ls_Gen2_yashi_properties_typeProperties_url": {
+						"value": "[parameters('Ls_Gen2_yashi_properties_typeProperties_url')]"
+					},
+					"Ls_capstone_anu_properties_typeProperties_server": {
+						"value": "[parameters('Ls_capstone_anu_properties_typeProperties_server')]"
+					},
+					"Ls_capstone_anu_properties_typeProperties_database": {
+						"value": "[parameters('Ls_capstone_anu_properties_typeProperties_database')]"
+					},
+					"Ls_capstone_anu_properties_typeProperties_userName": {
+						"value": "[parameters('Ls_capstone_anu_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adf-main_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Ls_capstone_anu_gen2_accountKey": {
+						"value": "[parameters('Ls_capstone_anu_gen2_accountKey')]"
+					},
+					"Ls_gen2_arnab_accountKey": {
+						"value": "[parameters('Ls_gen2_arnab_accountKey')]"
+					},
+					"co2_sql_source_password": {
+						"value": "[parameters('co2_sql_source_password')]"
+					},
+					"ls_gen2_venu_accountKey": {
+						"value": "[parameters('ls_gen2_venu_accountKey')]"
+					},
+					"ls_sql_venu_password": {
+						"value": "[parameters('ls_sql_venu_password')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"Gen2_Source_Dataset_accountKey": {
+						"value": "[parameters('Gen2_Source_Dataset_accountKey')]"
+					},
+					"LS_Sujay_ADB_accessToken": {
+						"value": "[parameters('LS_Sujay_ADB_accessToken')]"
+					},
+					"Ls_capstone_anu_gen2_properties_typeProperties_url": {
+						"value": "[parameters('Ls_capstone_anu_gen2_properties_typeProperties_url')]"
+					},
+					"Ls_gen2_arnab_properties_typeProperties_url": {
+						"value": "[parameters('Ls_gen2_arnab_properties_typeProperties_url')]"
+					},
+					"RestService1_properties_typeProperties_url": {
+						"value": "[parameters('RestService1_properties_typeProperties_url')]"
+					},
+					"co2_sql_source_properties_typeProperties_server": {
+						"value": "[parameters('co2_sql_source_properties_typeProperties_server')]"
+					},
+					"co2_sql_source_properties_typeProperties_database": {
+						"value": "[parameters('co2_sql_source_properties_typeProperties_database')]"
+					},
+					"co2_sql_source_properties_typeProperties_userName": {
+						"value": "[parameters('co2_sql_source_properties_typeProperties_userName')]"
+					},
+					"ls_gen2_venu_properties_typeProperties_url": {
+						"value": "[parameters('ls_gen2_venu_properties_typeProperties_url')]"
+					},
+					"ls_sql_venu_properties_typeProperties_server": {
+						"value": "[parameters('ls_sql_venu_properties_typeProperties_server')]"
+					},
+					"ls_sql_venu_properties_typeProperties_database": {
+						"value": "[parameters('ls_sql_venu_properties_typeProperties_database')]"
+					},
+					"ls_sql_venu_properties_typeProperties_userName": {
+						"value": "[parameters('ls_sql_venu_properties_typeProperties_userName')]"
+					},
+					"Gen2_Source_Dataset_properties_typeProperties_url": {
+						"value": "[parameters('Gen2_Source_Dataset_properties_typeProperties_url')]"
+					},
+					"LS_Sujay_ADB_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('LS_Sujay_ADB_properties_typeProperties_existingClusterId')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-main_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "adf-main_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LS_Sujay_Blob_connectionString": {
+						"value": "[parameters('LS_Sujay_Blob_connectionString')]"
+					},
+					"LS_Sujay_Gen2_accountKey": {
+						"value": "[parameters('LS_Sujay_Gen2_accountKey')]"
+					},
+					"LS_Sujay_SQL_DB4EVERYONE_password": {
+						"value": "[parameters('LS_Sujay_SQL_DB4EVERYONE_password')]"
+					},
+					"gen2_onkar_accountKey": {
+						"value": "[parameters('gen2_onkar_accountKey')]"
+					},
+					"sujay_blob_connectionString": {
+						"value": "[parameters('sujay_blob_connectionString')]"
+					},
+					"LS_Sujay_Gen2_properties_typeProperties_url": {
+						"value": "[parameters('LS_Sujay_Gen2_properties_typeProperties_url')]"
+					},
+					"LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_server": {
+						"value": "[parameters('LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_server')]"
+					},
+					"LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_database": {
+						"value": "[parameters('LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_database')]"
+					},
+					"LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_userName": {
+						"value": "[parameters('LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_userName')]"
+					},
+					"gen2_onkar_properties_typeProperties_url": {
+						"value": "[parameters('gen2_onkar_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-main_ArmTemplate_1')]"
+			]
+		}
+	]
+}

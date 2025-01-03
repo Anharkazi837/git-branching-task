@@ -1,0 +1,66 @@
+{
+	"name": "DS_Sujay_SQL_StockDetails",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sujay_SQL_DB4EVERYONE",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "symbol",
+				"type": "varchar"
+			},
+			{
+				"name": "industry",
+				"type": "varchar"
+			},
+			{
+				"name": "sector",
+				"type": "varchar"
+			},
+			{
+				"name": "shortName",
+				"type": "varchar"
+			},
+			{
+				"name": "longName",
+				"type": "varchar"
+			},
+			{
+				"name": "fullTimeEmployees",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "full_address",
+				"type": "varchar"
+			},
+			{
+				"name": "city",
+				"type": "varchar"
+			},
+			{
+				"name": "zip",
+				"type": "varchar"
+			},
+			{
+				"name": "country",
+				"type": "varchar"
+			},
+			{
+				"name": "phone",
+				"type": "varchar"
+			},
+			{
+				"name": "website",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stock_details_TATA"
+		}
+	}
+}

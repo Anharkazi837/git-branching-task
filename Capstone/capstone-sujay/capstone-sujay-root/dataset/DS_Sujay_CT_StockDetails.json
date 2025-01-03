@@ -1,0 +1,26 @@
+{
+	"name": "DS_Sujay_CT_StockDetails",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sujay_SQL_DB4EVERYONE",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "SYS_CHANGE_VERSION",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_ct_sujay"
+		}
+	}
+}

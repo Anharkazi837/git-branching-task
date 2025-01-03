@@ -1,0 +1,12 @@
+{
+	"name": "DS_Priya_SourceFlaskData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_AzureSql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

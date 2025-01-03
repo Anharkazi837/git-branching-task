@@ -1,0 +1,48 @@
+{
+	"name": "ds_sql_source_venu",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_venu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "temperature",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "humidity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pressure",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "light_intensity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "device_status",
+				"type": "varchar"
+			},
+			{
+				"name": "Last_Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SensorData_venu"
+		}
+	}
+}

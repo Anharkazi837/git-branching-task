@@ -1,0 +1,18 @@
+{
+	"name": "DS_JYOTHI_SINK",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_DD_jyothi_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "jyothi-capstone-output"
+			}
+		},
+		"schema": {}
+	}
+}

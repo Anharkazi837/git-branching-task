@@ -1,0 +1,26 @@
+{
+	"name": "DS_sink_Gen2_yashi",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_Gen2_yashi",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('Capstone-yashi',pipeline().RunId,'.csv')",
+					"type": "Expression"
+				},
+				"fileSystem": "capstone-yashi"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

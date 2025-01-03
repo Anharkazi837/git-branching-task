@@ -1,0 +1,70 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-cts-demo"
+		},
+		"Gen2_Source_Dataset_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Gen2_Source_Dataset'"
+		},
+		"sujay_blob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sujay_blob'"
+		},
+		"Gen2_Source_Dataset_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"LS_Sujay_RestAPI_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.thecatapi.com/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-cts-demo_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Gen2_Source_Dataset_accountKey": {
+						"value": "[parameters('Gen2_Source_Dataset_accountKey')]"
+					},
+					"sujay_blob_connectionString": {
+						"value": "[parameters('sujay_blob_connectionString')]"
+					},
+					"Gen2_Source_Dataset_properties_typeProperties_url": {
+						"value": "[parameters('Gen2_Source_Dataset_properties_typeProperties_url')]"
+					},
+					"LS_Sujay_RestAPI_properties_typeProperties_url": {
+						"value": "[parameters('LS_Sujay_RestAPI_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

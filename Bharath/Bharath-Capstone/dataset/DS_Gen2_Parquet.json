@@ -1,0 +1,19 @@
+{
+	"name": "DS_Gen2_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Gen2_Bharath",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "bharath-container"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

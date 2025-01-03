@@ -1,0 +1,75 @@
+{
+	"name": "03_select_derieved",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable",
+						"type": "DatasetReference"
+					},
+					"name": "source"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "gen2",
+						"type": "DatasetReference"
+					},
+					"name": "sink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn"
+				},
+				{
+					"name": "select"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Make as string,",
+				"          Model as string,",
+				"          Vehicle_Class as string,",
+				"          Engine_Size_L as double,",
+				"          Cylinders as integer,",
+				"          Transmission as string,",
+				"          Fuel_Type as string,",
+				"          Fuel_Consumption_City_L_100km as double,",
+				"          Fuel_Consumption_Hwy_L_100km as double,",
+				"          Fuel_Consumption_Comb_L_100km as double,",
+				"          Fuel_Consumption_Comb_mpg as double,",
+				"          CO2_Emissions_g_km as double,",
+				"          Last_Updated as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source",
+				"source derive(Efficiency_Rating = iif(Fuel_Consumption_Comb_mpg > 30, 'Efficient', \r",
+				"    iif(Fuel_Consumption_Comb_mpg >= 20 && Fuel_Consumption_Comb_mpg <= 30, 'Moderate', \r",
+				"        'Inefficient'))) ~> derivedColumn",
+				"derivedColumn select(mapColumn(",
+				"          Make,",
+				"          Model,",
+				"          Vehicle_Class,",
+				"          Efficiency_Rating",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select",
+				"select sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['select_derieved_output'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink"
+			]
+		}
+	}
+}

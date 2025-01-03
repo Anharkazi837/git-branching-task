@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Get a list of all folders in the current directory
+folders=$(ls -d */)
+
+# Iterate through each folder
+for folder in $folders; do
+    # Extract the prefix (e.g., 'Bharat' from 'Bharat-Capstone')
+    prefix=$(echo $folder | cut -d'-' -f1)
+
+    # Create a parent folder if it doesn't exist
+    if [ ! -d "$prefix" ]; then
+        mkdir "$prefix"
+    fi
+
+    # Move the folder into its corresponding parent folder
+    mv "$folder" "$prefix/"
+done
+
+echo "Folders organized by prefix."

@@ -1,0 +1,26 @@
+{
+	"name": "DS_Sink_GEN2_Aditya",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_GEN2_Aditya",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('Capstone-Aditya',pipeline().RunId,'.csv')",
+					"type": "Expression"
+				},
+				"fileSystem": "capstone-aditya-output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-cts-demo"
+		},
+		"Gen2_Source_Dataset_accountKey": {
+			"value": ""
+		},
+		"sujay_blob_connectionString": {
+			"value": ""
+		},
+		"Gen2_Source_Dataset_properties_typeProperties_url": {
+			"value": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"LS_Sujay_RestAPI_properties_typeProperties_url": {
+			"value": "https://api.thecatapi.com/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

@@ -1,0 +1,115 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_SQL_Flow",
+						"type": "DatasetReference"
+					},
+					"name": "GettingSourceData"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_Gen2_Flow_Output",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_Gen2_Flow_Output",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_Gen2_Flow_Output",
+						"type": "DatasetReference"
+					},
+					"name": "sink3"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filteringNullValues"
+				},
+				{
+					"name": "split1"
+				},
+				{
+					"name": "selectingRequiredColumn"
+				},
+				{
+					"name": "aggregate1"
+				},
+				{
+					"name": "sort1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          temperature as decimal(10,2),",
+				"          humidity as integer,",
+				"          pressure as integer,",
+				"          light_intensity as integer,",
+				"          device_status as string,",
+				"          timestamp as long",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> GettingSourceData",
+				"GettingSourceData filter(!isNull(temperature) &&\r",
+				"!isNull(humidity) &&\r",
+				"!isNull(pressure) &&\r",
+				"!isNull(light_intensity) &&\r",
+				"!isNull(device_status) &&\r",
+				"!isNull(timestamp)) ~> filteringNullValues",
+				"filteringNullValues split(device_status=='ON',",
+				"     device_status=='OFF',",
+				"     disjoint: false) ~> split1@(OnDevice, OffDevice, IdleDevice)",
+				"split1@OnDevice select(mapColumn(",
+				"          temperature,",
+				"          humidity,",
+				"          pressure,",
+				"          light_intensity,",
+				"          device_status",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectingRequiredColumn",
+				"split1@OffDevice aggregate(AverageHumidiy = avg(humidity),",
+				"          AverageTemperature = avg(temperature),",
+				"          AveragePressure = avg(pressure),",
+				"          AverageIntensity = avg(light_intensity)) ~> aggregate1",
+				"split1@IdleDevice sort(asc(temperature, true)) ~> sort1",
+				"selectingRequiredColumn sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1",
+				"aggregate1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink2",
+				"sort1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink3"
+			]
+		}
+	}
+}

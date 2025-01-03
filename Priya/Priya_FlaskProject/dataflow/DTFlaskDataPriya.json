@@ -1,0 +1,100 @@
+{
+	"name": "DTFlaskDataPriya",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Priya_SourceDTFlaskData",
+						"type": "DatasetReference"
+					},
+					"name": "FlaskDataSource"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_Priya_Gen2Alert",
+						"type": "DatasetReference"
+					},
+					"name": "AlertGen2"
+				},
+				{
+					"dataset": {
+						"referenceName": "Ds_Priya_Sink_NonAlertActive",
+						"type": "DatasetReference"
+					},
+					"name": "NonAlertActive"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_Priya_Gen2Agg",
+						"type": "DatasetReference"
+					},
+					"name": "AggSink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "AddIsAlertColumn"
+				},
+				{
+					"name": "sortByTemp"
+				},
+				{
+					"name": "SplitByAlert"
+				},
+				{
+					"name": "filterByDeviceStatus"
+				},
+				{
+					"name": "aggregateByTemp"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Temperature as double,",
+				"          Humidity as double,",
+				"          Pressure as double,",
+				"          Light_intensity as double,",
+				"          Device_status as string,",
+				"          UpdatedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> FlaskDataSource",
+				"FlaskDataSource derive(IsAlert = iif((Temperature>100 && Pressure>1000), 'Yes', 'No')) ~> AddIsAlertColumn",
+				"AddIsAlertColumn sort(asc(Temperature, true)) ~> sortByTemp",
+				"sortByTemp split(IsAlert == 'yes',",
+				"     disjoint: false) ~> SplitByAlert@(AlertColumn, NonAlert)",
+				"SplitByAlert@NonAlert filter(Device_status == 'active') ~> filterByDeviceStatus",
+				"FlaskDataSource aggregate(groupBy(Temperature),",
+				"     Count = count(Temperature),",
+				"          Avg = avg(Temperature)) ~> aggregateByTemp",
+				"SplitByAlert@AlertColumn sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> AlertGen2",
+				"filterByDeviceStatus sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> NonAlertActive",
+				"aggregateByTemp sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> AggSink"
+			]
+		}
+	}
+}

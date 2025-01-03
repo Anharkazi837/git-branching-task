@@ -1,0 +1,47 @@
+{
+	"name": "DS_Priya_DestFlaskData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_AzureSql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Temperature",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Humidity",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Pressure",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Light_intensity",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Device_status",
+				"type": "varchar"
+			},
+			{
+				"name": "UpdatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Priya_FlaskData"
+		}
+	}
+}

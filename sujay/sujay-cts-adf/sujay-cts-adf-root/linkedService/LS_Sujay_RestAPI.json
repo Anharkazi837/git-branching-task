@@ -1,0 +1,16 @@
+{
+	"name": "LS_Sujay_RestAPI",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://api.thecatapi.com/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		},
+		"connectVia": {
+			"referenceName": "sujay-self-hosted-ir",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

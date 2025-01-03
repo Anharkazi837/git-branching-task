@@ -1,0 +1,88 @@
+{
+	"name": "DF_Transformations",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Untransformed_SQL_Aditya",
+						"type": "DatasetReference"
+					},
+					"name": "DSTC02table"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_DST_Aditya",
+						"type": "DatasetReference"
+					},
+					"name": "DSTUpdatedTable"
+				}
+			],
+			"transformations": [
+				{
+					"name": "FilteronEngineSize"
+				},
+				{
+					"name": "DerivedColumnEmissionRangeEfficientRating"
+				},
+				{
+					"name": "SortbyC02Emissions"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Make as string,",
+				"          Model as string,",
+				"          Vehicle_Class as string,",
+				"          Engine_Size_L as double,",
+				"          Cylinders as integer,",
+				"          Transmission as string,",
+				"          Fuel_Type as string,",
+				"          Fuel_Consumption_City_L_100km as double,",
+				"          Fuel_Consumption_Hwy_L_100km as double,",
+				"          Fuel_Consumption_Comb_L_100km as double,",
+				"          Fuel_Consumption_Comb_mpg as double,",
+				"          CO2_Emissions_g_km as double,",
+				"          Last_Updated as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> DSTC02table",
+				"DSTC02table filter(Engine_Size_L >=2) ~> FilteronEngineSize",
+				"FilteronEngineSize derive(Emission_Range = iif(CO2_Emissions_g_km < 100, 'Low',     iif(CO2_Emissions_g_km >= 100 && CO2_Emissions_g_km <= 200, 'Medium', 'High')),",
+				"          Efficient_Rating = iif(Fuel_Consumption_Comb_mpg > 30, 'Efficient',     iif(Fuel_Consumption_Comb_mpg >= 20 && Fuel_Consumption_Comb_mpg <= 30, 'Moderate', 'Inefficient'))) ~> DerivedColumnEmissionRangeEfficientRating",
+				"DerivedColumnEmissionRangeEfficientRating sort(desc(CO2_Emissions_g_km, true),",
+				"     asc(Engine_Size_L, true)) ~> SortbyC02Emissions",
+				"SortbyC02Emissions sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Make as string,",
+				"          Model as string,",
+				"          Vehicle_Class as string,",
+				"          Engine_Size_L as double,",
+				"          Cylinders as integer,",
+				"          Transmission as string,",
+				"          Fuel_Type as string,",
+				"          Fuel_Consumption_City_L_100km as double,",
+				"          Fuel_Consumption_Hwy_L_100km as double,",
+				"          Fuel_Consumption_Comb_L_100km as double,",
+				"          Fuel_Consumption_Comb_mpg as double,",
+				"          CO2_Emissions_g_km as double,",
+				"          Last_Updated as timestamp",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> DSTUpdatedTable"
+			]
+		}
+	}
+}

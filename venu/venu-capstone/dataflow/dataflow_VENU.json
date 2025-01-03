@@ -1,0 +1,102 @@
+{
+	"name": "dataflow_VENU",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_sql_emp_venu",
+						"type": "DatasetReference"
+					},
+					"name": "sourceemp"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_sql_dept_venu",
+						"type": "DatasetReference"
+					},
+					"name": "sourcedept"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "sortbysal"
+				},
+				{
+					"name": "splitbydept"
+				},
+				{
+					"name": "selectreqcol"
+				},
+				{
+					"name": "lookupdeptdname"
+				},
+				{
+					"name": "union"
+				},
+				{
+					"name": "rank"
+				},
+				{
+					"name": "aggregatemaxsal"
+				},
+				{
+					"name": "existsornot"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          EMPNO as decimal(4,0),",
+				"          ENAME as string,",
+				"          JOB as string,",
+				"          MGR as decimal(4,0),",
+				"          HIREDATE as timestamp,",
+				"          SAL as decimal(7,2),",
+				"          COMM as decimal(7,2),",
+				"          DEPT as decimal(2,0)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> sourceemp",
+				"source(output(",
+				"          DEPTNO as decimal(2,0),",
+				"          DNAME as string,",
+				"          LOC as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> sourcedept",
+				"selectreqcol sort(desc(SAL, true)) ~> sortbysal",
+				"sourceemp split(DEPT==10,",
+				"     disjoint: false) ~> splitbydept@(dept10, dept)",
+				"sourceemp select(mapColumn(",
+				"          EMPNO,",
+				"          ENAME,",
+				"          JOB,",
+				"          MGR,",
+				"          COMM,",
+				"          SAL,",
+				"          DEPT",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectreqcol",
+				"union, sourceemp lookup(DEPTNO == sourceemp@DEPT,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookupdeptdname",
+				"sourcedept, sourceemp union(byName: true)~> union",
+				"sortbysal rank(desc(SAL, true),",
+				"     output(salarywise as long)) ~> rank",
+				"sourceemp aggregate(groupBy(DEPT),",
+				"     max_sal = avg(SAL)) ~> aggregatemaxsal",
+				"sourceemp, sourcedept exists(DEPT == DEPTNO,",
+				"     negate:false,",
+				"     broadcast: 'auto')~> existsornot"
+			]
+		}
+	}
+}

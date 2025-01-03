@@ -1,0 +1,120 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_DERIVEDATA_JYOTHI",
+						"type": "DatasetReference"
+					},
+					"name": "FlaskDataSource"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_DERIVEDATA_JYOTHI",
+						"type": "DatasetReference"
+					},
+					"name": "FLaskDataSource1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_jyothi_gen2_agg",
+						"type": "DatasetReference"
+					},
+					"name": "AggSink"
+				},
+				{
+					"dataset": {
+						"referenceName": "GEN2_ALLERT_JYOTHI",
+						"type": "DatasetReference"
+					},
+					"name": "Alertgen2"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_JYOTHI_SINK",
+						"type": "DatasetReference"
+					},
+					"name": "NonAlertActive"
+				}
+			],
+			"transformations": [
+				{
+					"name": "aggregateByTemp"
+				},
+				{
+					"name": "addlsAlertColoumn"
+				},
+				{
+					"name": "sortByTemp"
+				},
+				{
+					"name": "SplitByAlert"
+				},
+				{
+					"name": "filterBydeviceStatus"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Temperature as integer,",
+				"          Humidity as integer,",
+				"          Pressure as integer,",
+				"          LightIntensity as integer,",
+				"          DeviceStatus as string,",
+				"          Timestamp as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> FlaskDataSource",
+				"source(output(",
+				"          Temperature as integer,",
+				"          Humidity as integer,",
+				"          Pressure as integer,",
+				"          LightIntensity as integer,",
+				"          DeviceStatus as string,",
+				"          Timestamp as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> FLaskDataSource1",
+				"FlaskDataSource aggregate(groupBy(Temperature),",
+				"     count = count(Temperature),",
+				"          Avg = avg(Temperature)) ~> aggregateByTemp",
+				"FLaskDataSource1 derive(ISALERT = iif((Temperature>100 && Pressure>1000), 'Yes', 'No')) ~> addlsAlertColoumn",
+				"addlsAlertColoumn sort(asc(Temperature, true)) ~> sortByTemp",
+				"sortByTemp split(ISALERT =='yes',",
+				"     disjoint: false) ~> SplitByAlert@(ALERTColumn, NONALERT)",
+				"SplitByAlert@NONALERT filter(DeviceStatus == 'active') ~> filterBydeviceStatus",
+				"aggregateByTemp sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1) ~> AggSink",
+				"SplitByAlert@ALERTColumn sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> Alertgen2",
+				"filterBydeviceStatus sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> NonAlertActive"
+			]
+		}
+	}
+}

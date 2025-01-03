@@ -1,0 +1,25 @@
+{
+	"name": "DS_output_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_gen2_capstone",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "capstone"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "capstone-onkar-output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

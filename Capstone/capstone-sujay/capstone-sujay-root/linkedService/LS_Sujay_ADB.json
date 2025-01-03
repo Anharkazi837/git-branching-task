@@ -1,0 +1,17 @@
+{
+	"name": "LS_Sujay_ADB",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-2369315146208867.7.azuredatabricks.net",
+			"existingClusterId": "1224-055711-uomp4njs",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyMGE1ZWI5NS04YTUyLTRlZDctODBkNC01ZDUxYWY5OTI0M2IiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "IR-Sujay-Personal",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

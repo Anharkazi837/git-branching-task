@@ -1,0 +1,139 @@
+{
+	"name": "filterdf",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_ASDB",
+						"type": "DatasetReference"
+					},
+					"name": "flask"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_ASDB",
+						"type": "DatasetReference"
+					},
+					"name": "flask2"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_ASDB",
+						"type": "DatasetReference"
+					},
+					"name": "flask3"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_GEN2",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_GEN2",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_GEN2",
+						"type": "DatasetReference"
+					},
+					"name": "sink3"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filter1"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "sort1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          temperature as integer,",
+				"          humidity as integer,",
+				"          pressure as integer,",
+				"          light_intensity as integer,",
+				"          device_status as string,",
+				"          lastupdatedate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> flask",
+				"source(output(",
+				"          temperature as integer,",
+				"          humidity as integer,",
+				"          pressure as integer,",
+				"          light_intensity as integer,",
+				"          device_status as string,",
+				"          lastupdatedate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> flask2",
+				"source(output(",
+				"          temperature as integer,",
+				"          humidity as integer,",
+				"          pressure as integer,",
+				"          light_intensity as integer,",
+				"          device_status as string,",
+				"          lastupdatedate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> flask3",
+				"flask filter(temperature== 640) ~> filter1",
+				"flask2 select(mapColumn(",
+				"          temperature,",
+				"          humidity,",
+				"          pressure,",
+				"          light_intensity,",
+				"          device_status,",
+				"          lastupdatedate",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"flask3 sort(desc(pressure, true)) ~> sort1",
+				"filter1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['flask.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['flaskselect.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink2",
+				"sort1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink3"
+			]
+		}
+	}
+}

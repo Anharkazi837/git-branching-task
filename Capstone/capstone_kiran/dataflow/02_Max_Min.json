@@ -1,0 +1,73 @@
+{
+	"name": "02_Max_Min",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable",
+						"type": "DatasetReference"
+					},
+					"name": "source"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "gen2",
+						"type": "DatasetReference"
+					},
+					"name": "sink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "FilterNullValues"
+				},
+				{
+					"name": "AggregateMaxandMin"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Make as string,",
+				"          Model as string,",
+				"          Vehicle_Class as string,",
+				"          Engine_Size_L as double,",
+				"          Cylinders as integer,",
+				"          Transmission as string,",
+				"          Fuel_Type as string,",
+				"          Fuel_Consumption_City_L_100km as double,",
+				"          Fuel_Consumption_Hwy_L_100km as double,",
+				"          Fuel_Consumption_Comb_L_100km as double,",
+				"          Fuel_Consumption_Comb_mpg as double,",
+				"          CO2_Emissions_g_km as double,",
+				"          Last_Updated as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source",
+				"source filter(!isNull(Make) &&",
+				"!isNull(Model) &&",
+				"!isNull(Vehicle_Class) &&",
+				"!isNull(Engine_Size_L) &&",
+				"!isNull(Cylinders) &&",
+				"!isNull(Transmission)) ~> FilterNullValues",
+				"FilterNullValues aggregate(groupBy(Vehicle_Class),",
+				"     Max_Fuel_Efficiency = max(Fuel_Consumption_Comb_mpg),",
+				"          Min_Fuel_Efficiency = min(Fuel_Consumption_Comb_mpg)) ~> AggregateMaxandMin",
+				"AggregateMaxandMin sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['min_max_output'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink"
+			]
+		}
+	}
+}

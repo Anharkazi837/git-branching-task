@@ -1,0 +1,134 @@
+{
+	"name": "PL_Sujay_IDL_StockPrice",
+	"properties": {
+		"activities": [
+			{
+				"name": "LookupCurrentChangeTrackingVersionActivity",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DS_Sujay_SQL_StockDetails",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "LookupLastChangeTrackingVersionActivity",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DS_Sujay_CT_StockDetails",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "IncrementalCopyActivity",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "LookupCurrentChangeTrackingVersionActivity",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "LookupLastChangeTrackingVersionActivity",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "SELECT \r\n    sujay_StockDetails.record_time,\r\n    sujay_StockDetails.short_name,\r\n    sujay_StockDetails.currentPrice,\r\n    sujay_StockDetails.previousClose,\r\n    sujay_StockDetails.today_open,\r\n    sujay_StockDetails.dayLow,\r\n    sujay_StockDetails.dayHigh,\r\n    sujay_StockDetails.fiftyTwoWeekLow,\r\n    sujay_StockDetails.fiftyTwoWeekHigh,\r\n    sujay_StockDetails.volume,\r\n    sujay_StockDetails.marketCap,\r\n    sujay_StockDetails.currency,\r\n    CT.SYS_CHANGE_VERSION, \r\n    SYS_CHANGE_OPERATION \r\nFROM sujay_StockDetails\r\n    RIGHT OUTER JOIN \r\n    CHANGETABLE(\r\n        CHANGES sujay_StockDetails, \r\n        @{activity('LookupLastChangeTrackingVersionActivity').output.firstRow.SYS_CHANGE_VERSION}\r\n    ) AS CT \r\n    ON \r\n    sujay_StockDetails.record_time = CT.record_time \r\nWHERE \r\n    CT.SYS_CHANGE_VERSION <= @{activity('LookupCurrentChangeTrackingVersionActivity').output.firstRow.CurrentChangeTrackingVersion}\r\n",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_Sujay_SQL_StockDetails",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_Sujay_IDL_Latest_Out_Parquet",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"parameters": {
+			"StockName": {
+				"type": "string",
+				"defaultValue": "TATAMOTORS.NS"
+			}
+		},
+		"variables": {
+			"TableName": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}

@@ -1,0 +1,47 @@
+{
+	"name": "DsDeriveSqlArnab",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ip_arnab_sql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Temperature",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Humidity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Pressure",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LightIntensity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DeviceStatus",
+				"type": "varchar"
+			},
+			{
+				"name": "Timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DeviceData_arnab"
+		}
+	}
+}

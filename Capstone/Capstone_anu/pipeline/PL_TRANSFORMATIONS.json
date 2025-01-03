@@ -1,0 +1,76 @@
+{
+	"name": "PL_TRANSFORMATIONS",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dataflow1",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"parameters": {
+			"Id": {
+				"type": "string"
+			},
+			"Make": {
+				"type": "string"
+			},
+			"Model": {
+				"type": "string"
+			},
+			"Vehicle_Class": {
+				"type": "string"
+			},
+			"Engine_Size_L": {
+				"type": "string"
+			},
+			"Cylinders": {
+				"type": "string"
+			},
+			"Transmission": {
+				"type": "string"
+			},
+			"Fuel_Type": {
+				"type": "string"
+			},
+			"Fuel_Consumption_City_L_100km": {
+				"type": "string"
+			},
+			"Fuel_Consumption_Hwy_L_100km": {
+				"type": "string"
+			},
+			"Fuel_Consumption_Comb_L_100km": {
+				"type": "string"
+			},
+			"Fuel_Consumption_Comb_mpg": {
+				"type": "string"
+			},
+			"CO2_Emissions_g_km": {
+				"type": "string"
+			},
+			"Last_Updated": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}

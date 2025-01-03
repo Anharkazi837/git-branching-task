@@ -1,0 +1,26 @@
+{
+	"name": "Ds_CT_capstone_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_capstone_anu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "SYS_CHANGE_VERSION",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Changetracking_co2_anu"
+		}
+	}
+}

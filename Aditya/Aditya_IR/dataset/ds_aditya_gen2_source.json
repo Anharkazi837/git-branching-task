@@ -1,0 +1,44 @@
+{
+	"name": "ds_aditya_gen2_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_aditya_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "iris.csv",
+				"fileSystem": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "sepal.length",
+				"type": "String"
+			},
+			{
+				"name": "sepal.width",
+				"type": "String"
+			},
+			{
+				"name": "petal.length",
+				"type": "String"
+			},
+			{
+				"name": "petal.width",
+				"type": "String"
+			},
+			{
+				"name": "variety",
+				"type": "String"
+			}
+		]
+	}
+}

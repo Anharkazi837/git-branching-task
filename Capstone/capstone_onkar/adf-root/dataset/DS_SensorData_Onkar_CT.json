@@ -1,0 +1,29 @@
+{
+	"name": "DS_SensorData_Onkar_CT",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AZ_sql_capstone",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "capstone"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "SYS_CHANGE_VERSION",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SensorData_Onkar_CT"
+		}
+	}
+}

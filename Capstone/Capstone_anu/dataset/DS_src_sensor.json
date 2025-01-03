@@ -1,0 +1,52 @@
+{
+	"name": "DS_src_sensor",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_capstone_anu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "temperature",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "humidity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pressure",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "light_intensity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "device_status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "timestamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "sensor_data_anu"
+		}
+	}
+}

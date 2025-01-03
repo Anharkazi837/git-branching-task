@@ -1,0 +1,15 @@
+{
+	"name": "adfasdf",
+	"properties": {
+		"globalConfigurations": {
+			"PolicyValidationEnabled": "true",
+			"PipelineBillingEnabled": "true"
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7fc74b0b-c076-4080-9ea8-b9ece82a2d5f",
+		"tenantId": "ce0db214-cf5e-4aa5-9781-bd8d3fa6c4c3"
+	}
+}

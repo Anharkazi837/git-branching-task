@@ -1,0 +1,17 @@
+{
+	"name": "Json1_onkar_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_gen2_onkar",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			}
+		},
+		"schema": {}
+	}
+}

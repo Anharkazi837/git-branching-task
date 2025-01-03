@@ -1,0 +1,19 @@
+{
+	"name": "DS_Sujay_Final_Output_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sujay_Gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "sujay-capstone"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

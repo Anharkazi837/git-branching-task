@@ -1,0 +1,23 @@
+{
+	"name": "DS_Ouput_Bharath",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Blob_Bharath",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "bharath-output",
+				"container": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

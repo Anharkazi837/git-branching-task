@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-main"
+		},
+		"LS_Sujay_ADB_accessToken": {
+			"value": ""
+		},
+		"LS_Sujay_Blob_connectionString": {
+			"value": ""
+		},
+		"LS_Sujay_Gen2_accountKey": {
+			"value": ""
+		},
+		"LS_Sujay_SQL_DB4EVERYONE_password": {
+			"value": ""
+		},
+		"LS_Sujay_ADB_properties_typeProperties_existingClusterId": {
+			"value": "1224-055711-uomp4njs"
+		},
+		"LS_Sujay_Gen2_properties_typeProperties_url": {
+			"value": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_server": {
+			"value": "server4everyone.database.windows.net"
+		},
+		"LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_database": {
+			"value": "db4everyone"
+		},
+		"LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_userName": {
+			"value": "adminuser"
+		},
+		"Stock_Reliance_properties_PL_Sujay_StreamToBlob_Using_ADB_parameters_StockName": {
+			"value": "RELIANCE.NS"
+		},
+		"Stock_TATA_properties_PL_Sujay_StreamToBlob_Using_ADB_parameters_StockName": {
+			"value": "TATAMOTORS.NS"
+		}
+	}
+}

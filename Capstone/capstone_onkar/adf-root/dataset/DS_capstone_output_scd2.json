@@ -1,0 +1,21 @@
+{
+	"name": "DS_capstone_output_scd2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_gen2_capstone",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "capstone"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "capstone-onkar-output"
+			}
+		},
+		"schema": {}
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"name": "adf-cts-demo",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "1c05e864-41d7-4ed5-ad07-5c3a27291cc3",
+		"tenantId": "ce0db214-cf5e-4aa5-9781-bd8d3fa6c4c3"
+	}
+}

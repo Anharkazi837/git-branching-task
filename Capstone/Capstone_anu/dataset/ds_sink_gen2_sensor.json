@@ -1,0 +1,22 @@
+{
+	"name": "ds_sink_gen2_sensor",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_capstone_anu_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "capstone-anu-output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

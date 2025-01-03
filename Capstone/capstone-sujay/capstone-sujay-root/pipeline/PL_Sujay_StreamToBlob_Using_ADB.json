@@ -1,0 +1,108 @@
+{
+	"name": "PL_Sujay_StreamToBlob_Using_ADB",
+	"properties": {
+		"activities": [
+			{
+				"name": "Dimensional data to blob",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "/Workspace/Repos/sujay@mujahedtrainergmail.onmicrosoft.com/CTS-ADF/capstone_sujay_ADB_Notebooks/NB_Dim_Data_to_Blob",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"StockName": {
+							"value": "@pipeline().parameters.StockName",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_Sujay_ADB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Stream To SQL",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Dimensional data to blob",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/sujay@mujahedtrainergmail.onmicrosoft.com/CTS-ADF/capstone_sujay_ADB_Notebooks/Stock_Price_To_SQL",
+					"baseParameters": {
+						"StockName": {
+							"value": "@pipeline().parameters.StockName",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_Sujay_ADB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "IDL_Pipeline",
+				"type": "ExecutePipeline",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_Sujay_IDL_StockPrice",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"StockName": {
+							"value": "@pipeline().parameters.StockName",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"StockName": {
+				"type": "string",
+				"defaultValue": "TATAMOTORS.NS"
+			}
+		},
+		"variables": {
+			"VR_JSON_OUT_ADB": {
+				"type": "String"
+			},
+			"TableName": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}

@@ -1,0 +1,24 @@
+{
+	"name": "Blob_Sink_Dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sujay_blob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "gen2_blob_output.csv",
+				"container": "sujay-blob"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

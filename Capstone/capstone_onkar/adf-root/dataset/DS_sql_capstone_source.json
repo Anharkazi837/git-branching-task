@@ -1,0 +1,55 @@
+{
+	"name": "DS_sql_capstone_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AZ_sql_capstone",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "capstone"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Temperature",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Humidity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Pressure",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Light_intensity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Device_status",
+				"type": "varchar"
+			},
+			{
+				"name": "UpdatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SensorData_Onkar"
+		}
+	}
+}

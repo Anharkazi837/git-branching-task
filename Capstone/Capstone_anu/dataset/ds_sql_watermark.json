@@ -1,0 +1,27 @@
+{
+	"name": "ds_sql_watermark",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_capstone_anu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastUpdated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Watermark_anu_sensor"
+		}
+	}
+}

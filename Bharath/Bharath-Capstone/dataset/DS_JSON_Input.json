@@ -1,0 +1,45 @@
+{
+	"name": "DS_JSON_Input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Gen2_Bharath",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "JSON2SQL"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "sampleData.json",
+				"folderPath": "input",
+				"fileSystem": "bharath-container"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"device_status": {
+					"type": "string"
+				},
+				"humidity": {
+					"type": "number"
+				},
+				"light_intensity": {
+					"type": "number"
+				},
+				"pressure": {
+					"type": "number"
+				},
+				"temperature": {
+					"type": "number"
+				},
+				"timestamp": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}

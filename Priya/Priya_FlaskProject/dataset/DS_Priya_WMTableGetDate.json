@@ -1,0 +1,16 @@
+{
+	"name": "DS_Priya_WMTableGetDate",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_AzureSql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Priya_Watermark"
+		}
+	}
+}

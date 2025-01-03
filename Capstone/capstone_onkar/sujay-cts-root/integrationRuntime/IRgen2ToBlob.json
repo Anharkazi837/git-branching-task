@@ -1,0 +1,6 @@
+{
+	"name": "IRgen2ToBlob",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

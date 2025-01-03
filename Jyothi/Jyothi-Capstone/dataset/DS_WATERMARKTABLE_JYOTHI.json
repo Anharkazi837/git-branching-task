@@ -1,0 +1,27 @@
+{
+	"name": "DS_WATERMARKTABLE_JYOTHI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_DD_jyothi_sql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastUpdated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Watermark_jyothi"
+		}
+	}
+}

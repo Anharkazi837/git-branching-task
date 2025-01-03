@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfasdf"
+		},
+		"gen2iris_accountKey": {
+			"value": ""
+		},
+		"AmazonRdsForSqlServer1_connectionString": {
+			"value": ""
+		},
+		"gen2iris_properties_typeProperties_url": {
+			"value": "https://storageaccount2gen.dfs.core.windows.net/"
+		}
+	}
+}

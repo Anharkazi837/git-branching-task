@@ -1,0 +1,27 @@
+{
+	"name": "Watermarkdataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AZURESQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "tablename",
+				"type": "varchar"
+			},
+			{
+				"name": "lastupdatedate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "rudrani_watermark"
+		}
+	}
+}

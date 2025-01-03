@@ -1,0 +1,20 @@
+{
+	"name": "DS_Rest_Output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Gen2_Source_Dataset",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "restapiout.json",
+				"folderPath": "output-sujay",
+				"fileSystem": "output"
+			}
+		},
+		"schema": {}
+	}
+}

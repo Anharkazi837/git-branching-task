@@ -1,0 +1,90 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Ds_CO2_capstone_source",
+						"type": "DatasetReference"
+					},
+					"name": "source"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Ds_capstone_sink_Parquet",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "sort1"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "filter1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          id as integer,",
+				"          Make as string,",
+				"          Model as string,",
+				"          Vehicle_Class as string,",
+				"          Engine_Size_L as double,",
+				"          Cylinders as integer,",
+				"          Transmission as string,",
+				"          Fuel_Type as string,",
+				"          Fuel_Consumption_City_L_100km as double,",
+				"          Fuel_Consumption_Hwy_L_100km as double,",
+				"          Fuel_Consumption_Comb_L_100km as double,",
+				"          Fuel_Consumption_Comb_mpg as double,",
+				"          CO2_Emissions_g_km as double,",
+				"          Last_Updated as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source",
+				"filter1 sort(asc(Vehicle_Class, true)) ~> sort1",
+				"sort1 select(mapColumn(",
+				"          id,",
+				"          Make,",
+				"          Model,",
+				"          Vehicle_Class,",
+				"          Engine_Size_L,",
+				"          Cylinders,",
+				"          Transmission,",
+				"          Fuel_Type,",
+				"          Fuel_Consumption_City_L_100km,",
+				"          Fuel_Consumption_Hwy_L_100km,",
+				"          Fuel_Consumption_Comb_L_100km,",
+				"          Fuel_Consumption_Comb_mpg,",
+				"          CO2_Emissions_g_km,",
+				"          Last_Updated",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"source filter(!isNull(Fuel_Consumption_City_L_100km)&&",
+				"!isNull(Fuel_Consumption_Hwy_L_100km)&&",
+				"!isNull(Fuel_Consumption_Comb_L_100km)&&",
+				"!isNull(Fuel_Consumption_Comb_mpg)) ~> filter1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

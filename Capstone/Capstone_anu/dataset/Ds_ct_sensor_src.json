@@ -1,0 +1,31 @@
+{
+	"name": "Ds_ct_sensor_src",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_capstone_anu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "SYS_CHANGE_VERSION",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CT_sensor_data"
+		}
+	}
+}

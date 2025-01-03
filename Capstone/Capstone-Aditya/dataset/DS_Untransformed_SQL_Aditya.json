@@ -1,0 +1,78 @@
+{
+	"name": "DS_Untransformed_SQL_Aditya",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_Aditya",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Make",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Model",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Vehicle_Class",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Engine_Size_L",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Cylinders",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Transmission",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Fuel_Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Fuel_Consumption_City_L_100km",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Fuel_Consumption_Hwy_L_100km",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Fuel_Consumption_Comb_L_100km",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Fuel_Consumption_Comb_mpg",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CO2_Emissions_g_km",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Last_Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dst_CO2_Emissions_untransformed_aditya"
+		}
+	}
+}

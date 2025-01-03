@@ -1,0 +1,669 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-main"
+		},
+		"LS_Sujay_ADB_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'LS_Sujay_ADB'"
+		},
+		"LS_Sujay_Blob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_Sujay_Blob'"
+		},
+		"LS_Sujay_Gen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_Sujay_Gen2'"
+		},
+		"LS_Sujay_SQL_DB4EVERYONE_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_Sujay_SQL_DB4EVERYONE'"
+		},
+		"LS_Sujay_ADB_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1224-055711-uomp4njs"
+		},
+		"LS_Sujay_Gen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccount2gen.dfs.core.windows.net/"
+		},
+		"LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "server4everyone.database.windows.net"
+		},
+		"LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db4everyone"
+		},
+		"LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminuser"
+		},
+		"Stock_Reliance_properties_PL_Sujay_StreamToBlob_Using_ADB_parameters_StockName": {
+			"type": "string",
+			"defaultValue": "RELIANCE.NS"
+		},
+		"Stock_TATA_properties_PL_Sujay_StreamToBlob_Using_ADB_parameters_StockName": {
+			"type": "string",
+			"defaultValue": "TATAMOTORS.NS"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/IR-Sujay-Personal')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_Sujay_ADB')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-2369315146208867.7.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('LS_Sujay_ADB_accessToken')]"
+					},
+					"existingClusterId": "[parameters('LS_Sujay_ADB_properties_typeProperties_existingClusterId')]"
+				},
+				"connectVia": {
+					"referenceName": "IR-Sujay-Personal",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/IR-Sujay-Personal')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_Sujay_Blob')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('LS_Sujay_Blob_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "IR-Sujay-Personal",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/IR-Sujay-Personal')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_Sujay_Gen2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_Sujay_Gen2_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_Sujay_Gen2_accountKey')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "IR-Sujay-Personal",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/IR-Sujay-Personal')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_Sujay_SQL_DB4EVERYONE')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_server')]",
+					"database": "[parameters('LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('LS_Sujay_SQL_DB4EVERYONE_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('LS_Sujay_SQL_DB4EVERYONE_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "IR-Sujay-Personal",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/IR-Sujay-Personal')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_Sujay_CT_StockDetails')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_Sujay_SQL_DB4EVERYONE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "TableName",
+						"type": "varchar"
+					},
+					{
+						"name": "SYS_CHANGE_VERSION",
+						"type": "bigint",
+						"precision": 19
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "tbl_ct_sujay"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_Sujay_SQL_DB4EVERYONE')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_Sujay_Dim_JSON')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_Sujay_Blob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "part*.json",
+						"container": "sujay-capstone-blob"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_Sujay_Blob')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_Sujay_Final_Output_Parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_Sujay_Gen2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "sujay-capstone"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_Sujay_Gen2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_Sujay_IDL_Latest_Out_Parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_Sujay_Gen2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "sujay-capstone"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_Sujay_Gen2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_Sujay_SQL_StockDetails')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_Sujay_SQL_DB4EVERYONE",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "symbol",
+						"type": "varchar"
+					},
+					{
+						"name": "industry",
+						"type": "varchar"
+					},
+					{
+						"name": "sector",
+						"type": "varchar"
+					},
+					{
+						"name": "shortName",
+						"type": "varchar"
+					},
+					{
+						"name": "longName",
+						"type": "varchar"
+					},
+					{
+						"name": "fullTimeEmployees",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "full_address",
+						"type": "varchar"
+					},
+					{
+						"name": "city",
+						"type": "varchar"
+					},
+					{
+						"name": "zip",
+						"type": "varchar"
+					},
+					{
+						"name": "country",
+						"type": "varchar"
+					},
+					{
+						"name": "phone",
+						"type": "varchar"
+					},
+					{
+						"name": "website",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stock_details_TATA"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_Sujay_SQL_DB4EVERYONE')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PL_Sujay_IDL_StockPrice')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "LookupCurrentChangeTrackingVersionActivity",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "DS_Sujay_SQL_StockDetails",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "LookupLastChangeTrackingVersionActivity",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "DS_Sujay_CT_StockDetails",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "IncrementalCopyActivity",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "LookupCurrentChangeTrackingVersionActivity",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "LookupLastChangeTrackingVersionActivity",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "SELECT \r\n    sujay_StockDetails.record_time,\r\n    sujay_StockDetails.short_name,\r\n    sujay_StockDetails.currentPrice,\r\n    sujay_StockDetails.previousClose,\r\n    sujay_StockDetails.today_open,\r\n    sujay_StockDetails.dayLow,\r\n    sujay_StockDetails.dayHigh,\r\n    sujay_StockDetails.fiftyTwoWeekLow,\r\n    sujay_StockDetails.fiftyTwoWeekHigh,\r\n    sujay_StockDetails.volume,\r\n    sujay_StockDetails.marketCap,\r\n    sujay_StockDetails.currency,\r\n    CT.SYS_CHANGE_VERSION, \r\n    SYS_CHANGE_OPERATION \r\nFROM sujay_StockDetails\r\n    RIGHT OUTER JOIN \r\n    CHANGETABLE(\r\n        CHANGES sujay_StockDetails, \r\n        @{activity('LookupLastChangeTrackingVersionActivity').output.firstRow.SYS_CHANGE_VERSION}\r\n    ) AS CT \r\n    ON \r\n    sujay_StockDetails.record_time = CT.record_time \r\nWHERE \r\n    CT.SYS_CHANGE_VERSION <= @{activity('LookupCurrentChangeTrackingVersionActivity').output.firstRow.CurrentChangeTrackingVersion}\r\n",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DS_Sujay_SQL_StockDetails",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DS_Sujay_IDL_Latest_Out_Parquet",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"StockName": {
+						"type": "string",
+						"defaultValue": "TATAMOTORS.NS"
+					}
+				},
+				"variables": {
+					"TableName": {
+						"type": "String"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DS_Sujay_SQL_StockDetails')]",
+				"[concat(variables('factoryId'), '/datasets/DS_Sujay_CT_StockDetails')]",
+				"[concat(variables('factoryId'), '/datasets/DS_Sujay_IDL_Latest_Out_Parquet')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PL_Sujay_StreamToBlob_Using_ADB')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Dimensional data to blob",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": {
+								"value": "/Workspace/Repos/sujay@mujahedtrainergmail.onmicrosoft.com/CTS-ADF/capstone_sujay_ADB_Notebooks/NB_Dim_Data_to_Blob",
+								"type": "Expression"
+							},
+							"baseParameters": {
+								"StockName": {
+									"value": "@pipeline().parameters.StockName",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "LS_Sujay_ADB",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Stream To SQL",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Dimensional data to blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/sujay@mujahedtrainergmail.onmicrosoft.com/CTS-ADF/capstone_sujay_ADB_Notebooks/Stock_Price_To_SQL",
+							"baseParameters": {
+								"StockName": {
+									"value": "@pipeline().parameters.StockName",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "LS_Sujay_ADB",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "IDL_Pipeline",
+						"type": "ExecutePipeline",
+						"state": "Inactive",
+						"onInactiveMarkAs": "Succeeded",
+						"dependsOn": [],
+						"policy": {
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "PL_Sujay_IDL_StockPrice",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"StockName": {
+									"value": "@pipeline().parameters.StockName",
+									"type": "Expression"
+								}
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"StockName": {
+						"type": "string",
+						"defaultValue": "TATAMOTORS.NS"
+					}
+				},
+				"variables": {
+					"VR_JSON_OUT_ADB": {
+						"type": "String"
+					},
+					"TableName": {
+						"type": "String"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_Sujay_ADB')]",
+				"[concat(variables('factoryId'), '/pipelines/PL_Sujay_IDL_StockPrice')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Stock_Reliance')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "PL_Sujay_StreamToBlob_Using_ADB",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"StockName": "[parameters('Stock_Reliance_properties_PL_Sujay_StreamToBlob_Using_ADB_parameters_StockName')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 5,
+						"startTime": "2024-12-24T10:41:00",
+						"endTime": "2024-12-25T11:41:00",
+						"timeZone": "India Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/PL_Sujay_StreamToBlob_Using_ADB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Stock_TATA')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "PL_Sujay_StreamToBlob_Using_ADB",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"StockName": "[parameters('Stock_TATA_properties_PL_Sujay_StreamToBlob_Using_ADB_parameters_StockName')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 5,
+						"startTime": "2024-12-24T09:55:00",
+						"endTime": "2024-12-25T10:55:00",
+						"timeZone": "India Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/PL_Sujay_StreamToBlob_Using_ADB')]"
+			]
+		}
+	]
+}

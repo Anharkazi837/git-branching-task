@@ -1,0 +1,19 @@
+{
+	"name": "DS_Sujay_Dim_JSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sujay_Blob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "part*.json",
+				"container": "sujay-capstone-blob"
+			}
+		},
+		"schema": {}
+	}
+}
